@@ -1,0 +1,33 @@
+{
+  "note": "Our in-house café serves fresh snacks, woodfire pizzas and comfort food all day. Ask at the café for the full menu.",
+  "categories": [
+    {
+      "name": "Breakfast & light bites",
+      "items": [
+        { "name": "Butter Toast", "veg": true },
+        { "name": "Grilled Veg Sandwich", "veg": true },
+        { "name": "Grilled Aloo Sandwich", "veg": true },
+        { "name": "Poori Bhaji", "veg": true }
+      ]
+    },
+    {
+      "name": "Snacks",
+      "items": [
+        { "name": "French Fries", "veg": true },
+        { "name": "Cheese Corn Roll", "veg": true },
+        { "name": "Peanut Chaat", "veg": true },
+        { "name": "Honey Chilli Potato", "veg": true }
+      ]
+    },
+    {
+      "name": "Mains & favourites",
+      "items": [
+        { "name": "Woodfire Pizza", "veg": true, "highlight": true },
+        { "name": "Samsaara Veg Burger", "veg": true, "highlight": true },
+        { "name": "Samsaara Chicken Burger", "veg": false, "highlight": true },
+        { "name": "Chilli Chicken", "veg": false },
+        { "name": "Veg Hakka Noodles", "veg": true }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+---
+import Base from '../layouts/Base.astro';
+import FaqList from '../components/FaqList.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { faqsByTag, faqSchema } from '../lib/schema';
+
+const all = faqsByTag();
+const crumbs = [{ name: 'FAQ', path: '/faq/' }];
+---
+<Base
+  title="FAQs — Prices, Meals, Rafting & Groups | The Samsaara Rishikesh"
+  description="Answers about The Samsaara, Shivpuri: prices from ₹2,000 with meals, per-bed booking, rafting, pool, group discounts, weddings and how to book."
+  breadcrumbs={crumbs}
+  schema={[faqSchema(all)]}
+>
+  <section class="section">
+    <div class="container-x max-w-4xl">
+      <nav aria-label="Breadcrumb" class="mb-4 text-sm text-charcoal/60"><a href="/" class="text-charcoal/60">Home</a> / FAQ</nav>
+      <h1>Frequently Asked Questions</h1>
+      <p class="lead mt-4">Everything you need to know before you stay, camp or celebrate with us. Can’t find your answer? Ask us on WhatsApp — we reply fast.</p>
+      <div class="mt-10"><FaqList items={all} title="" /></div>
+      <CtaBand title="Still have a question?" text="Message us on WhatsApp or call — we’re happy to help." />
+    </div>
+  </section>
+</Base>

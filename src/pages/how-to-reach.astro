@@ -1,0 +1,49 @@
+---
+import Base from '../layouts/Base.astro';
+import MapBlock from '../components/MapBlock.astro';
+import CtaBand from '../components/CtaBand.astro';
+
+const crumbs = [{ name: 'How to Reach', path: '/how-to-reach/' }];
+const wa = "Hi Samsaara! I need directions / help with a cab to the resort.";
+---
+<Base
+  title="Rishikesh to Shivpuri Distance & How to Reach | The Samsaara"
+  description="How to reach The Samsaara, Shivpuri: distance from Rishikesh, Delhi, Haridwar & Dehradun airport, with routes by road, train and air. Map & directions."
+  waMessage={wa}
+  breadcrumbs={crumbs}
+>
+  <section class="section">
+    <div class="container-x">
+      <nav aria-label="Breadcrumb" class="mb-4 text-sm text-charcoal/60"><a href="/" class="text-charcoal/60">Home</a> / How to Reach</nav>
+      <h1>How to Reach The Samsaara, Shivpuri</h1>
+      <p class="lead mt-4 max-w-3xl">We’re on the bank of the Ganga in the Shivpuri range, upstream of Rishikesh on the Rishikesh–Badrinath highway (NH-7). Here’s how to get to us by road, train and air.</p>
+
+      <div class="mt-10"><MapBlock /></div>
+
+      <div class="mt-16 grid gap-12 lg:grid-cols-2">
+        <div class="prose-s reveal">
+          <h2>Rishikesh to Shivpuri distance</h2>
+          <p>Shivpuri is roughly <strong>16–20 km from Rishikesh town</strong> (Laxman Jhula / Tapovan area), about a 35–45 minute drive along the Badrinath highway. The road follows the river and climbs gently into the hills — it’s a beautiful drive.</p>
+          <p>From Rishikesh you can take a taxi or auto, or ask us to help arrange a cab. Shared jeeps heading towards Byasi and Devprayag also pass through Shivpuri.</p>
+
+          <h2>Delhi to Shivpuri</h2>
+          <p>Shivpuri is about <strong>240 km from Delhi</strong> — usually 6–7 hours by road depending on traffic. The common route is Delhi → Meerut → Muzaffarnagar → Haridwar → Rishikesh → Shivpuri. Start early to beat traffic and arrive in daylight.</p>
+          <p>Volvo and state buses run from Delhi (ISBT Kashmere Gate) to Rishikesh, from where it’s a short cab ride to us.</p>
+        </div>
+        <div class="prose-s reveal">
+          <h2>Dehradun airport to Shivpuri</h2>
+          <p>The nearest airport is <strong>Jolly Grant Airport, Dehradun</strong>, roughly 35–40 km away — around an hour to an hour and a quarter by taxi, via Rishikesh.</p>
+
+          <h2>By train</h2>
+          <p>The closest stations are <strong>Yog Nagari Rishikesh</strong> and <strong>Haridwar Junction</strong>. Haridwar has many more trains from Delhi and the rest of India (including the Shatabdi). From either station, take a taxi to Shivpuri.</p>
+
+          <h2>Group travel</h2>
+          <p>Bringing a bus or tempo traveller for a <a href="/school-trips/">school trip</a>, <a href="/corporate-offsite/">corporate offsite</a> or <a href="/destination-wedding/">wedding</a>? Message us before you leave and we’ll share parking and arrival details.</p>
+          <p>More tips: <a href="/blog/rishikesh-to-shivpuri-distance-how-to-reach/">Rishikesh to Shivpuri: distance, route &amp; how to reach</a>.</p>
+        </div>
+      </div>
+
+      <CtaBand title="Need help getting here?" text="WhatsApp us your arrival time and where you’re coming from — we’ll share directions or help with a cab." waMessage={wa} />
+    </div>
+  </section>
+</Base>

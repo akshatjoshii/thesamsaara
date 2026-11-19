@@ -1,0 +1,197 @@
+---
+import Base from '../layouts/Base.astro';
+import page from '../data/pages/home.json';
+import { fill, shareImage } from '../lib/content';
+import PageHero from '../components/PageHero.astro';
+import ImageCard from '../components/ImageCard.astro';
+import Icon from '../components/Icon.astro';
+import Wave from '../components/Wave.astro';
+import Reviews from '../components/Reviews.astro';
+import MapBlock from '../components/MapBlock.astro';
+import FaqList from '../components/FaqList.astro';
+import EnquiryForm from '../components/EnquiryForm.astro';
+import CtaBand from '../components/CtaBand.astro';
+import site from '../data/site.json';
+import experiences from '../data/experiences.json';
+import menu from '../data/menu.json';
+import gallery from '../data/gallery.json';
+import { resortSchema, faqsByTag, faqSchema } from '../lib/schema';
+import { formatINR } from '../lib/links';
+
+const faqs = faqsByTag('general').slice(0, 5);
+const price = formatINR(site.startingPrice);
+const highlights = ['17 AC cottages', 'River front', 'Swimming pool', 'Rafting', 'Bonfire', 'Beach camping'];
+const occasions = page.occasions;
+const why = [
+  { t: `From ${price} per person`, d: 'One of the best-value riverside stays in Shivpuri — and meals are included.' },
+  { t: 'Right on the Ganga', d: 'Cottages and tents on the river bank, minutes from the main rafting stretches.' },
+  { t: 'Meals included (MAP)', d: 'No surprise food bills. Plus an in-house café for snacks and woodfire pizza.' },
+  { t: 'Custom group packages', d: 'No fixed packages. Every group gets a plan and a discount built around them.' },
+];
+const highlightsMenu = menu.categories.flatMap((c) => c.items).filter((i) => 'highlight' in i && i.highlight);
+---
+<Base
+  title={fill(page.seo.title)}
+  description={fill(page.seo.description)}
+  image={shareImage(page.seo.image)}
+  schema={[resortSchema(), faqSchema(faqs)]}
+>
+  <PageHero
+    eyebrow={fill(page.hero.eyebrow)}
+    title={fill(page.hero.title)}
+    subtitle={fill(page.hero.subtitle)}
+    image={page.hero.image}
+    imageAlt={page.hero.alt}
+    representative={page.hero.representative}
+    size="full"
+  />
+
+  <!-- Highlights strip -->
+  <section class="bg-forest text-sand">
+    <ul class="container-x flex flex-wrap justify-center gap-x-6 gap-y-2 py-5 text-sm sm:text-base">
+      {highlights.map((h) => <li class="flex items-center gap-2"><Icon name="check" class="h-4 w-4 text-amber" />{h}</li>)}
+    </ul>
+  </section>
+
+  <!-- Stay options -->
+  <section class="section">
+    <div class="container-x">
+      <div class="max-w-2xl reveal">
+        <p class="eyebrow">Stay with us</p>
+        <h2 class="mt-2">A riverside resort in Shivpuri for every kind of trip</h2>
+        <p class="lead mt-4">The Samsaara Club &amp; Resort sits on the bank of the Ganga in Shivpuri — the adventure heart of Rishikesh. Choose an air-conditioned cottage or sleep under the stars in our beach-side tents. Either way, your meals are included.</p>
+      </div>
+      <div class="mt-10 grid gap-6 md:grid-cols-2">
+        <ImageCard href="/stay/" image={page.stayCards.cottages.image} alt={page.stayCards.cottages.alt} title="AC Cottages" badge={`From ${price}/bed`} cta="See cottages"
+          text="17 air-conditioned cottages with 4–5 beds each. Book a single bed or the whole cottage — Standard, Deluxe and Superior tiers." />
+        <ImageCard href="/riverside-camping/" image={page.stayCards.camping.image} alt={page.stayCards.camping.alt} title="Beach-side Camping" badge="Signature experience" cta="See camping"
+          text="10 tents on the river beach with bonfire evenings, meals included and rafting on request. Rishikesh camping the way it should be." />
+      </div>
+    </div>
+  </section>
+
+  <!-- Occasions -->
+  <section class="section relative bg-sand">
+    <Wave color="var(--color-sand)" />
+    <div class="container-x">
+      <div class="max-w-2xl reveal">
+        <p class="eyebrow">Plan your occasion</p>
+        <h2 class="mt-2">Weddings, offsites, school trips &amp; celebrations</h2>
+        <p class="lead mt-4">Groups are our speciality. Tell us your headcount and dates, and we’ll build a custom package — <strong>groups get special discounts</strong>.</p>
+      </div>
+      <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {occasions.map((o) => <ImageCard href={o.href} image={o.image} alt={o.alt} title={o.title} text={o.text} cta="Plan it" />)}
+      </div>
+    </div>
+  </section>
+
+  <!-- Experiences carousel -->
+  <section class="section">
+    <div class="container-x">
+      <div class="flex flex-wrap items-end justify-between gap-4 reveal">
+        <div class="max-w-2xl">
+          <p class="eyebrow">Experiences</p>
+          <h2 class="mt-2">River calm, wild fun</h2>
+        </div>
+        <a href="/experiences/" class="btn btn-outline">All experiences <Icon name="arrow" /></a>
+      </div>
+      <div class="mt-8 -mx-5 flex snap-x snap-mandatory gap-5 overflow-x-auto px-5 pb-4 sm:-mx-8 sm:px-8" tabindex="0" aria-label="Experiences — scroll sideways">
+        {experiences.items.map((e) => (
+          <a href={`/experiences/#${e.id}`} class="card group w-72 shrink-0 snap-start no-underline text-charcoal">
+            <img src={e.image} alt={e.alt || e.name} loading="lazy" width="1200" height="800" class="aspect-[4/3] w-full object-cover" />
+            <div class="p-5">
+              <h3 class="!text-lg">{e.name}</h3>
+              <p class="mt-1 text-sm text-charcoal/70">{e.text}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Samsaara -->
+  <section class="section relative bg-teal text-sand">
+    <Wave color="var(--color-teal)" />
+    <div class="container-x">
+      <div class="max-w-2xl reveal">
+        <p class="eyebrow !text-amber">Why The Samsaara</p>
+        <h2 class="mt-2 !text-sand">Great value, right on the river</h2>
+      </div>
+      <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {why.map((w) => (
+          <div class="reveal rounded-3xl bg-white/10 p-6">
+            <Icon name="check" class="h-7 w-7 text-amber" />
+            <h3 class="mt-3 !text-xl !text-sand">{w.t}</h3>
+            <p class="mt-2 text-base text-sand/85">{w.d}</p>
+          </div>
+        ))}
+      </div>
+      <p class="mt-10 max-w-3xl text-sand/85 reveal">Whether you’re a couple looking for a quiet riverside break, a family on a weekend away from Delhi, or a group of 80 planning a wedding, our team will put together the right mix of cottages, tents, meals and activities — and quote you a fair, all-in price on WhatsApp.</p>
+    </div>
+  </section>
+
+  <!-- Reviews -->
+  <section class="section">
+    <div class="container-x"><Reviews /></div>
+  </section>
+
+  <!-- Café teaser -->
+  <section class="section relative bg-sand">
+    <Wave color="var(--color-sand)" />
+    <div class="container-x grid items-center gap-10 lg:grid-cols-2">
+      <img src={page.cafeTeaser.image} alt={page.cafeTeaser.alt} loading="lazy" width="1200" height="800" class="reveal rounded-3xl shadow-md" />
+      <div class="reveal">
+        <p class="eyebrow">Samsaara Café</p>
+        <h2 class="mt-2">Woodfire pizza by the river</h2>
+        <p class="lead mt-4">Our in-house café is the social heart of the resort — a common area to refuel after rafting with burgers, noodles, chaat and pizzas from the wood-fired oven.</p>
+        <ul class="mt-5 flex flex-wrap gap-2">
+          {highlightsMenu.map((i) => <li class="chip">{i.name}</li>)}
+        </ul>
+        <a href="/cafe/" class="btn btn-outline mt-6">See the café <Icon name="arrow" /></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery strip -->
+  <section class="section">
+    <div class="container-x">
+      <div class="flex flex-wrap items-end justify-between gap-4 reveal">
+        <div><p class="eyebrow">Gallery</p><h2 class="mt-2">Life at The Samsaara</h2></div>
+        <div class="flex flex-wrap gap-3">
+          <a href="/gallery/" class="btn btn-outline">View gallery</a>
+          <a href={site.instagram} class="btn btn-amber" target="_blank" rel="noopener"><Icon name="instagram" /> @thesamsaara_</a>
+        </div>
+      </div>
+      <div class="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
+        {gallery.items.slice(0, 6).map((g) => (
+          <img src={g.src} alt={g.alt} loading="lazy" width="1200" height="800" class="aspect-square w-full rounded-2xl object-cover" />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Location -->
+  <section class="section relative bg-sand">
+    <Wave color="var(--color-sand)" />
+    <div class="container-x">
+      <div class="max-w-2xl reveal mb-8">
+        <p class="eyebrow">Location</p>
+        <h2 class="mt-2">On the Ganga in Shivpuri, upstream of Rishikesh</h2>
+        <p class="lead mt-4">Shivpuri is where most Rishikesh rafting trips begin — close enough to town for a quick visit to Laxman Jhula, far enough for clean air, quiet nights and a private stretch of river beach.</p>
+      </div>
+      <MapBlock />
+    </div>
+  </section>
+
+  <!-- FAQ + form -->
+  <section class="section">
+    <div class="container-x grid gap-12 lg:grid-cols-2">
+      <div>
+        <FaqList items={faqs} />
+        <a href="/faq/" class="mt-6 inline-flex items-center gap-1 font-semibold">All FAQs <Icon name="arrow" class="h-4 w-4" /></a>
+        <CtaBand waMessage="Hi Samsaara! I'd like the best price for a stay. Dates: ___ Guests: ___" />
+      </div>
+      <EnquiryForm />
+    </div>
+  </section>
+</Base>

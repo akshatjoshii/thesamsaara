@@ -1,0 +1,109 @@
+---
+import Base from '../layouts/Base.astro';
+import page from '../data/pages/camping.json';
+import { fill, shareImage } from '../lib/content';
+import PageHero from '../components/PageHero.astro';
+import Icon from '../components/Icon.astro';
+import CtaBand from '../components/CtaBand.astro';
+import FaqList from '../components/FaqList.astro';
+import EnquiryForm from '../components/EnquiryForm.astro';
+import stay from '../data/stay.json';
+import { faqsByTag, faqSchema } from '../lib/schema';
+
+const faqs = faqsByTag('camping');
+const wa = "Hi Samsaara! I'm interested in riverside camping. Dates: ___ Guests: ___ Rafting: yes/no";
+const crumbs = [{ name: 'Riverside Camping', path: '/riverside-camping/' }];
+const day = [
+  { time: 'Afternoon', text: 'Check in, drop your bags in your tent and take your first walk on the river beach.' },
+  { time: 'Late afternoon', text: 'Beach volleyball, games or a dip in the pool. Rafting can be arranged on request.' },
+  { time: 'Evening', text: 'Bonfire by the Ganga with music, snacks from the café and the sound of the river.' },
+  { time: 'Night', text: 'Dinner (included), stargazing and a night in your tent under the Himalayan sky.' },
+  { time: 'Morning', text: 'Wake up to mist on the river. Breakfast, then rafting or a slow morning by the water.' },
+];
+---
+<Base
+  title={fill(page.seo.title)}
+  description={fill(page.seo.description)}
+  image={shareImage(page.seo.image)}
+  waMessage={wa}
+  breadcrumbs={crumbs}
+  schema={[faqSchema(faqs)]}
+>
+  <PageHero
+    eyebrow={fill(page.hero.eyebrow)}
+    title={fill(page.hero.title)}
+    subtitle={fill(page.hero.subtitle)}
+    image={page.hero.image}
+    imageAlt={page.hero.alt}
+    representative={page.hero.representative}
+    waMessage={wa}
+    crumbs={crumbs}
+    showPrice={false}
+  />
+
+  <section class="section">
+    <div class="container-x grid gap-12 lg:grid-cols-5">
+      <div class="prose-s lg:col-span-3 reveal">
+        <h2>Riverside camping in Shivpuri, the way it should be</h2>
+        <p>Shivpuri is the most famous camping and rafting area in Rishikesh, and our camp sits right on its <strong>river beach</strong>. With only <strong>10 tents</strong>, it never feels crowded — just white sand, the Ganga flowing past and forested hills all around.</p>
+        <p>Every camping stay includes <strong>meals on a MAP plan</strong>, so you can switch off and enjoy the river. In the evenings we light the <strong>bonfire</strong>; by day you can try <a href="/experiences/#rafting">river rafting</a>, play beach volleyball or cool off in the resort pool. You also get full access to the resort’s facilities, café and common areas.</p>
+        <h3>Camping price</h3>
+        <p>Camping prices are dynamic — they change with the season, weekdays vs weekends, and group size. Message us on WhatsApp with your dates and we’ll send you the best current price. <strong>Groups get special discounts.</strong></p>
+      </div>
+      <aside class="lg:col-span-2 reveal">
+        <div class="card p-6">
+          <h3>What’s included</h3>
+          <ul class="mt-4 space-y-3 text-base">
+            {stay.camping.features.map((f) => <li class="flex gap-2"><Icon name="check" class="h-5 w-5 text-forest shrink-0" />{f}</li>)}
+            <li class="flex gap-2"><Icon name="check" class="h-5 w-5 text-forest shrink-0" />Access to pool, café &amp; games</li>
+            <li class="flex gap-2"><Icon name="check" class="h-5 w-5 text-forest shrink-0" />Parking &amp; Wi-Fi in common areas</li>
+          </ul>
+          <p class="mt-5 font-semibold text-amber-dark">{stay.camping.price}</p>
+        </div>
+      </aside>
+    </div>
+
+    {page.photos.length > 0 && (
+      <div class="container-x mt-12 grid gap-4 sm:grid-cols-3">
+        {page.photos.map((p) => (
+          <img src={p.image} alt={p.alt} loading="lazy" width="1200" height="900" class="reveal aspect-[4/3] w-full rounded-3xl object-cover" />
+        ))}
+        {page.photosNote && <p class="text-xs text-charcoal/50 sm:col-span-3 -mt-2">{page.photosNote}</p>}
+      </div>
+    )}
+
+    <div class="container-x mt-16">
+      <h2 class="reveal">A night at our riverside camp</h2>
+      <ol class="mt-8 grid gap-4 md:grid-cols-5">
+        {day.map((d, i) => (
+          <li class="card reveal p-5">
+            <span class="font-serif text-3xl text-amber">{i + 1}</span>
+            <p class="mt-2 font-semibold text-teal-dark">{d.time}</p>
+            <p class="mt-1 text-base text-charcoal/75">{d.text}</p>
+          </li>
+        ))}
+      </ol>
+      <CtaBand waMessage={wa} title="Book your tent by the Ganga" />
+
+      <div class="grid gap-12 lg:grid-cols-2">
+        <div class="prose-s reveal">
+          <h2>Camping and rafting in Rishikesh</h2>
+          <p>Most of Rishikesh’s popular rafting stretches finish at or near Shivpuri, which makes our camp an easy base for a <strong>camping and rafting package</strong>. Tell us how many people are coming and we’ll plan rafting along with your stay.</p>
+          <p>Coming as a group? Camping works brilliantly for <a href="/corporate-offsite/">corporate team outings</a>, <a href="/school-trips/">college trips</a> and <a href="/birthday-celebrations/">birthday weekends</a>. Prefer air-conditioning? Mix tents with our <a href="/stay/">AC cottages</a>.</p>
+        </div>
+        <div class="prose-s reveal">
+          <h2>Best time to camp in Rishikesh</h2>
+          <p>Beach camping is best from roughly <strong>October to June</strong>, when the river is calm enough for rafting and the nights are dry. Winter evenings are cool and perfect for a bonfire; spring and early summer bring warm days for the pool. During the monsoon months river activities are usually paused for safety, so check with us before planning.</p>
+          <p>Read our guide: <a href="/blog/best-time-to-visit-rishikesh-for-camping/">Best time to visit Rishikesh for camping</a>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-sand">
+    <div class="container-x grid gap-12 lg:grid-cols-2">
+      <FaqList items={faqs} title="Camping FAQs" />
+      <EnquiryForm defaultType="Camping" title="Check camping availability" />
+    </div>
+  </section>
+</Base>

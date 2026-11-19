@@ -1,0 +1,187 @@
+{
+  "categories": [
+    "Resort",
+    "Cottages",
+    "Camping",
+    "Pool & Grounds",
+    "Café & Food",
+    "Evenings & Events"
+  ],
+  "items": [
+    {
+      "src": "/images/hero-samsaara-resort-shivpuri.webp",
+      "alt": "Aerial view of The Samsaara at dusk: lit cottages, thatched café and pool",
+      "category": "Resort"
+    },
+    {
+      "src": "/images/resort-evening-aerial.webp",
+      "alt": "Guests on the lawns and pool deck at The Samsaara in the evening",
+      "category": "Resort"
+    },
+    {
+      "src": "/images/corporate-group.webp",
+      "alt": "Aerial view of cottages, café and gardens with groups enjoying the evening",
+      "category": "Resort"
+    },
+    {
+      "src": "/images/resort-drone-top-view.webp",
+      "alt": "Top-down drone view of The Samsaara and the riverbed",
+      "category": "Resort"
+    },
+    {
+      "src": "/images/resort-huts-pool-valley.webp",
+      "alt": "Thatched huts and pool overlooking the Ganga valley",
+      "category": "Pool & Grounds"
+    },
+    {
+      "src": "/images/pool-valley-view.webp",
+      "alt": "Swimming pool with loungers and a view of the Shivpuri hills",
+      "category": "Pool & Grounds"
+    },
+    {
+      "src": "/images/swimming-pool.webp",
+      "alt": "Swimming pool with sun loungers and thatched huts",
+      "category": "Pool & Grounds"
+    },
+    {
+      "src": "/images/pool-and-cottages-dusk.webp",
+      "alt": "Pool and cottages at dusk",
+      "category": "Pool & Grounds"
+    },
+    {
+      "src": "/images/beach-volleyball.webp",
+      "alt": "Garden swing and thatched gazebo on the lawns",
+      "category": "Pool & Grounds"
+    },
+    {
+      "src": "/images/school-trip.webp",
+      "alt": "Gardens and cottages at The Samsaara in daylight",
+      "category": "Pool & Grounds"
+    },
+    {
+      "src": "/images/cottage-twin-room.webp",
+      "alt": "Twin-bed AC cottage with earthy walls",
+      "category": "Cottages"
+    },
+    {
+      "src": "/images/cottage-room-window.webp",
+      "alt": "Cottage room with double bed and seating by the window",
+      "category": "Cottages"
+    },
+    {
+      "src": "/images/cottage-thatched-ac-room.webp",
+      "alt": "AC cottage with bamboo-thatch ceiling and woven décor",
+      "category": "Cottages"
+    },
+    {
+      "src": "/images/cottage-standard.webp",
+      "alt": "AC cottage interior with twin beds",
+      "category": "Cottages"
+    },
+    {
+      "src": "/images/cottage-deluxe.webp",
+      "alt": "Bright cottage room with beds and seating",
+      "category": "Cottages"
+    },
+    {
+      "src": "/images/cottage-exterior-shivpuri.webp",
+      "alt": "Row of cottages with thatched roofs",
+      "category": "Cottages"
+    },
+    {
+      "src": "/images/riverside-camping-shivpuri.webp",
+      "alt": "Swiss tent on a raised platform at The Samsaara",
+      "category": "Camping"
+    },
+    {
+      "src": "/images/camping-tent-interior.webp",
+      "alt": "Inside a camping tent with two beds",
+      "category": "Camping"
+    },
+    {
+      "src": "/images/bonfire-night.webp",
+      "alt": "Bonfire on the Ganga riverbed at night",
+      "category": "Camping"
+    },
+    {
+      "src": "/images/rafting-shivpuri.webp",
+      "alt": "Rapids on the river near Shivpuri",
+      "category": "Camping"
+    },
+    {
+      "src": "/images/cafe-floor-seating.webp",
+      "alt": "Café floor seating with rose petals and brass diya",
+      "category": "Café & Food"
+    },
+    {
+      "src": "/images/samsaara-cafe.webp",
+      "alt": "Floor-seating lounge at the Samsaara Café",
+      "category": "Café & Food"
+    },
+    {
+      "src": "/images/breakfast-by-the-river.webp",
+      "alt": "Breakfast plate served by the river",
+      "category": "Café & Food"
+    },
+    {
+      "src": "/images/woodfire-pizza.webp",
+      "alt": "Paneer pizza at the Samsaara Café",
+      "category": "Café & Food"
+    },
+    {
+      "src": "/images/chilli-paneer.webp",
+      "alt": "Chilli paneer sizzler",
+      "category": "Café & Food"
+    },
+    {
+      "src": "/images/coffee-and-menu.webp",
+      "alt": "Cappuccino and the Samsaara Café menu",
+      "category": "Café & Food"
+    },
+    {
+      "src": "/images/poori-bhaji.webp",
+      "alt": "Poori bhaji thali",
+      "category": "Café & Food"
+    },
+    {
+      "src": "/images/tandoori-chicken.webp",
+      "alt": "Tandoori chicken with mint chutney",
+      "category": "Café & Food"
+    },
+    {
+      "src": "/images/destination-wedding-rishikesh.webp",
+      "alt": "The Samsaara gate decorated with marigold garlands",
+      "category": "Evenings & Events"
+    },
+    {
+      "src": "/images/birthday-celebration.webp",
+      "alt": "Lawn decorated with fairy lights and lanterns",
+      "category": "Evenings & Events"
+    },
+    {
+      "src": "/images/pre-wedding-shoot.webp",
+      "alt": "Tree lit with fairy lights on the lawn",
+      "category": "Evenings & Events"
+    },
+    {
+      "src": "/images/garden-lights-night.webp",
+      "alt": "Garden paths lit up at night",
+      "category": "Evenings & Events"
+    },
+    {
+      "src": "/images/karaoke-music.webp",
+      "alt": "Lit stage for music and karaoke at night",
+      "category": "Evenings & Events"
+    },
+    {
+      "src": "/images/resort-pool-at-night.webp",
+      "alt": "Pool and cottages lit up at night",
+      "category": "Evenings & Events"
+    },
+    {
+      "src": "/images/entrance-gate-night.webp",
+      "alt": "The Samsaara neon sign and gate at night",
+      "category": "Evenings & Events"
+    }
+  ]
+}

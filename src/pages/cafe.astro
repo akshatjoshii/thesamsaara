@@ -1,0 +1,97 @@
+---
+import Base from '../layouts/Base.astro';
+import page from '../data/pages/cafe.json';
+import { fill, shareImage } from '../lib/content';
+import PageHero from '../components/PageHero.astro';
+import Icon from '../components/Icon.astro';
+import menu from '../data/menu.json';
+import site from '../data/site.json';
+import { cafeSchema } from '../lib/schema';
+import { waLink, telLink } from '../lib/links';
+
+const wa = "Hi Samsaara Café! I'd like to know about the menu / book a table for ___ people.";
+const crumbs = [{ name: 'Café', path: '/cafe/' }];
+---
+<Base
+  title={fill(page.seo.title)}
+  description={fill(page.seo.description)}
+  image={shareImage(page.seo.image)}
+  waMessage={wa}
+  breadcrumbs={crumbs}
+  schema={[cafeSchema()]}
+>
+  <PageHero
+    eyebrow={fill(page.hero.eyebrow)}
+    title={fill(page.hero.title)}
+    subtitle={fill(page.hero.subtitle)}
+    image={page.hero.image}
+    imageAlt={page.hero.alt}
+    representative={page.hero.representative}
+    waMessage={wa}
+    crumbs={crumbs}
+    showPrice={false}
+  />
+
+  <section class="section">
+    <div class="container-x grid gap-12 lg:grid-cols-5">
+      <div class="prose-s lg:col-span-2 reveal">
+        <h2>A café near the rafting point</h2>
+        <p>After a morning on the river, nothing beats a hot, crisp <strong>woodfire pizza</strong>. The Samsaara Café is our common area — a relaxed place to eat, play a game, catch up with your group and watch the evening settle over the Ganga.</p>
+        <p>Our menu mixes Indian favourites like <strong>poori bhaji</strong> and <strong>peanut chaat</strong> with café classics — grilled sandwiches, the Samsaara burger, fries, cheese corn rolls, honey chilli potato, chilli chicken and veg hakka noodles.</p>
+        <p>{menu.note}</p>
+        <div class="not-prose mt-6 flex flex-wrap gap-3">
+          <a href={waLink(wa)} class="btn btn-wa" target="_blank" rel="noopener" data-track="whatsapp_click"><Icon name="whatsapp" /> Ask about the menu</a>
+          <a href={telLink} class="btn btn-outline" data-track="call_click"><Icon name="phone" /> {site.phone}</a>
+        </div>
+      </div>
+
+      <div id="menu" class="lg:col-span-3 scroll-mt-24">
+        <div class="card p-6 sm:p-8">
+          <h2 class="!text-2xl sm:!text-3xl">Menu highlights</h2>
+          {menu.categories.map((c) => (
+            <div class="mt-6">
+              <h3 class="!text-lg eyebrow">{c.name}</h3>
+              <ul class="mt-2 divide-y divide-black/5">
+                {c.items.map((i) => (
+                  <li class="flex items-center justify-between gap-3 py-2.5">
+                    <span class="flex items-center gap-2">
+                      <span class:list={['inline-block h-3.5 w-3.5 rounded-sm border-2', i.veg ? 'border-green-700' : 'border-red-700']} aria-hidden="true"><span class:list={['m-[2px] block h-1.5 w-1.5 rounded-full', i.veg ? 'bg-green-700' : 'bg-red-700']}></span></span>
+                      {i.name}
+                      <span class="sr-only">{i.veg ? '(vegetarian)' : '(non-vegetarian)'}</span>
+                    </span>
+                    {'highlight' in i && i.highlight && <span class="chip !text-xs !bg-amber/20">Must try</span>}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+          <p class="mt-6 text-sm text-charcoal/60">Full menu and prices available at the café. Menu may change with the season.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section pt-0">
+    <div class="container-x">
+      <h2 class="reveal">From our kitchen</h2>
+      <ul class="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+        {page.foodPhotos.map((f) => (
+          <li class="reveal overflow-hidden rounded-2xl">
+            <img src={f.image} alt={f.alt} loading="lazy" decoding="async" width="1050" height="1400" class="aspect-[3/4] w-full object-cover transition duration-500 hover:scale-105" />
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section bg-sand">
+    <div class="container-x grid items-center gap-10 lg:grid-cols-2">
+      <img src={page.stayPhoto.image} alt={page.stayPhoto.alt} loading="lazy" width="1600" height="1200" class="rounded-3xl shadow-md reveal" />
+      <div class="prose-s reveal">
+        <h2>Staying with us?</h2>
+        <p>Your stay includes meals on a MAP plan, and the café is open for snacks and extras through the day. It’s also where many of our <a href="/birthday-celebrations/">birthday parties</a> and <a href="/corporate-offsite/">team evenings</a> begin.</p>
+        <p><a href="/stay/">See our riverside cottages →</a></p>
+      </div>
+    </div>
+  </section>
+</Base>

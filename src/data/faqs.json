@@ -1,0 +1,74 @@
+{
+  "items": [
+    {
+      "q": "What is the starting price at The Samsaara?",
+      "a": "Stays start from ₹2,000 per person per night in our Standard AC cottages, with meals included (MAP plan). Deluxe, Superior and camping prices change with dates and group size, so message us on WhatsApp for the best current price.",
+      "tags": ["general", "stay"]
+    },
+    {
+      "q": "Are meals included in the price?",
+      "a": "Yes. All cottage and camping stays are on a MAP plan, so your meals are included. Our in-house café also serves snacks, pizzas and more through the day.",
+      "tags": ["general", "stay", "camping"]
+    },
+    {
+      "q": "Can I book a single bed instead of a full cottage?",
+      "a": "Yes. Each cottage has 4–5 beds and you can book per bed or take the whole cottage for your group. We customise the arrangement to suit you.",
+      "tags": ["stay"]
+    },
+    {
+      "q": "Where exactly is The Samsaara located?",
+      "a": "We are on the bank of the Ganga in the Shivpuri range, about 16–20 km upstream of Rishikesh town on the Badrinath highway. Shivpuri is the main rafting hub of Rishikesh. See our How to Reach page for directions.",
+      "tags": ["general"]
+    },
+    {
+      "q": "Do you arrange river rafting?",
+      "a": "Yes, we can arrange river rafting in Shivpuri for our guests, along with bonfire, beach volleyball and other group activities. Tell us your group size and dates and we will plan it for you.",
+      "tags": ["general", "camping", "corporate", "school"]
+    },
+    {
+      "q": "Is there a swimming pool?",
+      "a": "Yes, the resort has a swimming pool for guests, along with a river front, indoor and outdoor games, and a café.",
+      "tags": ["general", "stay"]
+    },
+    {
+      "q": "Do you offer group discounts?",
+      "a": "Yes. We don't sell fixed packages — every group gets a custom package with a group discount. Share your group size, dates and what you'd like to do on WhatsApp and we'll send a quote.",
+      "tags": ["general", "corporate", "school", "birthday"]
+    },
+    {
+      "q": "How many guests can you host for a destination wedding?",
+      "a": "We host intimate riverside weddings for 70–100 guests, with catering and décor included. Message us with your dates for a custom quote.",
+      "tags": ["wedding"]
+    },
+    {
+      "q": "Can we do a pre-wedding shoot at the resort?",
+      "a": "Yes. The riverside beach, cottages and pool area are popular for pre-wedding shoots. Contact us to plan the timing and any setup you need.",
+      "tags": ["wedding"]
+    },
+    {
+      "q": "Is The Samsaara suitable for school and college groups?",
+      "a": "Yes. We host school and college groups with custom packages that include stay, meals and supervised activities. We'll work with teachers and organisers on the itinerary.",
+      "tags": ["school"]
+    },
+    {
+      "q": "Can we host a corporate offsite or team outing?",
+      "a": "Yes. We host corporate groups for team outings and offsites, with stay, meals, rafting, bonfire evenings and team activities planned around your agenda. Wi-Fi is available.",
+      "tags": ["corporate"]
+    },
+    {
+      "q": "Can you host a birthday party or celebration?",
+      "a": "Yes. We host destination birthdays and private celebrations with bonfire, music and karaoke, café food and riverside setups. Message us with your plans.",
+      "tags": ["birthday"]
+    },
+    {
+      "q": "Is Wi-Fi and parking available?",
+      "a": "Yes, we have Wi-Fi and on-site parking for guests.",
+      "tags": ["general", "stay", "corporate"]
+    },
+    {
+      "q": "How do I book?",
+      "a": "The fastest way is WhatsApp on +91 70781 14023. You can also call us or fill in the enquiry form on our Contact page and we'll get back to you with availability and the best price.",
+      "tags": ["general"]
+    }
+  ]
+}

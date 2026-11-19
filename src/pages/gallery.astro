@@ -1,0 +1,55 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import CtaBand from '../components/CtaBand.astro';
+import gallery from '../data/gallery.json';
+import site from '../data/site.json';
+
+const crumbs = [{ name: 'Gallery', path: '/gallery/' }];
+---
+<Base
+  title="Photo Gallery — Cottages, Camping & Events | The Samsaara"
+  description="Photos of The Samsaara Club & Resort, Shivpuri, Rishikesh: riverside cottages, beach camping, pool, weddings, events, café and rafting."
+  breadcrumbs={crumbs}
+>
+  <section class="section">
+    <div class="container-x">
+      <nav aria-label="Breadcrumb" class="mb-4 text-sm text-charcoal/60"><a href="/" class="text-charcoal/60">Home</a> / Gallery</nav>
+      <h1>Gallery</h1>
+      <p class="lead mt-4 max-w-2xl">A look around The Samsaara — our cottages, the river beach, the pool, the café and some of the celebrations we’ve hosted. For the latest photos, follow us on <a href={site.instagram} target="_blank" rel="noopener">Instagram</a>.</p>
+
+      <div class="mt-8 flex flex-wrap gap-2" role="group" aria-label="Filter photos">
+        <button type="button" class="gal-filter chip !px-4 !py-2 font-medium aria-pressed:!bg-teal aria-pressed:!text-white" data-cat="all" aria-pressed="true">All</button>
+        {gallery.categories.map((c) => (
+          <button type="button" class="gal-filter chip !px-4 !py-2 font-medium aria-pressed:!bg-teal aria-pressed:!text-white" data-cat={c} aria-pressed="false">{c}</button>
+        ))}
+      </div>
+
+      <ul class="mt-8 columns-1 gap-4 sm:columns-2 lg:columns-3" id="gallery-grid">
+        {gallery.items.map((g) => (
+          <li class="gal-item mb-4 break-inside-avoid" data-cat={g.category}>
+            <a href={g.src} class="block overflow-hidden rounded-2xl" target="_blank" rel="noopener">
+              <img src={g.src} alt={g.alt} loading="lazy" decoding="async" width="1200" height="800" class="w-full transition duration-500 hover:scale-105" />
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      <div class="mt-8 text-center">
+        <a href={site.instagram} class="btn btn-amber" target="_blank" rel="noopener"><Icon name="instagram" /> More on Instagram</a>
+      </div>
+
+      <CtaBand title="Like what you see?" waMessage="Hi Samsaara! I saw your gallery and would like to know about availability. Dates: ___ Guests: ___" />
+    </div>
+  </section>
+
+  <script>
+    const buttons = document.querySelectorAll<HTMLButtonElement>('.gal-filter');
+    const items = document.querySelectorAll<HTMLElement>('.gal-item');
+    buttons.forEach((b) => b.addEventListener('click', () => {
+      const cat = b.dataset.cat;
+      buttons.forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+      items.forEach((it) => { it.hidden = cat !== 'all' && it.dataset.cat !== cat; });
+    }));
+  </script>
+</Base>

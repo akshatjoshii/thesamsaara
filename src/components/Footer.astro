@@ -1,0 +1,57 @@
+---
+import Icon from './Icon.astro';
+import Wave from './Wave.astro';
+import site from '../data/site.json';
+import { waLink, telLink, mailLink, formatINR } from '../lib/links';
+const year = new Date().getFullYear();
+---
+<footer class="relative bg-teal-dark text-sand pb-24 lg:pb-0">
+  <Wave color="var(--color-teal-dark)" flip />
+  <div class="container-x grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-4">
+    <div>
+      <img src={site.branding.footerLogo} alt={site.name} width="550" height="640" loading="lazy" class="h-36 w-auto" />
+      <p class="mt-3 text-sand/80 text-base">Riverside AC cottages and beach-side camping on the Ganga in Shivpuri, Rishikesh. Stays from {formatINR(site.startingPrice)} per person, meals included.</p>
+      <div class="mt-5 flex gap-3">
+        <a href={site.instagram} class="rounded-full bg-white/10 p-2.5 text-sand hover:bg-white/20" aria-label="Instagram" target="_blank" rel="noopener"><Icon name="instagram" /></a>
+        <a href={site.googleProfile} class="rounded-full bg-white/10 p-2.5 text-sand hover:bg-white/20" aria-label="Google Maps" target="_blank" rel="noopener"><Icon name="map" /></a>
+        <a href={waLink()} class="rounded-full bg-white/10 p-2.5 text-sand hover:bg-white/20" aria-label="WhatsApp" target="_blank" rel="noopener" data-track="whatsapp_click"><Icon name="whatsapp" /></a>
+      </div>
+    </div>
+    <div>
+      <p class="eyebrow !text-amber">Stay</p>
+      <ul class="mt-3 space-y-2 text-base">
+        <li><a class="text-sand/90 no-underline hover:underline" href="/stay/">AC Cottages</a></li>
+        <li><a class="text-sand/90 no-underline hover:underline" href="/riverside-camping/">Riverside Camping</a></li>
+        <li><a class="text-sand/90 no-underline hover:underline" href="/experiences/">Experiences</a></li>
+        <li><a class="text-sand/90 no-underline hover:underline" href="/cafe/">Samsaara Café</a></li>
+        <li><a class="text-sand/90 no-underline hover:underline" href="/gallery/">Gallery</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="eyebrow !text-amber">Occasions</p>
+      <ul class="mt-3 space-y-2 text-base">
+        <li><a class="text-sand/90 no-underline hover:underline" href="/destination-wedding/">Destination Weddings</a></li>
+        <li><a class="text-sand/90 no-underline hover:underline" href="/corporate-offsite/">Corporate Offsites</a></li>
+        <li><a class="text-sand/90 no-underline hover:underline" href="/school-trips/">School & College Trips</a></li>
+        <li><a class="text-sand/90 no-underline hover:underline" href="/birthday-celebrations/">Birthday Celebrations</a></li>
+        <li><a class="text-sand/90 no-underline hover:underline" href="/blog/">Travel Guides</a></li>
+        <li><a class="text-sand/90 no-underline hover:underline" href="/faq/">FAQ</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="eyebrow !text-amber">Contact</p>
+      <address class="not-italic mt-3 space-y-3 text-base text-sand/90">
+        <p class="flex gap-2"><Icon name="pin" class="h-5 w-5 shrink-0 mt-0.5" />{site.address.street}, {site.address.locality}, {site.address.region} {site.address.postalCode}</p>
+        <p><a class="text-sand flex gap-2 no-underline hover:underline" href={telLink} data-track="call_click"><Icon name="phone" class="h-5 w-5" />{site.phone}</a></p>
+        <p><a class="text-sand flex gap-2 no-underline hover:underline break-all" href={mailLink}><Icon name="mail" class="h-5 w-5 shrink-0" />{site.email}</a></p>
+      </address>
+      <a href="/how-to-reach/" class="mt-4 inline-block text-amber">How to reach →</a>
+    </div>
+  </div>
+  <div class="border-t border-white/10">
+    <div class="container-x flex flex-col gap-2 py-6 text-sm text-sand/70 sm:flex-row sm:justify-between">
+      <p>© {year} {site.name}. All rights reserved.</p>
+      <p><a href="/privacy-policy/" class="text-sand/70">Privacy Policy</a> · <a href="/contact/" class="text-sand/70">Enquire</a></p>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,514 @@
+# Pages CMS configuration — https://pagescms.org
+# Sign in at https://app.pagescms.org with GitHub, open this repo, and edit content with simple forms.
+
+media:
+  input: public/images
+  output: /images
+
+content:
+  # ───────────── Site settings: prices, offer banner, contact ─────────────
+  - name: site
+    label: Site settings & prices
+    type: file
+    path: src/data/site.json
+    format: json
+    fields:
+      - { name: name, label: Resort name, type: string }
+      - { name: tagline, label: Tagline, type: string }
+      - name: branding
+        label: Logos, favicon & share image
+        type: object
+        fields:
+          - { name: headerLogo, label: Header logo (small mark), type: image, required: true }
+          - { name: footerLogo, label: Footer logo (full), type: image, required: true }
+          - { name: favicon, label: 'Favicon (square PNG, 512×512)', type: image, required: true }
+          - { name: appleTouchIcon, label: 'iPhone home-screen icon (square PNG, 180×180)', type: image, required: true }
+          - { name: shareImage, label: 'Default share image for WhatsApp/Facebook previews (1200×630 JPG)', type: image, required: true }
+      - { name: startingPrice, label: Starting price (₹ per person per night), type: number }
+      - { name: priceNote, label: Price note shown after the price, type: string }
+      - { name: mealPlan, label: Meal plan label, type: string }
+      - name: offerBanner
+        label: Offer banner (top of every page)
+        type: object
+        fields:
+          - { name: enabled, label: Show banner, type: boolean }
+          - { name: text, label: Banner text, type: string }
+          - { name: link, label: Banner link, type: string }
+      - name: googleRating
+        label: Google rating (only show if it matches your real Google profile)
+        type: object
+        fields:
+          - { name: show, label: Show rating, type: boolean }
+          - { name: rating, label: Rating (e.g. 4.5), type: number }
+          - { name: count, label: Number of reviews, type: number }
+      - { name: phone, label: Phone (display), type: string }
+      - { name: phoneRaw, label: Phone (for calls, +91…), type: string }
+      - { name: whatsapp, label: WhatsApp number (digits only, with 91), type: string }
+      - { name: email, label: Email, type: string }
+      - { name: instagram, label: Instagram URL, type: string }
+      - { name: googleProfile, label: Google Maps profile URL, type: string }
+      - name: address
+        label: Address
+        type: object
+        fields:
+          - { name: street, type: string }
+          - { name: locality, type: string }
+          - { name: region, type: string }
+          - { name: postalCode, type: string }
+          - { name: country, type: string }
+      - name: geo
+        label: Map coordinates
+        type: object
+        fields:
+          - { name: lat, label: Latitude, type: number }
+          - { name: lng, label: Longitude, type: number }
+      - name: distances
+        label: Distances (How to Reach)
+        type: object
+        list: true
+        fields:
+          - { name: from, type: string }
+          - { name: distance, type: string }
+          - { name: time, type: string }
+      - name: integrations
+        label: Integrations
+        type: object
+        fields:
+          - { name: web3formsKey, label: Web3Forms access key, type: string }
+          - { name: ga4Id, label: Google Analytics 4 ID (G-XXXX), type: string }
+
+  # ───────────── Page photos & text (one form per page) ─────────────
+  - name: page-home
+    label: 'Page: Home'
+    type: file
+    path: src/data/pages/home.json
+    format: json
+    fields:
+      - name: hero
+        label: Top banner
+        type: object
+        fields:
+          - { name: image, label: 'Banner photo (landscape, ~1920 px wide)', type: image, required: true }
+          - { name: alt, label: Banner photo description, type: string }
+          - { name: representative, label: 'Show "Representative image" label (tick if not taken at The Samsaara)', type: boolean }
+          - { name: eyebrow, label: Small text above the heading, type: string }
+          - { name: title, label: Heading, type: string }
+          - { name: subtitle, label: Sub-heading, type: text }
+      - name: stayCards
+        label: Stay cards (Cottages / Camping)
+        type: object
+        fields:
+          - name: cottages
+            label: 'Cottages card'
+            type: object
+            fields:
+              - { name: image, label: Photo, type: image, required: true }
+              - { name: alt, label: Photo description, type: string }
+          - name: camping
+            label: 'Camping card'
+            type: object
+            fields:
+              - { name: image, label: Photo, type: image, required: true }
+              - { name: alt, label: Photo description, type: string }
+      - name: occasions
+        label: '"Plan your occasion" cards'
+        type: object
+        list: true
+        fields:
+          - { name: image, label: Photo, type: image, required: true }
+          - { name: alt, label: Photo description, type: string }
+          - { name: title, type: string }
+          - { name: text, type: text }
+          - { name: href, label: 'Link (e.g. /destination-wedding/)', type: string }
+      - name: cafeTeaser
+        label: 'Café section photo'
+        type: object
+        fields:
+          - { name: image, label: Photo, type: image, required: true }
+          - { name: alt, label: Photo description, type: string }
+      - name: seo
+        label: Google & share preview
+        type: object
+        fields:
+          - { name: title, label: 'Page title for Google (~60 characters; {price} = starting price)', type: string }
+          - { name: description, label: 'Description for Google (~155 characters)', type: text }
+          - { name: image, label: 'Share image (leave empty to use the default)', type: image }
+
+  - name: page-stay
+    label: 'Page: Cottages (photos of each tier are under "Cottages & camping")'
+    type: file
+    path: src/data/pages/stay.json
+    format: json
+    fields:
+      - name: hero
+        label: Top banner
+        type: object
+        fields:
+          - { name: image, label: 'Banner photo (landscape, ~1920 px wide)', type: image, required: true }
+          - { name: alt, label: Banner photo description, type: string }
+          - { name: representative, label: 'Show "Representative image" label (tick if not taken at The Samsaara)', type: boolean }
+          - { name: eyebrow, label: Small text above the heading, type: string }
+          - { name: title, label: Heading, type: string }
+          - { name: subtitle, label: Sub-heading, type: text }
+      - name: seo
+        label: Google & share preview
+        type: object
+        fields:
+          - { name: title, label: 'Page title for Google (~60 characters; {price} = starting price)', type: string }
+          - { name: description, label: 'Description for Google (~155 characters)', type: text }
+          - { name: image, label: 'Share image (leave empty to use the default)', type: image }
+
+  - name: page-camping
+    label: 'Page: Riverside camping'
+    type: file
+    path: src/data/pages/camping.json
+    format: json
+    fields:
+      - name: hero
+        label: Top banner
+        type: object
+        fields:
+          - { name: image, label: 'Banner photo (landscape, ~1920 px wide)', type: image, required: true }
+          - { name: alt, label: Banner photo description, type: string }
+          - { name: representative, label: 'Show "Representative image" label (tick if not taken at The Samsaara)', type: boolean }
+          - { name: eyebrow, label: Small text above the heading, type: string }
+          - { name: title, label: Heading, type: string }
+          - { name: subtitle, label: Sub-heading, type: text }
+      - name: photos
+        label: 'Photo strip below the intro'
+        type: object
+        list: true
+        fields:
+          - { name: image, label: Photo, type: image, required: true }
+          - { name: alt, label: Photo description, type: string }
+      - { name: photosNote, label: 'Small note under the photo strip (leave empty to hide)', type: string }
+      - name: seo
+        label: Google & share preview
+        type: object
+        fields:
+          - { name: title, label: 'Page title for Google (~60 characters; {price} = starting price)', type: string }
+          - { name: description, label: 'Description for Google (~155 characters)', type: text }
+          - { name: image, label: 'Share image (leave empty to use the default)', type: image }
+
+  - name: page-wedding
+    label: 'Page: Destination wedding'
+    type: file
+    path: src/data/pages/wedding.json
+    format: json
+    fields:
+      - name: hero
+        label: Top banner
+        type: object
+        fields:
+          - { name: image, label: 'Banner photo (landscape, ~1920 px wide)', type: image, required: true }
+          - { name: alt, label: Banner photo description, type: string }
+          - { name: representative, label: 'Show "Representative image" label (tick if not taken at The Samsaara)', type: boolean }
+          - { name: eyebrow, label: Small text above the heading, type: string }
+          - { name: title, label: Heading, type: string }
+          - { name: subtitle, label: Sub-heading, type: text }
+      - name: photos
+        label: 'Photo strip'
+        type: object
+        list: true
+        fields:
+          - { name: image, label: Photo, type: image, required: true }
+          - { name: alt, label: Photo description, type: string }
+      - name: preWeddingPhoto
+        label: 'Pre-wedding shoot photo'
+        type: object
+        fields:
+          - { name: image, label: Photo, type: image, required: true }
+          - { name: alt, label: Photo description, type: string }
+      - name: seo
+        label: Google & share preview
+        type: object
+        fields:
+          - { name: title, label: 'Page title for Google (~60 characters; {price} = starting price)', type: string }
+          - { name: description, label: 'Description for Google (~155 characters)', type: text }
+          - { name: image, label: 'Share image (leave empty to use the default)', type: image }
+
+  - name: page-corporate
+    label: 'Page: Corporate offsite'
+    type: file
+    path: src/data/pages/corporate.json
+    format: json
+    fields:
+      - name: hero
+        label: Top banner
+        type: object
+        fields:
+          - { name: image, label: 'Banner photo (landscape, ~1920 px wide)', type: image, required: true }
+          - { name: alt, label: Banner photo description, type: string }
+          - { name: representative, label: 'Show "Representative image" label (tick if not taken at The Samsaara)', type: boolean }
+          - { name: eyebrow, label: Small text above the heading, type: string }
+          - { name: title, label: Heading, type: string }
+          - { name: subtitle, label: Sub-heading, type: text }
+      - name: seo
+        label: Google & share preview
+        type: object
+        fields:
+          - { name: title, label: 'Page title for Google (~60 characters; {price} = starting price)', type: string }
+          - { name: description, label: 'Description for Google (~155 characters)', type: text }
+          - { name: image, label: 'Share image (leave empty to use the default)', type: image }
+
+  - name: page-school
+    label: 'Page: School trips'
+    type: file
+    path: src/data/pages/school.json
+    format: json
+    fields:
+      - name: hero
+        label: Top banner
+        type: object
+        fields:
+          - { name: image, label: 'Banner photo (landscape, ~1920 px wide)', type: image, required: true }
+          - { name: alt, label: Banner photo description, type: string }
+          - { name: representative, label: 'Show "Representative image" label (tick if not taken at The Samsaara)', type: boolean }
+          - { name: eyebrow, label: Small text above the heading, type: string }
+          - { name: title, label: Heading, type: string }
+          - { name: subtitle, label: Sub-heading, type: text }
+      - name: seo
+        label: Google & share preview
+        type: object
+        fields:
+          - { name: title, label: 'Page title for Google (~60 characters; {price} = starting price)', type: string }
+          - { name: description, label: 'Description for Google (~155 characters)', type: text }
+          - { name: image, label: 'Share image (leave empty to use the default)', type: image }
+
+  - name: page-birthday
+    label: 'Page: Birthday celebrations'
+    type: file
+    path: src/data/pages/birthday.json
+    format: json
+    fields:
+      - name: hero
+        label: Top banner
+        type: object
+        fields:
+          - { name: image, label: 'Banner photo (landscape, ~1920 px wide)', type: image, required: true }
+          - { name: alt, label: Banner photo description, type: string }
+          - { name: representative, label: 'Show "Representative image" label (tick if not taken at The Samsaara)', type: boolean }
+          - { name: eyebrow, label: Small text above the heading, type: string }
+          - { name: title, label: Heading, type: string }
+          - { name: subtitle, label: Sub-heading, type: text }
+      - name: sidePhoto
+        label: 'Photo beside "A celebration resort near Delhi"'
+        type: object
+        fields:
+          - { name: image, label: Photo, type: image, required: true }
+          - { name: alt, label: Photo description, type: string }
+      - name: seo
+        label: Google & share preview
+        type: object
+        fields:
+          - { name: title, label: 'Page title for Google (~60 characters; {price} = starting price)', type: string }
+          - { name: description, label: 'Description for Google (~155 characters)', type: text }
+          - { name: image, label: 'Share image (leave empty to use the default)', type: image }
+
+  - name: page-experiences
+    label: 'Page: Experiences (each experience photo is under "Experiences")'
+    type: file
+    path: src/data/pages/experiences.json
+    format: json
+    fields:
+      - name: hero
+        label: Top banner
+        type: object
+        fields:
+          - { name: image, label: 'Banner photo (landscape, ~1920 px wide)', type: image, required: true }
+          - { name: alt, label: Banner photo description, type: string }
+          - { name: representative, label: 'Show "Representative image" label (tick if not taken at The Samsaara)', type: boolean }
+          - { name: eyebrow, label: Small text above the heading, type: string }
+          - { name: title, label: Heading, type: string }
+          - { name: subtitle, label: Sub-heading, type: text }
+      - name: seo
+        label: Google & share preview
+        type: object
+        fields:
+          - { name: title, label: 'Page title for Google (~60 characters; {price} = starting price)', type: string }
+          - { name: description, label: 'Description for Google (~155 characters)', type: text }
+          - { name: image, label: 'Share image (leave empty to use the default)', type: image }
+
+  - name: page-cafe
+    label: 'Page: Café'
+    type: file
+    path: src/data/pages/cafe.json
+    format: json
+    fields:
+      - name: hero
+        label: Top banner
+        type: object
+        fields:
+          - { name: image, label: 'Banner photo (landscape, ~1920 px wide)', type: image, required: true }
+          - { name: alt, label: Banner photo description, type: string }
+          - { name: representative, label: 'Show "Representative image" label (tick if not taken at The Samsaara)', type: boolean }
+          - { name: eyebrow, label: Small text above the heading, type: string }
+          - { name: title, label: Heading, type: string }
+          - { name: subtitle, label: Sub-heading, type: text }
+      - name: foodPhotos
+        label: '"From our kitchen" photos'
+        type: object
+        list: true
+        fields:
+          - { name: image, label: Photo, type: image, required: true }
+          - { name: alt, label: Photo description, type: string }
+      - name: stayPhoto
+        label: '"Staying with us?" photo'
+        type: object
+        fields:
+          - { name: image, label: Photo, type: image, required: true }
+          - { name: alt, label: Photo description, type: string }
+      - name: seo
+        label: Google & share preview
+        type: object
+        fields:
+          - { name: title, label: 'Page title for Google (~60 characters; {price} = starting price)', type: string }
+          - { name: description, label: 'Description for Google (~155 characters)', type: text }
+          - { name: image, label: 'Share image (leave empty to use the default)', type: image }
+
+
+  # ───────────── Cottages & camping ─────────────
+  - name: stay
+    label: Cottages & camping
+    type: file
+    path: src/data/stay.json
+    format: json
+    fields:
+      - name: cottages
+        label: Cottage tiers
+        type: object
+        list: true
+        fields:
+          - { name: name, type: string }
+          - { name: slug, label: Slug (no spaces), type: string }
+          - { name: price, label: Price text, type: string }
+          - { name: image, type: image, required: true }
+          - { name: alt, label: 'Image description (for Google & accessibility)', type: string }
+          - { name: beds, type: string }
+          - { name: description, type: text }
+          - { name: features, type: string, list: true }
+      - name: camping
+        label: Camping
+        type: object
+        fields:
+          - { name: tents, label: Number of tents, type: number }
+          - { name: price, label: Price text, type: string }
+          - { name: features, type: string, list: true }
+
+  # ───────────── Reviews ─────────────
+  - name: reviews
+    label: Guest reviews
+    type: file
+    path: src/data/reviews.json
+    format: json
+    fields:
+      - name: items
+        label: Reviews (real Google reviews only)
+        type: object
+        list: true
+        fields:
+          - { name: name, label: Guest name, type: string }
+          - { name: rating, label: Stars (1–5), type: number }
+          - { name: text, label: Review, type: text }
+          - { name: date, label: Date (e.g. Oct 2026), type: string }
+
+  # ───────────── FAQs ─────────────
+  - name: faqs
+    label: FAQs
+    type: file
+    path: src/data/faqs.json
+    format: json
+    fields:
+      - name: items
+        label: Questions
+        type: object
+        list: true
+        fields:
+          - { name: q, label: Question, type: string }
+          - { name: a, label: Answer, type: text }
+          - name: tags
+            label: Show on pages
+            type: select
+            list: true
+            options:
+              values: [general, stay, camping, wedding, corporate, school, birthday]
+
+  # ───────────── Café menu ─────────────
+  - name: menu
+    label: Café menu
+    type: file
+    path: src/data/menu.json
+    format: json
+    fields:
+      - { name: note, label: Intro note, type: text }
+      - name: categories
+        type: object
+        list: true
+        fields:
+          - { name: name, label: Category, type: string }
+          - name: items
+            type: object
+            list: true
+            fields:
+              - { name: name, type: string }
+              - { name: veg, label: Vegetarian, type: boolean }
+              - { name: highlight, label: Must-try, type: boolean }
+
+  # ───────────── Experiences ─────────────
+  - name: experiences
+    label: Experiences
+    type: file
+    path: src/data/experiences.json
+    format: json
+    fields:
+      - name: items
+        type: object
+        list: true
+        fields:
+          - { name: id, label: ID (no spaces), type: string }
+          - { name: name, type: string }
+          - { name: image, type: image, required: true }
+          - { name: alt, label: Image description, type: string }
+          - { name: text, type: text }
+
+  # ───────────── Gallery ─────────────
+  - name: gallery
+    label: Gallery
+    type: file
+    path: src/data/gallery.json
+    format: json
+    fields:
+      - { name: categories, type: string, list: true }
+      - name: items
+        label: Photos
+        type: object
+        list: true
+        fields:
+          - { name: src, label: Photo, type: image }
+          - { name: alt, label: Description (for Google & accessibility), type: string }
+          - { name: category, type: string }
+
+  # ───────────── Blog ─────────────
+  - name: blog
+    label: Travel guides (blog)
+    type: collection
+    path: src/content/blog
+    filename: "{fields.title}.md"
+    view:
+      fields: [title, date]
+      primary: title
+      sort: [date]
+    fields:
+      - { name: title, type: string, required: true }
+      - { name: description, label: Meta description (~155 chars), type: text, required: true }
+      - { name: date, type: date, required: true }
+      - { name: image, label: Cover image, type: image }
+      - { name: imageAlt, label: Cover image description, type: string }
+      - name: cta
+        label: Call to action button
+        type: object
+        fields:
+          - { name: label, type: string }
+          - { name: href, label: Link, type: string }
+      - { name: draft, type: boolean }
+      - { name: body, label: Article, type: rich-text }

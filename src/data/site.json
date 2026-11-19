@@ -1,0 +1,74 @@
+{
+  "name": "The Samsaara Club & Resort",
+  "shortName": "The Samsaara",
+  "tagline": "Riverside cottages & camping on the Ganga, Shivpuri, Rishikesh",
+  "branding": {
+    "headerLogo": "/images/logo-mark.png",
+    "footerLogo": "/images/logo-full.png",
+    "favicon": "/favicon.png",
+    "appleTouchIcon": "/apple-touch-icon.png",
+    "shareImage": "/images/og-default.jpg"
+  },
+  "url": "https://thesamsaara.com",
+  "phone": "+91 70781 14023",
+  "phoneRaw": "+917078114023",
+  "whatsapp": "917078114023",
+  "email": "thesamsaaracafe@gmail.com",
+  "instagram": "https://www.instagram.com/thesamsaara_/",
+  "googleProfile": "https://maps.app.goo.gl/Dpn1MYTwHEpcpPa39",
+  "address": {
+    "street": "594F+38P The Samsaara, Shivpuri Range",
+    "locality": "Shivpuri, Rishikesh",
+    "region": "Uttarakhand",
+    "postalCode": "249175",
+    "country": "IN"
+  },
+  "geo": {
+    "lat": 30.1552,
+    "lng": 78.3733
+  },
+  "startingPrice": 2000,
+  "priceNote": "per person, per night · meals included",
+  "mealPlan": "MAP (meals included)",
+  "offerBanner": {
+    "enabled": true,
+    "text": "Groups get special discounts & custom packages — get the best price on WhatsApp",
+    "link": "/contact/"
+  },
+  "googleRating": {
+    "show": false,
+    "rating": 0,
+    "count": 0
+  },
+  "integrations": {
+    "web3formsKey": "YOUR_WEB3FORMS_ACCESS_KEY",
+    "ga4Id": ""
+  },
+  "distances": [
+    {
+      "from": "Rishikesh town (Laxman Jhula / Tapovan)",
+      "distance": "approx. 16–20 km",
+      "time": "35–45 min"
+    },
+    {
+      "from": "Rishikesh Railway Station / Yog Nagari",
+      "distance": "approx. 20–22 km",
+      "time": "45–55 min"
+    },
+    {
+      "from": "Dehradun Airport (Jolly Grant)",
+      "distance": "approx. 35–40 km",
+      "time": "60–75 min"
+    },
+    {
+      "from": "Haridwar",
+      "distance": "approx. 40 km",
+      "time": "75–90 min"
+    },
+    {
+      "from": "Delhi",
+      "distance": "approx. 240 km",
+      "time": "6–7 hrs"
+    }
+  ]
+}

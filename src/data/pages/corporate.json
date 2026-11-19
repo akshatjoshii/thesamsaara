@@ -1,0 +1,15 @@
+{
+  "seo": {
+    "title": "Corporate Offsite in Rishikesh | Team Outings by the Ganga",
+    "description": "Corporate offsites & team outings in Shivpuri, Rishikesh: rafting, bonfire, games, meals & Wi-Fi. Custom group packages with discounts. WhatsApp us.",
+    "image": "/images/corporate-group.webp"
+  },
+  "hero": {
+    "eyebrow": "Corporate groups",
+    "title": "Corporate Offsites & Team Outings in Rishikesh",
+    "subtitle": "Take your team out of the office and onto the Ganga. Rafting, bonfire nights, games and meals — in one custom package.",
+    "image": "/images/banner-team-rafting.webp",
+    "alt": "A team rafting together on the Ganga near Rishikesh",
+    "representative": true
+  }
+}

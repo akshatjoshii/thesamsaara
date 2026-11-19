@@ -1,0 +1,20 @@
+---
+import Icon from './Icon.astro';
+import { waLink, telLink } from '../lib/links';
+interface Props { title?: string; text?: string; waMessage?: string }
+const {
+  title = 'Get the best price on WhatsApp',
+  text = 'Prices change with dates and group size. Message us your dates and number of guests and we’ll reply with our best offer.',
+  waMessage,
+} = Astro.props;
+---
+<div class="reveal my-10 rounded-3xl bg-teal px-6 py-8 text-sand sm:flex sm:items-center sm:justify-between sm:gap-8 sm:px-10">
+  <div>
+    <p class="font-serif text-2xl text-sand">{title}</p>
+    <p class="mt-2 text-sand/85 text-base max-w-xl">{text}</p>
+  </div>
+  <div class="mt-5 flex flex-wrap gap-3 sm:mt-0 sm:shrink-0">
+    <a href={waLink(waMessage)} class="btn btn-wa" target="_blank" rel="noopener" data-track="whatsapp_click"><Icon name="whatsapp" /> WhatsApp us</a>
+    <a href={telLink} class="btn btn-light" data-track="call_click"><Icon name="phone" /> Call</a>
+  </div>
+</div>

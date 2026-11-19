@@ -1,0 +1,102 @@
+---
+import Icon from './Icon.astro';
+import site from '../data/site.json';
+import { waLink, telLink } from '../lib/links';
+
+interface Props { waMessage?: string }
+const { waMessage } = Astro.props;
+const path = Astro.url.pathname;
+
+const nav = [
+  { label: 'Stay', href: '/stay/' },
+  { label: 'Camping', href: '/riverside-camping/' },
+  {
+    label: 'Occasions',
+    children: [
+      { label: 'Destination Weddings', href: '/destination-wedding/' },
+      { label: 'Corporate Offsites', href: '/corporate-offsite/' },
+      { label: 'School & College Trips', href: '/school-trips/' },
+      { label: 'Birthday Celebrations', href: '/birthday-celebrations/' },
+    ],
+  },
+  { label: 'Experiences', href: '/experiences/' },
+  { label: 'Café', href: '/cafe/' },
+  { label: 'Gallery', href: '/gallery/' },
+  { label: 'Contact', href: '/contact/' },
+];
+const isActive = (href?: string) => href && path.startsWith(href);
+---
+{site.offerBanner.enabled && (
+  <div class="bg-forest text-sand text-center text-sm py-2 px-4">
+    <a href={site.offerBanner.link} class="text-sand no-underline hover:underline">{site.offerBanner.text} →</a>
+  </div>
+)}
+<header class="sticky top-0 z-40 bg-sand-light/95 backdrop-blur border-b border-black/5">
+  <div class="container-x flex h-16 items-center justify-between gap-4">
+    <a href="/" class="flex shrink-0 items-center gap-2 no-underline" aria-label={`${site.name} — home`}>
+      <img src={site.branding.headerLogo} alt="" width="256" height="235" class="h-10 w-auto" />
+      <span class="whitespace-nowrap font-serif text-lg font-semibold leading-tight text-teal-dark">The Samsaara<span class="block text-[0.7rem] font-sans font-medium uppercase tracking-[0.18em] text-forest/70">Club & Resort</span></span>
+    </a>
+
+    <nav class="hidden lg:block" aria-label="Main">
+      <ul class="flex items-center gap-0.5 whitespace-nowrap text-[0.95rem]">
+        {nav.map((item) => item.children ? (
+          <li class="group relative">
+            <button type="button" class="whitespace-nowrap rounded-full px-2.5 py-2 font-medium text-charcoal hover:text-teal" aria-haspopup="true">{item.label} <span aria-hidden="true" class="text-xs">▾</span></button>
+            <ul class="invisible absolute left-0 top-full w-60 rounded-2xl bg-white p-2 opacity-0 shadow-lg ring-1 ring-black/5 transition group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+              {item.children.map((c) => (
+                <li><a href={c.href} class="block rounded-xl px-3 py-2 text-charcoal no-underline hover:bg-sand">{c.label}</a></li>
+              ))}
+            </ul>
+          </li>
+        ) : (
+          <li>
+            <a href={item.href} class:list={['rounded-full px-2.5 py-2 font-medium no-underline hover:text-teal', isActive(item.href) ? 'text-teal' : 'text-charcoal']} aria-current={isActive(item.href) ? 'page' : undefined}>{item.label}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <div class="flex shrink-0 items-center gap-3">
+      <a href={waLink(waMessage)} class="btn btn-wa hidden sm:inline-flex !px-4 !py-2 text-sm" data-track="whatsapp_click" target="_blank" rel="noopener">
+        <Icon name="whatsapp" /> WhatsApp
+      </a>
+      <a href={telLink} class="hidden 2xl:inline-flex items-center gap-1 whitespace-nowrap text-sm font-semibold text-teal no-underline" data-track="call_click">
+        <Icon name="phone" class="h-4 w-4" /> {site.phone}
+      </a>
+      <details class="lg:hidden relative" id="mobile-menu">
+        <summary class="list-none cursor-pointer rounded-full p-2 text-teal-dark [&::-webkit-details-marker]:hidden" aria-label="Open menu">
+          <Icon name="menu" class="h-7 w-7" />
+        </summary>
+        <nav class="fixed inset-x-0 top-0 z-50 max-h-dvh overflow-y-auto bg-sand-light px-6 pb-28 pt-5 shadow-xl" aria-label="Mobile">
+          <div class="flex items-center justify-between mb-4">
+            <span class="font-serif text-xl text-teal-dark">Menu</span>
+            <button type="button" class="p-2 text-teal-dark" data-close-menu aria-label="Close menu"><Icon name="close" class="h-7 w-7" /></button>
+          </div>
+          <ul class="space-y-1 text-lg">
+            <li><a href="/" class="block py-2 text-charcoal no-underline">Home</a></li>
+            {nav.map((item) => item.children ? (
+              <li>
+                <span class="block pt-3 pb-1 eyebrow">{item.label}</span>
+                <ul class="pl-3 border-l-2 border-amber/50">
+                  {item.children.map((c) => <li><a href={c.href} class="block py-2 text-charcoal no-underline">{c.label}</a></li>)}
+                </ul>
+              </li>
+            ) : (
+              <li><a href={item.href} class="block py-2 text-charcoal no-underline">{item.label}</a></li>
+            ))}
+            <li><a href="/how-to-reach/" class="block py-2 text-charcoal no-underline">How to Reach</a></li>
+            <li><a href="/faq/" class="block py-2 text-charcoal no-underline">FAQ</a></li>
+            <li><a href="/blog/" class="block py-2 text-charcoal no-underline">Travel Guides</a></li>
+          </ul>
+        </nav>
+      </details>
+    </div>
+  </div>
+</header>
+
+<script>
+  const menu = document.getElementById('mobile-menu') as HTMLDetailsElement | null;
+  menu?.querySelector('[data-close-menu]')?.addEventListener('click', () => { menu.open = false; });
+  menu?.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => { menu.open = false; }));
+</script>

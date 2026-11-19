@@ -1,0 +1,103 @@
+---
+import Base from '../layouts/Base.astro';
+import page from '../data/pages/stay.json';
+import { fill, shareImage } from '../lib/content';
+import PageHero from '../components/PageHero.astro';
+import Icon from '../components/Icon.astro';
+import CtaBand from '../components/CtaBand.astro';
+import FaqList from '../components/FaqList.astro';
+import EnquiryForm from '../components/EnquiryForm.astro';
+import site from '../data/site.json';
+import stay from '../data/stay.json';
+import { faqsByTag, faqSchema } from '../lib/schema';
+import { formatINR, waLink } from '../lib/links';
+
+const price = formatINR(site.startingPrice);
+const faqs = faqsByTag('stay');
+const wa = "Hi Samsaara! I'd like to book a cottage. Dates: ___ Guests: ___ Tier (Standard/Deluxe/Superior): ___";
+const crumbs = [{ name: 'Cottages', path: '/stay/' }];
+const facilities = ['Air-conditioning', 'Free Wi-Fi', 'Free parking', 'Swimming pool', 'River front access', 'In-house café', 'Bonfire area', 'Indoor & outdoor games'];
+---
+<Base
+  title={fill(page.seo.title)}
+  description={fill(page.seo.description)}
+  image={shareImage(page.seo.image)}
+  waMessage={wa}
+  breadcrumbs={crumbs}
+  schema={[faqSchema(faqs)]}
+>
+  <PageHero
+    eyebrow={fill(page.hero.eyebrow)}
+    title={fill(page.hero.title)}
+    subtitle={fill(page.hero.subtitle)}
+    image={page.hero.image}
+    imageAlt={page.hero.alt}
+    representative={page.hero.representative}
+    waMessage={wa}
+    crumbs={crumbs}
+  />
+
+  <section class="section">
+    <div class="container-x">
+      <div class="max-w-3xl prose-s reveal">
+        <h2>Cottages built for friends, families and groups</h2>
+        <p>Our 17 AC cottages are set along the river at Shivpuri, the rafting capital of Rishikesh. Every cottage sleeps <strong>4–5 guests</strong>, and you choose how to book: take <strong>a single bed</strong> if you’re travelling solo or as a couple on a budget, or book <strong>the whole cottage</strong> for your family or group. We customise the arrangement to suit you.</p>
+        <p>All stays are on a <strong>MAP plan, so your meals are included</strong> in the price. Prices start at just <strong>{price} per person per night</strong> in our Standard cottages — one of the best-value riverside stays you’ll find in Shivpuri.</p>
+      </div>
+
+      <div class="mt-12 grid gap-6 lg:grid-cols-3">
+        {stay.cottages.map((c) => (
+          <article class="card reveal flex flex-col" id={c.slug}>
+            <img src={c.image} alt={c.alt || `${c.name} at The Samsaara, Shivpuri, Rishikesh`} loading="lazy" width="1200" height="800" class="aspect-[4/3] w-full object-cover" />
+            <div class="flex flex-1 flex-col p-6">
+              <h3>{c.name}</h3>
+              <p class="mt-1 font-semibold text-amber-dark">{c.price}</p>
+              <p class="mt-3 text-base text-charcoal/75">{c.description}</p>
+              <ul class="mt-4 flex-1 space-y-2 text-base">
+                <li class="flex gap-2"><Icon name="check" class="h-5 w-5 text-forest" />{c.beds}</li>
+                {c.features.map((f) => <li class="flex gap-2"><Icon name="check" class="h-5 w-5 text-forest" />{f}</li>)}
+              </ul>
+              <a href={waLink(`Hi Samsaara! I'm interested in the ${c.name}. Dates: ___ Guests: ___`)} class="btn btn-wa mt-6" target="_blank" rel="noopener" data-track="whatsapp_click"><Icon name="whatsapp" /> Get best price</a>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <CtaBand waMessage={wa} />
+
+      <div class="grid gap-12 lg:grid-cols-2 mt-16">
+        <div class="prose-s reveal">
+          <h2>Per-bed or whole cottage — how it works</h2>
+          <p>Because every cottage has 4–5 beds, we can be flexible in a way most hotels can’t:</p>
+          <ul>
+            <li><strong>Per bed</strong> — perfect for backpackers, friends travelling together or small groups who want to keep costs low.</li>
+            <li><strong>Whole cottage</strong> — privacy for families and groups of 4–5. Great for a weekend away from Delhi.</li>
+            <li><strong>Multiple cottages</strong> — for weddings, offsites and school trips we block cottages and tents together and build a custom package.</li>
+          </ul>
+          <p>Deluxe and Superior cottage prices depend on your dates, so the quickest way to get the best rate is to message us on WhatsApp.</p>
+        </div>
+        <div class="reveal">
+          <h2 class="mb-4">What every stay includes</h2>
+          <ul class="grid grid-cols-2 gap-3">
+            {facilities.map((f) => <li class="chip !rounded-2xl !py-2 justify-start gap-2"><Icon name="check" class="h-4 w-4 text-forest" />{f}</li>)}
+          </ul>
+          <div class="prose-s mt-6">
+            <p>Spend the day <a href="/experiences/">rafting in Shivpuri</a>, cool off in the pool, then gather around the bonfire. Prefer to sleep closer to the water? Try our <a href="/riverside-camping/">beach-side camping</a>.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="max-w-3xl prose-s mt-16 reveal">
+        <h2>Who stays in our cottages?</h2>
+        <p><strong>Families</strong> who want a safe, comfortable base with a pool for the kids and food taken care of. <strong>Couples</strong> looking for a quiet riverside escape from the city. <strong>Friends and backpackers</strong> who come for rafting and want an affordable bed by the river. And <strong>groups</strong> — <a href="/corporate-offsite/">corporate teams</a>, <a href="/school-trips/">school and college trips</a>, <a href="/destination-wedding/">wedding guests</a> and <a href="/birthday-celebrations/">birthday crews</a> — who book several cottages together.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-sand">
+    <div class="container-x grid gap-12 lg:grid-cols-2">
+      <FaqList items={faqs} title="Cottage FAQs" />
+      <EnquiryForm defaultType="Stay" title="Check cottage availability" />
+    </div>
+  </section>
+</Base>

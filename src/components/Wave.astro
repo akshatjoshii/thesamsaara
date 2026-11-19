@@ -1,0 +1,10 @@
+---
+/** Decorative wave divider. Place at the top of a section; colour = that section's background. */
+interface Props { color?: string; flip?: boolean; class?: string }
+const { color = 'var(--color-sand-light)', flip = false, class: cls = '' } = Astro.props;
+---
+<div class:list={['pointer-events-none absolute inset-x-0 -top-px -translate-y-full leading-[0]', cls]} aria-hidden="true">
+  <svg viewBox="0 0 1440 60" preserveAspectRatio="none" class:list={['block h-8 w-full sm:h-12', flip && '-scale-x-100']}>
+    <path d="M0 60V30c120-20 240-30 360-24s240 30 360 30 240-24 360-30 240 4 360 24v30z" fill={color} />
+  </svg>
+</div>

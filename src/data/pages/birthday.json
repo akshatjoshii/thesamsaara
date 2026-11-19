@@ -1,0 +1,19 @@
+{
+  "seo": {
+    "title": "Birthday Party Venue in Rishikesh by the Ganga | The Samsaara",
+    "description": "Destination birthday celebrations in Shivpuri, Rishikesh: bonfire, karaoke, café food & riverside stays from {price} with meals. Plan on WhatsApp.",
+    "image": "/images/birthday-celebration.webp"
+  },
+  "hero": {
+    "eyebrow": "Birthdays & parties",
+    "title": "Destination Birthdays in Rishikesh",
+    "subtitle": "Celebrate by the Ganga with a bonfire, music, café food and your favourite people — all staying together by the river.",
+    "image": "/images/birthday-celebration.webp",
+    "alt": "Lawn decorated with fairy lights and lanterns at The Samsaara",
+    "representative": false
+  },
+  "sidePhoto": {
+    "image": "/images/karaoke-music.webp",
+    "alt": "Lit outdoor stage for music and karaoke at The Samsaara"
+  }
+}

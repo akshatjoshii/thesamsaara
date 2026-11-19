@@ -1,0 +1,59 @@
+{
+  "seo": {
+    "title": "Resort in Shivpuri Rishikesh from {price} | The Samsaara",
+    "description": "Riverside AC cottages & beach camping on the Ganga in Shivpuri, Rishikesh. From {price}/person with meals. Pool, rafting, bonfire. WhatsApp for best price.",
+    "image": ""
+  },
+  "hero": {
+    "eyebrow": "Shivpuri · Rishikesh · On the Ganga",
+    "title": "Riverside Cottages & Camping in Shivpuri, Rishikesh",
+    "subtitle": "17 AC cottages and 10 beach-side tents on the bank of the Ganga — with a pool, rafting, bonfire nights and meals included.",
+    "image": "/images/hero-samsaara-resort-shivpuri.webp",
+    "alt": "The Samsaara at dusk: lit cottages, thatched café, gardens and pool in Shivpuri, Rishikesh",
+    "representative": false
+  },
+  "stayCards": {
+    "cottages": {
+      "image": "/images/cottage-twin-room.webp",
+      "alt": "Twin-bed AC cottage at The Samsaara, Shivpuri"
+    },
+    "camping": {
+      "image": "/images/banner-camping-campfire.webp",
+      "alt": "Campfire evening at a riverside camp (representative image)"
+    }
+  },
+  "occasions": [
+    {
+      "title": "Destination Weddings",
+      "text": "Intimate riverside weddings for 70–100 guests, catering and décor included.",
+      "href": "/destination-wedding/",
+      "image": "/images/destination-wedding-rishikesh.webp",
+      "alt": "Riverside destination wedding in Rishikesh"
+    },
+    {
+      "title": "Corporate Offsites",
+      "text": "Team outings with rafting, bonfire nights and custom group packages.",
+      "href": "/corporate-offsite/",
+      "image": "/images/corporate-group.webp",
+      "alt": "Groups enjoying the gardens at The Samsaara in the evening"
+    },
+    {
+      "title": "School & College Trips",
+      "text": "Safe, supervised group stays with meals and outdoor activities.",
+      "href": "/school-trips/",
+      "image": "/images/school-trip.webp",
+      "alt": "School group trip to Rishikesh"
+    },
+    {
+      "title": "Birthday Celebrations",
+      "text": "Bonfire, karaoke, café food and a riverside party for your crew.",
+      "href": "/birthday-celebrations/",
+      "image": "/images/birthday-celebration.webp",
+      "alt": "Birthday celebration by the Ganga"
+    }
+  ],
+  "cafeTeaser": {
+    "image": "/images/woodfire-pizza.webp",
+    "alt": "Woodfire pizza at The Samsaara café, Shivpuri"
+  }
+}

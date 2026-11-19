@@ -1,0 +1,20 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import { waLink } from '../lib/links';
+---
+<Base title="Page not found | The Samsaara" description="This page has floated downstream." noindex>
+  <section class="section">
+    <div class="container-x max-w-2xl text-center">
+      <p class="font-serif text-7xl text-amber">404</p>
+      <h1 class="mt-4 !text-4xl">This page floated downstream</h1>
+      <p class="lead mt-4">The page you’re looking for doesn’t exist or has moved. Try one of these instead:</p>
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
+        <a href="/" class="btn btn-outline">Home</a>
+        <a href="/stay/" class="btn btn-outline">Cottages</a>
+        <a href="/riverside-camping/" class="btn btn-outline">Camping</a>
+        <a href={waLink()} class="btn btn-wa" target="_blank" rel="noopener" data-track="whatsapp_click"><Icon name="whatsapp" /> WhatsApp us</a>
+      </div>
+    </div>
+  </section>
+</Base>

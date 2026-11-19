@@ -1,0 +1,97 @@
+---
+import Base from '../layouts/Base.astro';
+import page from '../data/pages/corporate.json';
+import { fill, shareImage } from '../lib/content';
+import PageHero from '../components/PageHero.astro';
+import Icon from '../components/Icon.astro';
+import CtaBand from '../components/CtaBand.astro';
+import FaqList from '../components/FaqList.astro';
+import EnquiryForm from '../components/EnquiryForm.astro';
+import { faqsByTag, faqSchema } from '../lib/schema';
+
+const faqs = faqsByTag('corporate');
+const wa = "Hi Samsaara! We're planning a corporate offsite for ~___ people on [dates].";
+const crumbs = [{ name: 'Corporate Offsites', path: '/corporate-offsite/' }];
+const blocks = [
+  { t: 'Team building on the river', d: 'Rafting on the Ganga is the ultimate trust exercise — everyone paddles together.' },
+  { t: 'Group games & beach volleyball', d: 'Indoor and outdoor games and beach volleyball tournaments for friendly competition.' },
+  { t: 'Bonfire & music nights', d: 'Unwind after sessions with a bonfire, karaoke and music by the river.' },
+  { t: 'Meals sorted', d: 'MAP meals included for the whole team, plus the café for snacks between sessions.' },
+  { t: 'Wi-Fi & common spaces', d: 'Wi-Fi and open common areas for workshops, town halls and strategy huddles.' },
+  { t: 'Flexible rooms', d: 'Mix AC cottages and tents; book by bed to keep per-head costs low.' },
+];
+const itinerary = [
+  ['Day 1 · Morning', 'Depart Delhi/NCR early; arrive Shivpuri by early afternoon.'],
+  ['Day 1 · Afternoon', 'Check in, lunch, team session or icebreakers by the river.'],
+  ['Day 1 · Evening', 'Beach volleyball, bonfire, music and dinner.'],
+  ['Day 2 · Morning', 'Breakfast, then river rafting as a team.'],
+  ['Day 2 · Afternoon', 'Wrap-up session, lunch and the drive home.'],
+];
+---
+<Base
+  title={fill(page.seo.title)}
+  description={fill(page.seo.description)}
+  image={shareImage(page.seo.image)}
+  waMessage={wa}
+  breadcrumbs={crumbs}
+  schema={[faqSchema(faqs)]}
+>
+  <PageHero
+    eyebrow={fill(page.hero.eyebrow)}
+    title={fill(page.hero.title)}
+    subtitle={fill(page.hero.subtitle)}
+    image={page.hero.image}
+    imageAlt={page.hero.alt}
+    representative={page.hero.representative}
+    waMessage={wa}
+    crumbs={crumbs}
+  />
+
+  <section class="section">
+    <div class="container-x">
+      <div class="max-w-3xl prose-s reveal">
+        <h2>An offsite your team will actually look forward to</h2>
+        <p>Rishikesh is one of the easiest offsite destinations from Delhi NCR, and Shivpuri is where the action is. At The Samsaara your team stays together by the river in <a href="/stay/">AC cottages</a> and <a href="/riverside-camping/">beach-side tents</a>, eats together, rafts together and ends each day around a bonfire.</p>
+        <p>We don’t sell fixed packages. Share your headcount, dates and goals — strategy offsite, sales celebration, new-joiner bonding — and we’ll design a plan with a <strong>group discount</strong>. Stays start from just ₹2,000 per person with meals included, which keeps per-head costs well within most budgets.</p>
+      </div>
+      <div class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {blocks.map((b) => (
+          <div class="card reveal p-6">
+            <Icon name="check" class="h-6 w-6 text-amber" />
+            <h3 class="mt-3 !text-xl">{b.t}</h3>
+            <p class="mt-2 text-base text-charcoal/75">{b.d}</p>
+          </div>
+        ))}
+      </div>
+
+      <CtaBand title="Get a corporate group quote" text="Groups get special discounts and custom packages. Tell us your team size and dates." waMessage={wa} />
+
+      <div class="grid gap-12 lg:grid-cols-2">
+        <div class="reveal">
+          <h2>Sample 2-day team outing</h2>
+          <ol class="mt-6 space-y-3">
+            {itinerary.map(([t, d]) => (
+              <li class="card p-4"><p class="font-semibold text-teal-dark">{t}</p><p class="text-base text-charcoal/75">{d}</p></li>
+            ))}
+          </ol>
+          <p class="mt-4 text-sm text-charcoal/60">Every itinerary is customised — add a third day, a workshop block or a gala dinner.</p>
+        </div>
+        <div class="prose-s reveal">
+          <h2>Why Rishikesh works for corporate team building</h2>
+          <p><strong>Easy to reach.</strong> About 240 km from Delhi — a comfortable road trip by bus or tempo traveller, with no flights to coordinate.</p>
+          <p><strong>Built-in activities.</strong> River rafting, beach volleyball and group games mean you don’t need to hire an outside event agency for team building.</p>
+          <p><strong>Real downtime.</strong> Away from the city, people actually talk. The bonfire does more for team spirit than any slide deck.</p>
+          <p><strong>Budget friendly.</strong> Per-bed pricing and included meals keep costs predictable for HR and finance.</p>
+          <p>Read more: <a href="/blog/corporate-offsite-ideas-near-delhi/">Corporate offsite ideas near Delhi — why Rishikesh works</a>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-sand">
+    <div class="container-x grid gap-12 lg:grid-cols-2">
+      <FaqList items={faqs} title="Corporate FAQs" />
+      <EnquiryForm defaultType="Corporate" title="Plan your offsite" />
+    </div>
+  </section>
+</Base>

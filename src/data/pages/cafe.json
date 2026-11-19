@@ -1,0 +1,69 @@
+{
+  "seo": {
+    "title": "Café in Shivpuri, Rishikesh — Woodfire Pizza | Samsaara Café",
+    "description": "Samsaara Café in Shivpuri near the rafting point: woodfire pizza, burgers, sandwiches, chilli chicken, noodles & snacks by the Ganga.",
+    "image": "/images/woodfire-pizza.webp"
+  },
+  "hero": {
+    "eyebrow": "Samsaara Café",
+    "title": "Woodfire Pizza & Comfort Food in Shivpuri",
+    "subtitle": "The social heart of the resort — refuel after rafting with pizza from the wood-fired oven, burgers, chaat and more.",
+    "image": "/images/banner-woodfire-pizza.webp",
+    "alt": "Pizza baking in a blazing wood-fired oven",
+    "representative": true
+  },
+  "foodPhotos": [
+    {
+      "image": "/images/breakfast-by-the-river.webp",
+      "alt": "Breakfast plate served by the river"
+    },
+    {
+      "image": "/images/chilli-paneer.webp",
+      "alt": "Chilli paneer sizzler"
+    },
+    {
+      "image": "/images/coffee-and-menu.webp",
+      "alt": "Cappuccino with the Samsaara Café menu"
+    },
+    {
+      "image": "/images/samsaara-cafe.webp",
+      "alt": "Floor-seating lounge at the café"
+    },
+    {
+      "image": "/images/woodfire-pizza.webp",
+      "alt": "Paneer pizza at the Samsaara Café"
+    },
+    {
+      "image": "/images/samsaara-burger.webp",
+      "alt": "Samsaara burger with fries"
+    },
+    {
+      "image": "/images/poori-bhaji.webp",
+      "alt": "Poori bhaji thali"
+    },
+    {
+      "image": "/images/tandoori-chicken.webp",
+      "alt": "Tandoori chicken with mint chutney"
+    },
+    {
+      "image": "/images/grilled-sandwich-fries.webp",
+      "alt": "Grilled sandwich with fries"
+    },
+    {
+      "image": "/images/fish-fry.webp",
+      "alt": "Fish fry with green chutney"
+    },
+    {
+      "image": "/images/penne-pasta.webp",
+      "alt": "Penne pasta"
+    },
+    {
+      "image": "/images/cafe-hut-interior.webp",
+      "alt": "Burger in the thatched café hut"
+    }
+  ],
+  "stayPhoto": {
+    "image": "/images/cottage-standard.webp",
+    "alt": "AC cottage at The Samsaara, Shivpuri"
+  }
+}

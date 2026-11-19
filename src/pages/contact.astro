@@ -1,0 +1,63 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import EnquiryForm from '../components/EnquiryForm.astro';
+import MapBlock from '../components/MapBlock.astro';
+import site from '../data/site.json';
+import { waLink, telLink, mailLink } from '../lib/links';
+import { resortSchema } from '../lib/schema';
+
+const crumbs = [{ name: 'Contact', path: '/contact/' }];
+---
+<Base
+  title="Contact & Enquiries — WhatsApp +91 70781 14023 | The Samsaara"
+  description="Enquire about stays, camping, weddings, corporate & school groups at The Samsaara, Shivpuri, Rishikesh. WhatsApp, call or send the form."
+  breadcrumbs={crumbs}
+  schema={[resortSchema()]}
+>
+  <section class="section">
+    <div class="container-x">
+      <nav aria-label="Breadcrumb" class="mb-4 text-sm text-charcoal/60"><a href="/" class="text-charcoal/60">Home</a> / Contact</nav>
+      <h1>Contact &amp; Enquiries</h1>
+      <p class="lead mt-4 max-w-2xl">Prices change with dates and group size, so the quickest way to get the best price is WhatsApp. You can also call, email or send the form below.</p>
+
+      <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <a href={waLink()} class="card reveal flex flex-col gap-2 p-6 no-underline text-charcoal hover:ring-whatsapp" target="_blank" rel="noopener" data-track="whatsapp_click">
+          <Icon name="whatsapp" class="h-8 w-8 text-whatsapp" /><span class="font-semibold text-teal-dark">WhatsApp</span><span class="text-base">{site.phone}</span><span class="text-sm text-charcoal/60">Fastest reply</span>
+        </a>
+        <a href={telLink} class="card reveal flex flex-col gap-2 p-6 no-underline text-charcoal" data-track="call_click">
+          <Icon name="phone" class="h-8 w-8 text-teal" /><span class="font-semibold text-teal-dark">Call</span><span class="text-base">{site.phone}</span>
+        </a>
+        <a href={mailLink} class="card reveal flex flex-col gap-2 p-6 no-underline text-charcoal">
+          <Icon name="mail" class="h-8 w-8 text-teal" /><span class="font-semibold text-teal-dark">Email</span><span class="text-base break-all">{site.email}</span>
+        </a>
+        <a href={site.instagram} class="card reveal flex flex-col gap-2 p-6 no-underline text-charcoal" target="_blank" rel="noopener">
+          <Icon name="instagram" class="h-8 w-8 text-amber-dark" /><span class="font-semibold text-teal-dark">Instagram</span><span class="text-base">@thesamsaara_</span>
+        </a>
+      </div>
+
+      <div class="mt-12 grid gap-12 lg:grid-cols-5">
+        <div class="lg:col-span-3"><EnquiryForm /></div>
+        <div class="lg:col-span-2 prose-s">
+          <h2>Groups &amp; events</h2>
+          <p><strong>Groups get special discounts and custom packages.</strong> When you enquire, tell us:</p>
+          <ul>
+            <li>Your dates (or a range)</li>
+            <li>Number of guests</li>
+            <li>Cottages, tents or a mix</li>
+            <li>Activities you’d like — rafting, bonfire, games</li>
+            <li>For weddings: functions, food preferences and décor ideas</li>
+          </ul>
+          <p>Planning a <a href="/destination-wedding/">wedding</a>, <a href="/corporate-offsite/">offsite</a>, <a href="/school-trips/">school trip</a> or <a href="/birthday-celebrations/">birthday</a>? Each page has more detail.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-sand">
+    <div class="container-x">
+      <h2 class="mb-8">Find us</h2>
+      <MapBlock />
+    </div>
+  </section>
+</Base>

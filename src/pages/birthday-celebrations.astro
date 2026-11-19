@@ -1,0 +1,80 @@
+---
+import Base from '../layouts/Base.astro';
+import page from '../data/pages/birthday.json';
+import { fill, shareImage } from '../lib/content';
+import PageHero from '../components/PageHero.astro';
+import Icon from '../components/Icon.astro';
+import CtaBand from '../components/CtaBand.astro';
+import FaqList from '../components/FaqList.astro';
+import EnquiryForm from '../components/EnquiryForm.astro';
+import { faqsByTag, faqSchema } from '../lib/schema';
+
+const faqs = faqsByTag('birthday');
+const wa = "Hi Samsaara! I'd like to plan a birthday celebration for ~___ people on [date].";
+const crumbs = [{ name: 'Birthday Celebrations', path: '/birthday-celebrations/' }];
+const ideas = [
+  { t: 'Bonfire birthday by the river', d: 'Cake, music and a crackling bonfire on the Ganga beach.' },
+  { t: 'Karaoke & music night', d: 'Sing, dance and celebrate late into the evening.' },
+  { t: 'Adventure birthday', d: 'Start the day rafting, end it with pizza and a pool party.' },
+  { t: 'Café party', d: 'Woodfire pizzas, burgers and snacks from our in-house café.' },
+  { t: 'Milestone weekends', d: '30th, 40th, 50th or a surprise — take over a few cottages with friends and family.' },
+  { t: 'Kids & family birthdays', d: 'Pool, games and open space for children, with meals included for everyone.' },
+];
+---
+<Base
+  title={fill(page.seo.title)}
+  description={fill(page.seo.description)}
+  image={shareImage(page.seo.image)}
+  waMessage={wa}
+  breadcrumbs={crumbs}
+  schema={[faqSchema(faqs)]}
+>
+  <PageHero
+    eyebrow={fill(page.hero.eyebrow)}
+    title={fill(page.hero.title)}
+    subtitle={fill(page.hero.subtitle)}
+    image={page.hero.image}
+    imageAlt={page.hero.alt}
+    representative={page.hero.representative}
+    waMessage={wa}
+    crumbs={crumbs}
+  />
+
+  <section class="section">
+    <div class="container-x">
+      <div class="max-w-3xl prose-s reveal">
+        <h2>Make this birthday a trip, not just a party</h2>
+        <p>Why book a table when you can book a riverside resort? At The Samsaara, your crew stays together in <a href="/stay/">AC cottages</a> or <a href="/riverside-camping/">beach tents</a>, the food is sorted, and the evening is yours — bonfire, music and cake under the stars.</p>
+        <p>Whether it’s a milestone birthday, a surprise for your partner or a weekend with college friends, we’ll help you plan the setup, the food and the activities. <strong>Groups get special discounts</strong>, and stays start from ₹2,000 per person with meals included.</p>
+      </div>
+
+      <div class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {ideas.map((i) => (
+          <div class="card reveal p-6">
+            <Icon name="check" class="h-6 w-6 text-amber" />
+            <h3 class="mt-3 !text-xl">{i.t}</h3>
+            <p class="mt-2 text-base text-charcoal/75">{i.d}</p>
+          </div>
+        ))}
+      </div>
+
+      <CtaBand title="Plan your birthday on WhatsApp" text="Tell us the date, number of guests and the vibe you want — we’ll send ideas and a price." waMessage={wa} />
+
+      <div class="grid gap-12 lg:grid-cols-2">
+        <div class="prose-s reveal">
+          <h2>A celebration resort near Delhi</h2>
+          <p>Shivpuri is a comfortable drive from Delhi, Chandigarh and Dehradun, which makes it ideal for a two-day birthday getaway. Arrive in the afternoon, celebrate at night, and spend the next morning <a href="/experiences/#rafting">rafting</a> or lazing by the pool.</p>
+          <p>For bigger celebrations — anniversaries, engagements and family functions — talk to us about our <a href="/destination-wedding/">wedding and event setups</a>.</p>
+        </div>
+        <img src={page.sidePhoto.image} alt={page.sidePhoto.alt} loading="lazy" width="1200" height="800" class="reveal rounded-3xl shadow-md" />
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-sand">
+    <div class="container-x grid gap-12 lg:grid-cols-2">
+      <FaqList items={faqs} title="Birthday FAQs" />
+      <EnquiryForm defaultType="Birthday" title="Plan your celebration" />
+    </div>
+  </section>
+</Base>

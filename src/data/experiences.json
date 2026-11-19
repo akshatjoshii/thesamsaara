@@ -1,0 +1,60 @@
+{
+  "items": [
+    {
+      "id": "rafting",
+      "name": "River Rafting",
+      "image": "/images/banner-team-rafting.webp",
+      "alt": "River Rafting at The Samsaara, Shivpuri",
+      "text": "Shivpuri is Rishikesh's rafting capital. We arrange rafting on the Ganga for individuals and groups."
+    },
+    {
+      "id": "camping",
+      "name": "Beach-side Camping",
+      "image": "/images/banner-camping-campfire.webp",
+      "alt": "Beach-side Camping at The Samsaara, Shivpuri",
+      "text": "Our signature experience: tents on the river beach, starry skies and the sound of the Ganga."
+    },
+    {
+      "id": "bonfire",
+      "name": "Bonfire Nights",
+      "image": "/images/bonfire-night.webp",
+      "alt": "Bonfire Nights at The Samsaara, Shivpuri",
+      "text": "Evenings around the fire with music, snacks and stories by the river."
+    },
+    {
+      "id": "pool",
+      "name": "Swimming Pool",
+      "image": "/images/swimming-pool.webp",
+      "alt": "Swimming Pool at The Samsaara, Shivpuri",
+      "text": "Cool off in the pool after a day of rafting and adventure."
+    },
+    {
+      "id": "volleyball",
+      "name": "Garden Swings & Group Games",
+      "image": "/images/beach-volleyball.webp",
+      "alt": "Garden Swings & Group Games at The Samsaara, Shivpuri",
+      "text": "Lawns, swings and thatched gazebos for beach volleyball, indoor and outdoor games and team activities."
+    },
+    {
+      "id": "karaoke",
+      "name": "Karaoke & Music",
+      "image": "/images/karaoke-music.webp",
+      "alt": "Karaoke & Music at The Samsaara, Shivpuri",
+      "text": "An outdoor stage, lights and music for karaoke nights, DJ evenings and celebrations."
+    },
+    {
+      "id": "prewedding",
+      "name": "Pre-wedding Shoots",
+      "image": "/images/pre-wedding-shoot.webp",
+      "alt": "Pre-wedding Shoots at The Samsaara, Shivpuri",
+      "text": "Fairy-lit trees, the river, the hills and golden-hour light make a beautiful backdrop for your shoot."
+    },
+    {
+      "id": "riverfront",
+      "name": "River Front",
+      "image": "/images/river-front.webp",
+      "alt": "River Front at The Samsaara, Shivpuri",
+      "text": "Walk down to the Ganga, watch the rapids and soak in the Himalayan foothills around Shivpuri."
+    }
+  ]
+}

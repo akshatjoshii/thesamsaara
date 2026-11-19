@@ -1,0 +1,77 @@
+---
+import Base from '../layouts/Base.astro';
+import page from '../data/pages/experiences.json';
+import { fill, shareImage } from '../lib/content';
+import PageHero from '../components/PageHero.astro';
+import Icon from '../components/Icon.astro';
+import CtaBand from '../components/CtaBand.astro';
+import EnquiryForm from '../components/EnquiryForm.astro';
+import experiences from '../data/experiences.json';
+import { waLink } from '../lib/links';
+
+const wa = "Hi Samsaara! I'd like to plan a stay with rafting and activities. Dates: ___ Guests: ___";
+const crumbs = [{ name: 'Experiences', path: '/experiences/' }];
+const links: Record<string, { href: string; label: string }> = {
+  camping: { href: '/riverside-camping/', label: 'Riverside camping' },
+  prewedding: { href: '/destination-wedding/', label: 'Weddings & shoots' },
+  volleyball: { href: '/corporate-offsite/', label: 'Corporate team building' },
+  karaoke: { href: '/birthday-celebrations/', label: 'Birthday celebrations' },
+};
+---
+<Base
+  title={fill(page.seo.title)}
+  description={fill(page.seo.description)}
+  image={shareImage(page.seo.image)}
+  waMessage={wa}
+  breadcrumbs={crumbs}
+>
+  <PageHero
+    eyebrow={fill(page.hero.eyebrow)}
+    title={fill(page.hero.title)}
+    subtitle={fill(page.hero.subtitle)}
+    image={page.hero.image}
+    imageAlt={page.hero.alt}
+    representative={page.hero.representative}
+    waMessage={wa}
+    crumbs={crumbs}
+  />
+
+  <section class="section">
+    <div class="container-x">
+      <div class="max-w-3xl prose-s reveal">
+        <h2>River rafting in Rishikesh, with your stay sorted</h2>
+        <p>Shivpuri is the starting and finishing point for many of Rishikesh’s most popular rafting stretches, which makes The Samsaara a natural base for <strong>river rafting with stay</strong>. Tell us your group size and dates, and we’ll arrange rafting alongside your cottage or tent booking, so you don’t have to deal with touts on the highway.</p>
+        <p>Back at the resort, there’s plenty more: <strong>bonfire camping</strong> on the river beach, a swimming pool, beach volleyball, indoor and outdoor games, and karaoke nights. Read our <a href="/blog/shivpuri-river-rafting-guide/">Shivpuri rafting guide</a> for stretches, season and safety tips.</p>
+      </div>
+
+      <div class="mt-12 space-y-8">
+        {experiences.items.map((e, i) => (
+          <article id={e.id} class="card reveal grid scroll-mt-24 md:grid-cols-2">
+            <img src={e.image} alt={e.alt || `${e.name} at The Samsaara, Shivpuri`} loading="lazy" width="1200" height="800" class:list={['aspect-[4/3] h-full w-full object-cover', i % 2 === 1 && 'md:order-2']} />
+            <div class="flex flex-col justify-center p-6 sm:p-10">
+              <h2 class="!text-2xl sm:!text-3xl">{e.name}</h2>
+              <p class="mt-3 text-charcoal/80">{e.text}</p>
+              <div class="mt-6 flex flex-wrap gap-3">
+                <a href={waLink(`Hi Samsaara! I'm interested in ${e.name}. Dates: ___ Guests: ___`)} class="btn btn-wa !py-2.5" target="_blank" rel="noopener" data-track="whatsapp_click"><Icon name="whatsapp" /> Ask on WhatsApp</a>
+                {links[e.id] && <a href={links[e.id].href} class="btn btn-outline !py-2.5">{links[e.id].label}</a>}
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <CtaBand waMessage={wa} title="Build your adventure package" text="Combine stay, meals, rafting and activities in one price. Groups get special discounts." />
+
+      <div class="max-w-3xl prose-s reveal">
+        <h2>Things to do in Shivpuri beyond rafting</h2>
+        <p>Not into white water? Shivpuri is just as good for slowing down. Walk the river beach, read by the pool, try woodfire pizza at the <a href="/cafe/">Samsaara Café</a>, or head into Rishikesh for Laxman Jhula and the Ganga aarti. Our guide to <a href="/blog/things-to-do-in-shivpuri/">things to do in Shivpuri</a> has more ideas.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-sand">
+    <div class="container-x max-w-3xl">
+      <EnquiryForm title="Plan your activities" />
+    </div>
+  </section>
+</Base>

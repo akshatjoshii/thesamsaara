@@ -1,0 +1,56 @@
+{
+  "cottages": [
+    {
+      "name": "Standard Cottage",
+      "slug": "standard",
+      "price": "From ₹2,000 / bed / night",
+      "image": "/images/cottage-twin-room.webp",
+      "alt": "Twin-bed AC room in a Standard cottage at The Samsaara, Shivpuri",
+      "beds": "4–5 beds",
+      "features": [
+        "Air-conditioned",
+        "Meals included (MAP)",
+        "Book per bed or the whole cottage"
+      ],
+      "description": "Our most popular choice for friends, families and groups. Book a single bed or take the whole cottage for your group."
+    },
+    {
+      "name": "Deluxe Cottage",
+      "slug": "deluxe",
+      "price": "Best price on WhatsApp",
+      "image": "/images/cottage-room-window.webp",
+      "alt": "Deluxe cottage room with a window view at The Samsaara, Shivpuri",
+      "beds": "4–5 beds",
+      "features": [
+        "Air-conditioned",
+        "Meals included (MAP)",
+        "Upgraded interiors"
+      ],
+      "description": "A step up in comfort for families and couples who want a little more space and style."
+    },
+    {
+      "name": "Superior Cottage",
+      "slug": "superior",
+      "price": "Best price on WhatsApp",
+      "image": "/images/cottage-thatched-ac-room.webp",
+      "alt": "Thatched Superior AC cottage at The Samsaara, Shivpuri",
+      "beds": "4–5 beds",
+      "features": [
+        "Air-conditioned",
+        "Meals included (MAP)",
+        "Our best cottages"
+      ],
+      "description": "Our finest cottages for special stays, celebrations and guests who want the best we offer."
+    }
+  ],
+  "camping": {
+    "tents": 10,
+    "price": "Dynamic pricing — enquire on WhatsApp",
+    "features": [
+      "Beach-side tents on the Ganga",
+      "Meals included (MAP)",
+      "Bonfire evenings",
+      "Rafting & activities on request"
+    ]
+  }
+}

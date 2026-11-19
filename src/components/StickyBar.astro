@@ -1,0 +1,16 @@
+---
+import Icon from './Icon.astro';
+import { waLink, telLink } from '../lib/links';
+interface Props { waMessage?: string }
+const { waMessage } = Astro.props;
+---
+<!-- Mobile: always-visible bottom bar -->
+<div class="fixed inset-x-0 bottom-0 z-40 grid grid-cols-2 gap-2 border-t border-black/10 bg-white/95 p-2 backdrop-blur lg:hidden" style="padding-bottom: max(0.5rem, env(safe-area-inset-bottom));">
+  <a href={telLink} class="btn btn-outline !py-3" data-track="call_click"><Icon name="phone" /> Call</a>
+  <a href={waLink(waMessage)} class="btn btn-wa !py-3" target="_blank" rel="noopener" data-track="whatsapp_click"><Icon name="whatsapp" /> WhatsApp</a>
+</div>
+
+<!-- Desktop: floating WhatsApp button -->
+<a href={waLink(waMessage)} class="fixed bottom-6 right-6 z-40 hidden h-14 w-14 items-center justify-center rounded-full bg-whatsapp text-white shadow-xl transition hover:scale-105 lg:flex" aria-label="Chat on WhatsApp" target="_blank" rel="noopener" data-track="whatsapp_click">
+  <Icon name="whatsapp" class="h-7 w-7" />
+</a>

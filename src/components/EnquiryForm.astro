@@ -1,0 +1,95 @@
+---
+import Icon from './Icon.astro';
+import site from '../data/site.json';
+
+type EnquiryType = 'Stay' | 'Camping' | 'Wedding' | 'Corporate' | 'School' | 'Birthday' | 'Other';
+interface Props { defaultType?: EnquiryType; title?: string; id?: string }
+const { defaultType = 'Stay', title = 'Send an enquiry', id = 'enquiry' } = Astro.props;
+const types: EnquiryType[] = ['Stay', 'Camping', 'Wedding', 'Corporate', 'School', 'Birthday', 'Other'];
+const field = 'mt-1 block w-full rounded-xl border border-black/15 bg-white px-4 py-3 text-base text-charcoal focus:border-teal focus:outline-none focus:ring-2 focus:ring-teal/30';
+---
+<div id={id} class="card p-6 sm:p-8 scroll-mt-24">
+  <h2 class="!text-2xl sm:!text-3xl">{title}</h2>
+  <p class="mt-2 text-charcoal/75 text-base">We usually reply within a few hours. For the fastest answer, WhatsApp us on {site.phone}.</p>
+
+  <form
+    class="enquiry-form mt-6 grid gap-4 sm:grid-cols-2"
+    action="https://api.web3forms.com/submit"
+    method="POST"
+    data-wa={site.whatsapp}
+  >
+    <input type="hidden" name="access_key" value={site.integrations.web3formsKey} />
+    <input type="hidden" name="subject" value="New enquiry from thesamsaara.com" />
+    <input type="hidden" name="from_name" value="The Samsaara website" />
+    <input type="hidden" name="redirect" value={`${site.url}/thank-you/`} />
+    <input type="checkbox" name="botcheck" class="hidden" tabindex="-1" autocomplete="off" />
+
+    <label class="text-sm font-medium text-forest">Name*
+      <input name="name" required autocomplete="name" class={field} />
+    </label>
+    <label class="text-sm font-medium text-forest">Phone / WhatsApp*
+      <input name="phone" type="tel" required autocomplete="tel" inputmode="tel" minlength="8" maxlength="16" class={field} />
+    </label>
+    <label class="text-sm font-medium text-forest">Check-in date
+      <input name="checkin" type="date" class={field} />
+    </label>
+    <label class="text-sm font-medium text-forest">Check-out date
+      <input name="checkout" type="date" class={field} />
+    </label>
+    <label class="text-sm font-medium text-forest">Number of guests*
+      <input name="guests" type="number" min="1" max="500" required class={field} />
+    </label>
+    <label class="text-sm font-medium text-forest">Enquiry type
+      <select name="enquiry_type" class={field}>
+        {types.map((t) => <option value={t} selected={t === defaultType}>{t}</option>)}
+      </select>
+    </label>
+    <label class="text-sm font-medium text-forest sm:col-span-2">Message
+      <textarea name="message" rows="4" class={field} placeholder="Tell us about your plans — occasion, budget, rafting, food preferences…"></textarea>
+    </label>
+    <div class="sm:col-span-2 flex flex-wrap items-center gap-4">
+      <button type="submit" class="btn btn-amber">Send enquiry <Icon name="arrow" /></button>
+      <p class="text-xs text-charcoal/60">By sending, you agree to our <a href="/privacy-policy/">privacy policy</a>.</p>
+    </div>
+    <p class="form-status sm:col-span-2 hidden rounded-xl p-4 text-base" role="status" aria-live="polite"></p>
+  </form>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLFormElement>('.enquiry-form').forEach((form) => {
+    form.addEventListener('submit', async (ev) => {
+      ev.preventDefault();
+      const status = form.querySelector<HTMLElement>('.form-status')!;
+      const btn = form.querySelector<HTMLButtonElement>('button[type=submit]')!;
+      const data = new FormData(form);
+      data.delete('redirect');
+      btn.disabled = true;
+      btn.textContent = 'Sending…';
+
+      const g = (k: string) => String(data.get(k) || '').trim();
+      const waText =
+        `Hi Samsaara! I just sent an enquiry on your website.\n` +
+        `Name: ${g('name')}\nType: ${g('enquiry_type')}\nGuests: ${g('guests')}` +
+        (g('checkin') ? `\nDates: ${g('checkin')}${g('checkout') ? ' to ' + g('checkout') : ''}` : '') +
+        (g('message') ? `\nMessage: ${g('message')}` : '');
+      const waHref = `https://wa.me/${form.dataset.wa}?text=${encodeURIComponent(waText)}`;
+
+      try {
+        const res = await fetch(form.action, { method: 'POST', body: data, headers: { Accept: 'application/json' } });
+        const json = await res.json().catch(() => ({}));
+        if (!res.ok || json.success === false) throw new Error(json.message || 'Failed');
+        const w = window as unknown as { gtag?: (...a: unknown[]) => void };
+        w.gtag?.('event', 'form_submit', { enquiry_type: g('enquiry_type') });
+        form.reset();
+        status.className = 'form-status sm:col-span-2 rounded-xl p-4 text-base bg-forest/10 text-forest';
+        status.innerHTML = `<strong>Thank you! Your enquiry has been sent.</strong><br>Want a faster reply? <a class="btn btn-wa mt-3" target="_blank" rel="noopener" href="${waHref}">Send these details on WhatsApp</a>`;
+      } catch {
+        status.className = 'form-status sm:col-span-2 rounded-xl p-4 text-base bg-amber/15 text-charcoal';
+        status.innerHTML = `Sorry, the form couldn't be sent right now. <a class="btn btn-wa mt-3" target="_blank" rel="noopener" href="${waHref}">Send your enquiry on WhatsApp instead</a>`;
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Send enquiry';
+      }
+    });
+  });
+</script>

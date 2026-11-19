@@ -1,0 +1,92 @@
+---
+import Base from '../layouts/Base.astro';
+import page from '../data/pages/school.json';
+import { fill, shareImage } from '../lib/content';
+import PageHero from '../components/PageHero.astro';
+import Icon from '../components/Icon.astro';
+import CtaBand from '../components/CtaBand.astro';
+import FaqList from '../components/FaqList.astro';
+import EnquiryForm from '../components/EnquiryForm.astro';
+import { faqsByTag, faqSchema } from '../lib/schema';
+
+const faqs = faqsByTag('school');
+const wa = "Hi Samsaara! We're planning a school/college trip for ~___ students on [dates].";
+const crumbs = [{ name: 'School & College Trips', path: '/school-trips/' }];
+const points = [
+  { t: 'Safe, contained campus', d: 'One riverside property where students stay, eat and play together — easy for teachers to supervise.' },
+  { t: 'Meals included', d: 'MAP meals for every student and staff member, planned for group service.' },
+  { t: 'Outdoor learning', d: 'River ecology, the Himalayan foothills and the culture of Rishikesh — all on the doorstep.' },
+  { t: 'Activities that build confidence', d: 'Group games, beach volleyball, bonfire nights and age-appropriate adventure activities.' },
+  { t: 'Flexible rooming', d: 'Cottages with 4–5 beds each make it simple to room students by group, with teachers nearby.' },
+  { t: 'Group pricing', d: 'Special discounts for schools and colleges, with complimentary planning support.' },
+];
+---
+<Base
+  title={fill(page.seo.title)}
+  description={fill(page.seo.description)}
+  image={shareImage(page.seo.image)}
+  waMessage={wa}
+  breadcrumbs={crumbs}
+  schema={[faqSchema(faqs)]}
+>
+  <PageHero
+    eyebrow={fill(page.hero.eyebrow)}
+    title={fill(page.hero.title)}
+    subtitle={fill(page.hero.subtitle)}
+    image={page.hero.image}
+    imageAlt={page.hero.alt}
+    representative={page.hero.representative}
+    waMessage={wa}
+    crumbs={crumbs}
+  />
+
+  <section class="section">
+    <div class="container-x">
+      <div class="max-w-3xl prose-s reveal">
+        <h2>An educational tour to Rishikesh students will never forget</h2>
+        <p>For many students, a trip to Rishikesh is their first real taste of the mountains and the Ganga. At The Samsaara we host <strong>school and college groups</strong> in a single riverside property in Shivpuri, so teachers always know where everyone is, and students get space to explore, play and learn.</p>
+        <p>We work directly with teachers, principals and trip organisers to build an itinerary that fits your age group, budget and learning goals. There are no fixed packages — every group gets a <strong>custom plan and a group discount</strong>.</p>
+      </div>
+
+      <div class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {points.map((p) => (
+          <div class="card reveal p-6">
+            <Icon name="check" class="h-6 w-6 text-amber" />
+            <h3 class="mt-3 !text-xl">{p.t}</h3>
+            <p class="mt-2 text-base text-charcoal/75">{p.d}</p>
+          </div>
+        ))}
+      </div>
+
+      <CtaBand title="Get a quote for your school or college" text="Share the number of students and staff, dates and age group. We’ll reply with a plan and group price." waMessage={wa} />
+
+      <div class="grid gap-12 lg:grid-cols-2">
+        <div class="prose-s reveal">
+          <h2>What students can do</h2>
+          <ul>
+            <li>Team games, beach volleyball and indoor games</li>
+            <li>Bonfire evening with music and group activities</li>
+            <li>Nature walks along the river and learning about the Ganga</li>
+            <li>A visit to Rishikesh town — Laxman Jhula, Ram Jhula and the evening aarti (arranged by your group)</li>
+            <li>River rafting for older students and college groups, subject to age and safety guidelines</li>
+          </ul>
+          <h3>College trip camping</h3>
+          <p>College groups often love our <a href="/riverside-camping/">beach-side camping</a> — tents on the river beach, a bonfire and rafting the next morning.</p>
+        </div>
+        <div class="prose-s reveal">
+          <h2>Safety first</h2>
+          <p>We understand that parents trust you, and you trust us. Our team will share the plan in advance, help you set rooming lists, and keep activities appropriate for your group. Adventure activities like rafting are only arranged where age and safety guidelines allow, and with your written approval.</p>
+          <p>Our guide <a href="/blog/school-trip-to-rishikesh-guide/">School trip to Rishikesh: itinerary &amp; safety guide</a> has a sample plan and a checklist for organisers.</p>
+          <p>Need directions for your bus? See <a href="/how-to-reach/">how to reach Shivpuri</a>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-sand">
+    <div class="container-x grid gap-12 lg:grid-cols-2">
+      <FaqList items={faqs} title="School trip FAQs" />
+      <EnquiryForm defaultType="School" title="Plan your school trip" />
+    </div>
+  </section>
+</Base>

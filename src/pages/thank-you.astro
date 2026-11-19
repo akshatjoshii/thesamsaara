@@ -1,0 +1,17 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import { waLink } from '../lib/links';
+---
+<Base title="Thank you | The Samsaara" description="Your enquiry has been sent." noindex>
+  <section class="section">
+    <div class="container-x max-w-2xl text-center">
+      <h1 class="!text-4xl">Thank you! Your enquiry is on its way.</h1>
+      <p class="lead mt-4">We usually reply within a few hours. For a faster answer, send us a quick message on WhatsApp.</p>
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
+        <a href={waLink("Hi Samsaara! I just sent an enquiry on your website.")} class="btn btn-wa" target="_blank" rel="noopener" data-track="whatsapp_click"><Icon name="whatsapp" /> Continue on WhatsApp</a>
+        <a href="/" class="btn btn-outline">Back to home</a>
+      </div>
+    </div>
+  </section>
+</Base>

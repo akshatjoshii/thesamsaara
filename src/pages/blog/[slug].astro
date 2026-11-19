@@ -1,0 +1,45 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import site from '../../data/site.json';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const cover = post.data.image || site.branding.shareImage;
+const url = `/blog/${post.id}/`;
+const crumbs = [{ name: 'Travel Guides', path: '/blog/' }, { name: post.data.title, path: url }];
+const dateStr = post.data.date.toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' });
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: post.data.title,
+  description: post.data.description,
+  image: new URL(cover, site.url).href,
+  datePublished: post.data.date.toISOString(),
+  author: { '@type': 'Organization', name: site.name, url: site.url },
+  publisher: { '@type': 'Organization', name: site.name, url: site.url },
+  mainEntityOfPage: new URL(url, site.url).href,
+};
+---
+<Base title={`${post.data.title} | The Samsaara`} description={post.data.description} image={cover} breadcrumbs={crumbs} schema={[articleSchema]} ogType="article">
+  <article class="section">
+    <div class="container-x max-w-3xl">
+      <nav aria-label="Breadcrumb" class="mb-4 text-sm text-charcoal/60"><a href="/" class="text-charcoal/60">Home</a> / <a href="/blog/" class="text-charcoal/60">Travel Guides</a></nav>
+      <h1 class="!text-4xl sm:!text-5xl">{post.data.title}</h1>
+      <p class="mt-3 text-sm text-charcoal/60">By The Samsaara team · <time datetime={post.data.date.toISOString()}>{dateStr}</time></p>
+      <img src={cover} alt={post.data.imageAlt || post.data.title} width="1200" height="800" class="mt-8 rounded-3xl" />
+      <div class="prose-s mt-10">
+        <Content />
+      </div>
+      <p class="mt-8"><a href={post.data.cta.href} class="btn btn-amber">{post.data.cta.label} →</a></p>
+      <CtaBand />
+    </div>
+  </article>
+</Base>
