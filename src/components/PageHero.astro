@@ -17,7 +17,7 @@ interface Props {
 }
 const { eyebrow, title, subtitle, image, imageAlt, waMessage, showPrice = true, crumbs, size = 'page', representative = false } = Astro.props;
 ---
-<section class:list={['relative isolate flex items-end overflow-hidden bg-teal-dark text-sand', size === 'full' ? 'min-h-[88svh]' : 'min-h-[62svh]']}>
+<section class:list={['hero-in relative isolate flex items-end overflow-hidden bg-teal-dark text-sand-light', size === 'full' ? 'min-h-[90svh]' : 'min-h-[64svh]']}>
   <img
     src={image}
     alt={imageAlt}
@@ -28,52 +28,45 @@ const { eyebrow, title, subtitle, image, imageAlt, waMessage, showPrice = true, 
     width="1920"
     height="1080"
   />
-  <div class="absolute inset-0 -z-10 bg-linear-to-t from-charcoal/85 via-charcoal/45 to-charcoal/25"></div>
-  <div class="absolute inset-0 -z-10 bg-linear-to-r from-charcoal/60 via-charcoal/20 to-transparent"></div>
-  {size === 'full' && <div class="absolute inset-0 -z-10 bg-teal-dark/35"></div>}
+  <!-- River-dusk wash: keeps the photo readable but recognisable -->
+  <div class="absolute inset-0 -z-10 bg-linear-to-t from-teal-dark via-teal-dark/55 to-teal-dark/20"></div>
+  <div class="absolute inset-0 -z-10 bg-linear-to-r from-teal-dark/75 via-teal-dark/25 to-transparent"></div>
+  {size === 'full' && <div class="absolute inset-0 -z-10 bg-teal-dark/25"></div>}
 
-  {representative && <span class="absolute bottom-3 right-4 z-10 text-[0.7rem] text-sand/60">Representative image</span>}
-  <div class="container-x pb-16 pt-24 sm:pb-24">
-    {crumbs && (
-      <nav aria-label="Breadcrumb" class="mb-4 text-sm text-sand/80">
-        <ol class="flex flex-wrap gap-1">
-          <li><a href="/" class="text-sand/80">Home</a> /</li>
-          {crumbs.map((c, i) => (
-            <li>{i === crumbs.length - 1 ? <span aria-current="page">{c.name}</span> : <><a href={c.path} class="text-sand/80">{c.name}</a> /</>}</li>
-          ))}
-        </ol>
-      </nav>
-    )}
-    {eyebrow && <p class="eyebrow !text-amber">{eyebrow}</p>}
-    <h1 class="mt-3 max-w-3xl !text-sand">{title}</h1>
-    {subtitle && <p class="mt-5 max-w-2xl text-lg sm:text-xl text-sand/90">{subtitle}</p>}
-    {showPrice && (
-      <p class="mt-6 inline-flex flex-wrap items-baseline gap-x-2 rounded-2xl bg-white/10 px-4 py-2 backdrop-blur">
-        <span class="text-sm uppercase tracking-wider text-sand/80">From</span>
-        <span class="font-serif text-3xl font-semibold text-amber">{formatINR(site.startingPrice)}</span>
-        <span class="text-sand/90">{site.priceNote}</span>
-      </p>
-    )}
-    <div class="mt-8 flex flex-wrap gap-3">
-      <a href={waLink(waMessage)} class="btn btn-wa" target="_blank" rel="noopener" data-track="whatsapp_click"><Icon name="whatsapp" /> Get best price on WhatsApp</a>
-      <a href={telLink} class="btn btn-light" data-track="call_click"><Icon name="phone" /> Call {site.phone}</a>
+  {representative && <span class="absolute bottom-3 right-4 z-10 text-[0.7rem] text-sand-light/60">Representative image</span>}
+
+  <div class="container-x relative pb-20 pt-28 sm:pb-28">
+    <div class="hero-copy">
+      {crumbs && (
+        <nav aria-label="Breadcrumb" class="mb-5 font-display text-sm text-sand-light/75">
+          <ol class="flex flex-wrap gap-1.5">
+            <li><a href="/" class="text-sand-light/75 no-underline hover:underline">Home</a> /</li>
+            {crumbs.map((c, i) => (
+              <li>{i === crumbs.length - 1 ? <span aria-current="page">{c.name}</span> : <><a href={c.path} class="text-sand-light/75 no-underline hover:underline">{c.name}</a> /</>}</li>
+            ))}
+          </ol>
+        </nav>
+      )}
+      {eyebrow && <p class="eyebrow !text-amber">{eyebrow}</p>}
+      <h1 class:list={['hero-title mt-3 !text-sand-light', size === 'full' ? 'max-w-4xl' : 'max-w-3xl']}>{title}</h1>
+      {subtitle && <p class="mt-5 max-w-2xl text-lg leading-relaxed text-sand-light/90 sm:text-xl">{subtitle}</p>}
+      {showPrice && (
+        <p class="mt-6 font-display text-sand-light/90">
+          Stays from <span class="text-2xl font-bold text-amber">{formatINR(site.startingPrice)}</span> {site.priceNote}
+        </p>
+      )}
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href={waLink(waMessage)} class="btn btn-wa" target="_blank" rel="noopener" data-track="whatsapp_click"><Icon name="whatsapp" /> Get best price on WhatsApp</a>
+        <a href={telLink} class="btn btn-light" data-track="call_click"><Icon name="phone" /> Call {site.phone}</a>
+      </div>
     </div>
   </div>
-</section>
 
-<script>
-  // Gentle parallax on hero image (disabled for reduced motion)
-  const img = document.querySelector<HTMLImageElement>('.hero-img');
-  if (img && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    let ticking = false;
-    window.addEventListener('scroll', () => {
-      if (ticking) return;
-      ticking = true;
-      requestAnimationFrame(() => {
-        const y = Math.min(window.scrollY, 800);
-        img.style.transform = `translate3d(0, ${y * 0.25}px, 0) scale(1.05)`;
-        ticking = false;
-      });
-    }, { passive: true });
-  }
-</script>
+  <!-- River current lines (signature): draw in once on load -->
+  <svg class="pointer-events-none absolute inset-x-0 bottom-0 h-16 w-full sm:h-24" viewBox="0 0 1440 96" preserveAspectRatio="none" aria-hidden="true">
+    <path class="current-line" d="M-20 70C200 52 380 46 600 58S980 86 1200 74 1400 52 1460 56" fill="none" stroke="var(--color-amber)" stroke-opacity=".85" stroke-width="2" vector-effect="non-scaling-stroke" />
+    <path class="current-line" d="M-20 80C220 64 400 60 620 70S1000 94 1220 84 1410 64 1460 67" fill="none" stroke="var(--color-sand-light)" stroke-opacity=".5" stroke-width="1.25" vector-effect="non-scaling-stroke" />
+    <path class="current-line" d="M-20 89C240 76 420 73 640 81S1020 100 1240 92 1420 76 1460 78" fill="none" stroke="var(--color-sand-light)" stroke-opacity=".3" stroke-width="1" vector-effect="non-scaling-stroke" />
+    <path class="current-line" d="M-20 60C180 42 360 36 580 47S960 74 1180 63 1390 42 1460 45" fill="none" stroke="var(--color-sand-light)" stroke-opacity=".22" stroke-width="1" vector-effect="non-scaling-stroke" />
+  </svg>
+</section>

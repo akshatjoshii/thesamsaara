@@ -45,13 +45,13 @@ const year = new Date().getFullYear();
         <p><a class="text-sand flex gap-2 no-underline hover:underline" href={telLink} data-track="call_click"><Icon name="phone" class="h-5 w-5" />{site.phone}</a></p>
         <p><a class="text-sand flex gap-2 no-underline hover:underline break-all" href={mailLink}><Icon name="mail" class="h-5 w-5 shrink-0" />{site.email}</a></p>
       </address>
-      <a href="/how-to-reach/" class="mt-4 inline-block text-amber">How to reach →</a>
+      <a href="/how-to-reach/" class="mt-4 inline-block font-display text-amber">How to reach us</a>
     </div>
   </div>
   <div class="border-t border-white/10">
     <div class="container-x flex flex-col gap-2 py-6 text-sm text-sand/70 sm:flex-row sm:justify-between">
       <p>© {year} {site.name}. All rights reserved.</p>
-      <p><a href="/privacy-policy/" class="text-sand/70">Privacy Policy</a> · <a href="/contact/" class="text-sand/70">Enquire</a></p>
+      <p class="flex gap-4"><a href="/privacy-policy/" class="text-sand/70">Privacy policy</a><a href="/contact/" class="text-sand/70">Enquire</a></p>
     </div>
   </div>
 </footer>

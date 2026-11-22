@@ -10,7 +10,7 @@ Fast static resort website built with Astro v5 (SSG) and Tailwind CSS v4, manage
 ## Tech Stack & Architecture
 - **Framework**: Astro 5 (Static Site Generation), Node 18.20+ / 20+
 - **Styling**: Tailwind CSS v4 via `@tailwindcss/vite` (configured in `src/styles/global.css`, NO `tailwind.config.js`)
-- **Typography**: `@fontsource-variable/fraunces` (serif) & `@fontsource-variable/inter` (sans)
+- **Typography**: `@fontsource-variable/bricolage-grotesque` (display: headings, nav, buttons; Tailwind `font-display` / `font-serif`) & `@fontsource-variable/source-serif-4` (reading text; `font-sans`)
 - **CMS**: Pages CMS (admin interface configuration in `.pages.yml`)
 - **Blog**: Astro Content Collections (`src/content/blog/*.md` via `src/content.config.ts`)
 - **SEO/Analytics**: Canonical URLs, Google Analytics 4, JSON-LD Schema (`src/lib/schema.ts`, `src/layouts/Base.astro`)
@@ -37,12 +37,13 @@ Fast static resort website built with Astro v5 (SSG) and Tailwind CSS v4, manage
 
 ## Tailwind v4 Theme Tokens & Utility Classes
 Defined in `src/styles/global.css`:
-- **Colors**: `teal` (`#1F5E63`), `teal-dark` (`#17484c`), `sand` (`#EDE3D1`), `sand-light` (`#F6F0E5`), `forest` (`#2E4A3A`), `amber` (`#E08A3C`), `amber-dark` (`#B8641C`), `charcoal` (`#1C1C1C`), `whatsapp` (`#1DA851`)
+- **Theme "River Ganga at Shivpuri"** (token names kept from v1, values changed): `teal` Ganga jade (`#0B6E69`), `teal-dark` river at dusk (`#0E2B2F`), `sand` silt (`#D9E2DD`), `sand-light` river-stone page background (`#EDF1EE`), `forest` mud plaster (`#8C5A3C`), `amber` marigold CTA (`#F4A300`), `amber-dark` marigold text on light (`#9A5B00`), `charcoal` ink (`#132321`), `whatsapp` (`#1DA851`)
+- **Design rules**: no ALL-CAPS labels, no `·` separators or `→` arrows in UI text, flat surfaces (hairline borders, no drop shadows), photos `rounded-xl`. The signature is the thin "river current" lines (`Wave.astro` dividers, `PageHero.astro` bottom lines, `CtaBand.astro`); the hero draw-in is the only automatic animation. `.reveal` is a no-op kept for old templates.
 - **Component Classes**:
   - Layout: `.container-x` (max-w-6xl px-5 sm:px-8), `.section` (py-16 sm:py-24)
-  - Typography: `.eyebrow` (uppercase tracking-widest text-amber-dark), `.lead` (text-lg sm:text-xl)
+  - Typography: `.eyebrow` (sentence-case jade context line, display font), `.lead` (text-lg sm:text-xl)
   - Buttons: `.btn` combined with `.btn-wa`, `.btn-amber`, `.btn-outline`, or `.btn-light`
-  - Cards & Badges: `.card` (rounded-3xl bg-white shadow-sm ring-1 ring-black/5), `.chip` (rounded-full bg-sand px-3 py-1 text-forest)
+  - Cards & Badges: `.card` (rounded-xl, off-white, hairline border, no shadow), `.chip` (rounded-md bg-sand, display font)
   - Content: `.prose-s` for styled markdown/article typography
 - **Icons**:
   - Use `<Icon name="..." />` (`src/components/Icon.astro`). Supported names: `whatsapp`, `phone`, `mail`, `instagram`, `map`, `pin`, `check`, `arrow`, `menu`, `close`, `star`.

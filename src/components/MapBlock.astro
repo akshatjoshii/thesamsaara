@@ -6,7 +6,7 @@ interface Props { showDistances?: boolean }
 const { showDistances = true } = Astro.props;
 ---
 <div class="grid gap-8 lg:grid-cols-5">
-  <div class="lg:col-span-3 overflow-hidden rounded-3xl ring-1 ring-black/5 bg-sand min-h-[320px]">
+  <div class="lg:col-span-3 overflow-hidden rounded-xl ring-1 ring-black/5 bg-sand min-h-[320px]">
     <iframe
       title={`Map showing ${site.name}, Shivpuri`}
       src={mapsEmbed}
@@ -23,13 +23,13 @@ const { showDistances = true } = Astro.props;
         {site.distances.map((d) => (
           <li class="flex justify-between gap-4 py-2.5">
             <span>{d.from}</span>
-            <span class="shrink-0 text-right text-charcoal/70">{d.distance}<br class="sm:hidden" /><span class="hidden sm:inline"> · </span>{d.time}</span>
+            <span class="shrink-0 text-right text-charcoal/70">{d.distance}<br />{d.time}</span>
           </li>
         ))}
       </ul>
     )}
     <div class="mt-6 flex flex-wrap gap-3">
-      <a href={mapsDirections} class="btn btn-amber" target="_blank" rel="noopener">Get directions <Icon name="arrow" /></a>
+      <a href={mapsDirections} class="btn btn-amber" target="_blank" rel="noopener">Get directions</a>
       <a href={site.googleProfile} class="btn btn-outline" target="_blank" rel="noopener">Open in Google Maps</a>
     </div>
     <p class="mt-4 text-sm text-charcoal/60">Distances and times are approximate and vary with traffic and season.</p>

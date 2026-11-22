@@ -76,7 +76,7 @@ const crumbs = [{ name: 'Café', path: '/cafe/' }];
       <h2 class="reveal">From our kitchen</h2>
       <ul class="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
         {page.foodPhotos.map((f) => (
-          <li class="reveal overflow-hidden rounded-2xl">
+          <li class="reveal overflow-hidden rounded-lg">
             <img src={f.image} alt={f.alt} loading="lazy" decoding="async" width="1050" height="1400" class="aspect-[3/4] w-full object-cover transition duration-500 hover:scale-105" />
           </li>
         ))}
@@ -86,11 +86,11 @@ const crumbs = [{ name: 'Café', path: '/cafe/' }];
 
   <section class="section bg-sand">
     <div class="container-x grid items-center gap-10 lg:grid-cols-2">
-      <img src={page.stayPhoto.image} alt={page.stayPhoto.alt} loading="lazy" width="1600" height="1200" class="rounded-3xl shadow-md reveal" />
+      <img src={page.stayPhoto.image} alt={page.stayPhoto.alt} loading="lazy" width="1600" height="1200" class="rounded-xl reveal" />
       <div class="prose-s reveal">
         <h2>Staying with us?</h2>
         <p>Your stay includes meals on a MAP plan, and the café is open for snacks and extras through the day. It’s also where many of our <a href="/birthday-celebrations/">birthday parties</a> and <a href="/corporate-offsite/">team evenings</a> begin.</p>
-        <p><a href="/stay/">See our riverside cottages →</a></p>
+        <p><a href="/stay/">See our riverside cottages</a></p>
       </div>
     </div>
   </section>

@@ -28,7 +28,7 @@ const { rating, count, show } = site.googleRating;
             {Array.from({ length: r.rating }).map(() => <Icon name="star" class="h-4 w-4" />)}
           </div>
           <blockquote class="mt-3 text-charcoal/85">“{r.text}”</blockquote>
-          <figcaption class="mt-4 text-sm font-semibold text-teal-dark">{r.name}{r.date && <span class="font-normal text-charcoal/60"> · {r.date}</span>}</figcaption>
+          <figcaption class="mt-4 text-sm font-semibold text-teal-dark">{r.name}{r.date && <span class="block font-normal text-charcoal/60">{r.date}</span>}</figcaption>
         </figure>
       ))}
     </div>
@@ -37,5 +37,5 @@ const { rating, count, show } = site.googleRating;
       <p class="text-charcoal/80">Read honest reviews from guests who’ve stayed, camped and celebrated with us — and leave one after your stay.</p>
     </div>
   )}
-  <a href={site.googleProfile} class="btn btn-outline mt-6" target="_blank" rel="noopener">Read our reviews on Google <Icon name="arrow" /></a>
+  <a href={site.googleProfile} class="btn btn-outline mt-6" target="_blank" rel="noopener">Read our reviews on Google</a>
 </div>

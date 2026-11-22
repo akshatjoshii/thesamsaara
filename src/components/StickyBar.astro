@@ -11,6 +11,6 @@ const { waMessage } = Astro.props;
 </div>
 
 <!-- Desktop: floating WhatsApp button -->
-<a href={waLink(waMessage)} class="fixed bottom-6 right-6 z-40 hidden h-14 w-14 items-center justify-center rounded-full bg-whatsapp text-white shadow-xl transition hover:scale-105 lg:flex" aria-label="Chat on WhatsApp" target="_blank" rel="noopener" data-track="whatsapp_click">
+<a href={waLink(waMessage)} class="fixed bottom-6 right-6 z-40 hidden h-14 w-14 items-center justify-center rounded-full bg-whatsapp text-white shadow-[0_6px_20px_rgba(14,43,47,.35)] transition hover:scale-105 lg:flex" aria-label="Chat on WhatsApp" target="_blank" rel="noopener" data-track="whatsapp_click">
   <Icon name="whatsapp" class="h-7 w-7" />
 </a>

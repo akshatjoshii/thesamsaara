@@ -47,9 +47,9 @@ const highlightsMenu = menu.categories.flatMap((c) => c.items).filter((i) => 'hi
   />
 
   <!-- Highlights strip -->
-  <section class="bg-forest text-sand">
-    <ul class="container-x flex flex-wrap justify-center gap-x-6 gap-y-2 py-5 text-sm sm:text-base">
-      {highlights.map((h) => <li class="flex items-center gap-2"><Icon name="check" class="h-4 w-4 text-amber" />{h}</li>)}
+  <section class="bg-teal-dark text-sand-light" aria-label="Highlights">
+    <ul class="container-x flex flex-wrap justify-center gap-x-8 gap-y-2 pb-7 pt-2 font-display text-base sm:text-lg">
+      {highlights.map((h) => <li class="flex items-center gap-2.5"><span class="h-1.5 w-1.5 rounded-full bg-amber" aria-hidden="true"></span>{h}</li>)}
     </ul>
   </section>
 
@@ -57,8 +57,7 @@ const highlightsMenu = menu.categories.flatMap((c) => c.items).filter((i) => 'hi
   <section class="section">
     <div class="container-x">
       <div class="max-w-2xl reveal">
-        <p class="eyebrow">Stay with us</p>
-        <h2 class="mt-2">A riverside resort in Shivpuri for every kind of trip</h2>
+                <h2>A riverside resort in Shivpuri for every kind of trip</h2>
         <p class="lead mt-4">The Samsaara Club &amp; Resort sits on the bank of the Ganga in Shivpuri — the adventure heart of Rishikesh. Choose an air-conditioned cottage or sleep under the stars in our beach-side tents. Either way, your meals are included.</p>
       </div>
       <div class="mt-10 grid gap-6 md:grid-cols-2">
@@ -75,8 +74,7 @@ const highlightsMenu = menu.categories.flatMap((c) => c.items).filter((i) => 'hi
     <Wave color="var(--color-sand)" />
     <div class="container-x">
       <div class="max-w-2xl reveal">
-        <p class="eyebrow">Plan your occasion</p>
-        <h2 class="mt-2">Weddings, offsites, school trips &amp; celebrations</h2>
+                <h2>Weddings, offsites, school trips &amp; celebrations</h2>
         <p class="lead mt-4">Groups are our speciality. Tell us your headcount and dates, and we’ll build a custom package — <strong>groups get special discounts</strong>.</p>
       </div>
       <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -90,18 +88,18 @@ const highlightsMenu = menu.categories.flatMap((c) => c.items).filter((i) => 'hi
     <div class="container-x">
       <div class="flex flex-wrap items-end justify-between gap-4 reveal">
         <div class="max-w-2xl">
-          <p class="eyebrow">Experiences</p>
-          <h2 class="mt-2">River calm, wild fun</h2>
+                    <h2>River calm, wild fun</h2>
         </div>
-        <a href="/experiences/" class="btn btn-outline">All experiences <Icon name="arrow" /></a>
+        <a href="/experiences/" class="btn btn-outline">All experiences</a>
       </div>
       <div class="mt-8 -mx-5 flex snap-x snap-mandatory gap-5 overflow-x-auto px-5 pb-4 sm:-mx-8 sm:px-8" tabindex="0" aria-label="Experiences — scroll sideways">
         {experiences.items.map((e) => (
-          <a href={`/experiences/#${e.id}`} class="card group w-72 shrink-0 snap-start no-underline text-charcoal">
-            <img src={e.image} alt={e.alt || e.name} loading="lazy" width="1200" height="800" class="aspect-[4/3] w-full object-cover" />
-            <div class="p-5">
-              <h3 class="!text-lg">{e.name}</h3>
-              <p class="mt-1 text-sm text-charcoal/70">{e.text}</p>
+          <a href={`/experiences/#${e.id}`} class="group relative block w-72 shrink-0 snap-start overflow-hidden rounded-xl no-underline">
+            <img src={e.image} alt={e.alt || e.name} loading="lazy" width="1200" height="800" class="aspect-[3/4] w-full object-cover" />
+            <div class="absolute inset-0 bg-linear-to-t from-teal-dark/90 via-teal-dark/20 to-transparent"></div>
+            <div class="absolute inset-x-0 bottom-0 p-5">
+              <h3 class="!text-sand-light">{e.name}</h3>
+              <p class="mt-1 text-sm leading-snug text-sand-light/80">{e.text}</p>
             </div>
           </a>
         ))}
@@ -110,23 +108,21 @@ const highlightsMenu = menu.categories.flatMap((c) => c.items).filter((i) => 'hi
   </section>
 
   <!-- Why Samsaara -->
-  <section class="section relative bg-teal text-sand">
-    <Wave color="var(--color-teal)" />
+  <section class="section relative bg-teal-dark text-sand-light">
+    <Wave color="var(--color-teal-dark)" />
     <div class="container-x">
       <div class="max-w-2xl reveal">
-        <p class="eyebrow !text-amber">Why The Samsaara</p>
-        <h2 class="mt-2 !text-sand">Great value, right on the river</h2>
+                <h2 class="!text-sand-light">Great value, right on the river</h2>
       </div>
-      <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      <div class="mt-12 grid gap-x-10 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
         {why.map((w) => (
-          <div class="reveal rounded-3xl bg-white/10 p-6">
-            <Icon name="check" class="h-7 w-7 text-amber" />
-            <h3 class="mt-3 !text-xl !text-sand">{w.t}</h3>
-            <p class="mt-2 text-base text-sand/85">{w.d}</p>
+          <div class="border-t-2 border-amber pt-5">
+            <h3 class="!text-sand-light">{w.t}</h3>
+            <p class="mt-2 text-base text-sand-light/80">{w.d}</p>
           </div>
         ))}
       </div>
-      <p class="mt-10 max-w-3xl text-sand/85 reveal">Whether you’re a couple looking for a quiet riverside break, a family on a weekend away from Delhi, or a group of 80 planning a wedding, our team will put together the right mix of cottages, tents, meals and activities — and quote you a fair, all-in price on WhatsApp.</p>
+      <p class="mt-12 max-w-3xl text-lg text-sand-light/85">Whether you’re a couple looking for a quiet riverside break, a family on a weekend away from Delhi, or a group of 80 planning a wedding, our team will put together the right mix of cottages, tents, meals and activities — and quote you a fair, all-in price on WhatsApp.</p>
     </div>
   </section>
 
@@ -139,15 +135,14 @@ const highlightsMenu = menu.categories.flatMap((c) => c.items).filter((i) => 'hi
   <section class="section relative bg-sand">
     <Wave color="var(--color-sand)" />
     <div class="container-x grid items-center gap-10 lg:grid-cols-2">
-      <img src={page.cafeTeaser.image} alt={page.cafeTeaser.alt} loading="lazy" width="1200" height="800" class="reveal rounded-3xl shadow-md" />
+      <img src={page.cafeTeaser.image} alt={page.cafeTeaser.alt} loading="lazy" width="1200" height="800" class="rounded-xl" />
       <div class="reveal">
-        <p class="eyebrow">Samsaara Café</p>
-        <h2 class="mt-2">Woodfire pizza by the river</h2>
+                <h2>Woodfire pizza by the river</h2>
         <p class="lead mt-4">Our in-house café is the social heart of the resort — a common area to refuel after rafting with burgers, noodles, chaat and pizzas from the wood-fired oven.</p>
         <ul class="mt-5 flex flex-wrap gap-2">
           {highlightsMenu.map((i) => <li class="chip">{i.name}</li>)}
         </ul>
-        <a href="/cafe/" class="btn btn-outline mt-6">See the café <Icon name="arrow" /></a>
+        <a href="/cafe/" class="btn btn-outline mt-6">See the café</a>
       </div>
     </div>
   </section>
@@ -156,15 +151,15 @@ const highlightsMenu = menu.categories.flatMap((c) => c.items).filter((i) => 'hi
   <section class="section">
     <div class="container-x">
       <div class="flex flex-wrap items-end justify-between gap-4 reveal">
-        <div><p class="eyebrow">Gallery</p><h2 class="mt-2">Life at The Samsaara</h2></div>
+        <div><h2>Life at The Samsaara</h2></div>
         <div class="flex flex-wrap gap-3">
           <a href="/gallery/" class="btn btn-outline">View gallery</a>
           <a href={site.instagram} class="btn btn-amber" target="_blank" rel="noopener"><Icon name="instagram" /> @thesamsaara_</a>
         </div>
       </div>
-      <div class="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
+      <div class="mt-8 grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-6">
         {gallery.items.slice(0, 6).map((g) => (
-          <img src={g.src} alt={g.alt} loading="lazy" width="1200" height="800" class="aspect-square w-full rounded-2xl object-cover" />
+          <img src={g.src} alt={g.alt} loading="lazy" width="1200" height="800" class="aspect-square w-full rounded-lg object-cover" />
         ))}
       </div>
     </div>
@@ -175,8 +170,7 @@ const highlightsMenu = menu.categories.flatMap((c) => c.items).filter((i) => 'hi
     <Wave color="var(--color-sand)" />
     <div class="container-x">
       <div class="max-w-2xl reveal mb-8">
-        <p class="eyebrow">Location</p>
-        <h2 class="mt-2">On the Ganga in Shivpuri, upstream of Rishikesh</h2>
+                <h2>On the Ganga in Shivpuri, upstream of Rishikesh</h2>
         <p class="lead mt-4">Shivpuri is where most Rishikesh rafting trips begin — close enough to town for a quick visit to Laxman Jhula, far enough for clean air, quiet nights and a private stretch of river beach.</p>
       </div>
       <MapBlock />
@@ -188,7 +182,7 @@ const highlightsMenu = menu.categories.flatMap((c) => c.items).filter((i) => 'hi
     <div class="container-x grid gap-12 lg:grid-cols-2">
       <div>
         <FaqList items={faqs} />
-        <a href="/faq/" class="mt-6 inline-flex items-center gap-1 font-semibold">All FAQs <Icon name="arrow" class="h-4 w-4" /></a>
+        <a href="/faq/" class="mt-6 inline-flex items-center gap-1 font-semibold">All FAQs</a>
         <CtaBand waMessage="Hi Samsaara! I'd like the best price for a stay. Dates: ___ Guests: ___" />
       </div>
       <EnquiryForm />

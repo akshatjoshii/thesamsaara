@@ -28,7 +28,7 @@ const crumbs = [{ name: 'Gallery', path: '/gallery/' }];
       <ul class="mt-8 columns-1 gap-4 sm:columns-2 lg:columns-3" id="gallery-grid">
         {gallery.items.map((g) => (
           <li class="gal-item mb-4 break-inside-avoid" data-cat={g.category}>
-            <a href={g.src} class="block overflow-hidden rounded-2xl" target="_blank" rel="noopener">
+            <a href={g.src} class="block overflow-hidden rounded-lg" target="_blank" rel="noopener">
               <img src={g.src} alt={g.alt} loading="lazy" decoding="async" width="1200" height="800" class="w-full transition duration-500 hover:scale-105" />
             </a>
           </li>

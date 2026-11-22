@@ -27,23 +27,23 @@ const nav = [
 const isActive = (href?: string) => href && path.startsWith(href);
 ---
 {site.offerBanner.enabled && (
-  <div class="bg-forest text-sand text-center text-sm py-2 px-4">
-    <a href={site.offerBanner.link} class="text-sand no-underline hover:underline">{site.offerBanner.text} →</a>
+  <div class="bg-forest text-sand-light text-center font-display text-sm py-2 px-4">
+    <a href={site.offerBanner.link} class="text-sand-light underline decoration-amber decoration-2 underline-offset-4 hover:text-white">{site.offerBanner.text}</a>
   </div>
 )}
-<header class="sticky top-0 z-40 bg-sand-light/95 backdrop-blur border-b border-black/5">
+<header class="sticky top-0 z-40 bg-sand-light/90 backdrop-blur-md border-b border-charcoal/10">
   <div class="container-x flex h-16 items-center justify-between gap-4">
     <a href="/" class="flex shrink-0 items-center gap-2 no-underline" aria-label={`${site.name} — home`}>
       <img src={site.branding.headerLogo} alt="" width="256" height="235" class="h-10 w-auto" />
-      <span class="whitespace-nowrap font-serif text-lg font-semibold leading-tight text-teal-dark">The Samsaara<span class="block text-[0.7rem] font-sans font-medium uppercase tracking-[0.18em] text-forest/70">Club & Resort</span></span>
+      <span class="whitespace-nowrap font-display text-lg font-bold leading-none tracking-tight text-teal-dark">The Samsaara<span class="mt-0.5 block text-[0.8rem] font-medium tracking-normal text-forest">Club &amp; Resort on the Ganga</span></span>
     </a>
 
     <nav class="hidden lg:block" aria-label="Main">
-      <ul class="flex items-center gap-0.5 whitespace-nowrap text-[0.95rem]">
+      <ul class="flex items-center gap-0.5 whitespace-nowrap font-display text-[0.95rem]">
         {nav.map((item) => item.children ? (
           <li class="group relative">
             <button type="button" class="whitespace-nowrap rounded-full px-2.5 py-2 font-medium text-charcoal hover:text-teal" aria-haspopup="true">{item.label} <span aria-hidden="true" class="text-xs">▾</span></button>
-            <ul class="invisible absolute left-0 top-full w-60 rounded-2xl bg-white p-2 opacity-0 shadow-lg ring-1 ring-black/5 transition group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+            <ul class="invisible absolute left-0 top-full w-60 rounded-xl border border-charcoal/10 bg-[#F8FAF8] p-2 opacity-0 transition group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
               {item.children.map((c) => (
                 <li><a href={c.href} class="block rounded-xl px-3 py-2 text-charcoal no-underline hover:bg-sand">{c.label}</a></li>
               ))}
@@ -68,12 +68,12 @@ const isActive = (href?: string) => href && path.startsWith(href);
         <summary class="list-none cursor-pointer rounded-full p-2 text-teal-dark [&::-webkit-details-marker]:hidden" aria-label="Open menu">
           <Icon name="menu" class="h-7 w-7" />
         </summary>
-        <nav class="fixed inset-x-0 top-0 z-50 max-h-dvh overflow-y-auto bg-sand-light px-6 pb-28 pt-5 shadow-xl" aria-label="Mobile">
+        <nav class="fixed inset-x-0 top-0 z-50 max-h-dvh overflow-y-auto bg-sand-light px-6 pb-28 pt-5" aria-label="Mobile">
           <div class="flex items-center justify-between mb-4">
             <span class="font-serif text-xl text-teal-dark">Menu</span>
             <button type="button" class="p-2 text-teal-dark" data-close-menu aria-label="Close menu"><Icon name="close" class="h-7 w-7" /></button>
           </div>
-          <ul class="space-y-1 text-lg">
+          <ul class="space-y-1 font-display text-lg">
             <li><a href="/" class="block py-2 text-charcoal no-underline">Home</a></li>
             {nav.map((item) => item.children ? (
               <li>

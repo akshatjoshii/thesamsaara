@@ -8,12 +8,16 @@ const {
   waMessage,
 } = Astro.props;
 ---
-<div class="reveal my-10 rounded-3xl bg-teal px-6 py-8 text-sand sm:flex sm:items-center sm:justify-between sm:gap-8 sm:px-10">
-  <div>
-    <p class="font-serif text-2xl text-sand">{title}</p>
-    <p class="mt-2 text-sand/85 text-base max-w-xl">{text}</p>
+<div class="relative my-12 overflow-hidden rounded-xl bg-teal-dark px-6 py-9 text-sand-light sm:flex sm:items-center sm:justify-between sm:gap-8 sm:px-10">
+  <svg class="pointer-events-none absolute inset-x-0 bottom-0 h-10 w-full" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 40C220 26 420 22 640 32S1020 56 1240 46 1400 30 1440 32" fill="none" stroke="var(--color-amber)" stroke-opacity=".7" stroke-width="1.5" vector-effect="non-scaling-stroke" />
+    <path d="M0 50C240 38 440 35 660 43S1040 62 1260 54 1410 40 1440 42" fill="none" stroke="var(--color-sand-light)" stroke-opacity=".25" stroke-width="1" vector-effect="non-scaling-stroke" />
+  </svg>
+  <div class="relative">
+    <p class="font-display text-2xl font-bold tracking-tight text-sand-light">{title}</p>
+    <p class="mt-2 max-w-xl text-base text-sand-light/80">{text}</p>
   </div>
-  <div class="mt-5 flex flex-wrap gap-3 sm:mt-0 sm:shrink-0">
+  <div class="relative mt-5 flex flex-wrap gap-3 sm:mt-0 sm:shrink-0">
     <a href={waLink(waMessage)} class="btn btn-wa" target="_blank" rel="noopener" data-track="whatsapp_click"><Icon name="whatsapp" /> WhatsApp us</a>
     <a href={telLink} class="btn btn-light" data-track="call_click"><Icon name="phone" /> Call</a>
   </div>

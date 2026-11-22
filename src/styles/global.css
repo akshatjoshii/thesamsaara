@@ -1,18 +1,25 @@
 @import "tailwindcss";
 
+/*
+  Theme: "River Ganga at Shivpuri"
+  Token names are kept from v1 so templates and the CMS keep working;
+  their values now come from the river, the stones, the marigold garlands
+  and the mud-plaster cottages.
+*/
 @theme {
-  --color-teal: #1F5E63;
-  --color-teal-dark: #17484c;
-  --color-sand: #EDE3D1;
-  --color-sand-light: #F6F0E5;
-  --color-forest: #2E4A3A;
-  --color-amber: #E08A3C;
-  --color-amber-dark: #B8641C;
-  --color-charcoal: #1C1C1C;
+  --color-teal: #0B6E69;        /* Ganga jade: links, primary accents */
+  --color-teal-dark: #0E2B2F;   /* river at dusk: headings, dark bands */
+  --color-sand: #D9E2DD;        /* silt: alternate section background */
+  --color-sand-light: #EDF1EE;  /* river stone: page background */
+  --color-forest: #8C5A3C;      /* mud plaster: small warm accents */
+  --color-amber: #F4A300;       /* marigold: calls to action */
+  --color-amber-dark: #9A5B00;  /* marigold text on light backgrounds */
+  --color-charcoal: #132321;    /* ink */
   --color-whatsapp: #1DA851;
 
-  --font-serif: "Fraunces Variable", Georgia, "Times New Roman", serif;
-  --font-sans: "Inter Variable", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-serif: "Bricolage Grotesque Variable", "Segoe UI", system-ui, sans-serif; /* display */
+  --font-display: "Bricolage Grotesque Variable", "Segoe UI", system-ui, sans-serif;
+  --font-sans: "Source Serif 4 Variable", Georgia, "Times New Roman", serif;       /* reading text */
 }
 
 @layer base {
@@ -23,53 +30,73 @@
   body {
     @apply bg-sand-light text-charcoal font-sans antialiased;
     font-size: 1.0625rem;
-    line-height: 1.65;
+    line-height: 1.7;
   }
   h1, h2, h3, h4 {
-    @apply font-serif text-teal-dark;
-    line-height: 1.15;
-    font-optical-sizing: auto;
+    @apply font-display text-teal-dark;
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    text-wrap: balance;
   }
-  h1 { @apply text-4xl sm:text-5xl lg:text-6xl font-semibold; letter-spacing: -0.01em; }
-  h2 { @apply text-3xl sm:text-4xl font-semibold; }
-  h3 { @apply text-xl sm:text-2xl font-semibold; }
+  h1 { font-size: clamp(2.5rem, 5.4vw, 4.75rem); letter-spacing: -0.035em; }
+  h2 { font-size: clamp(1.9rem, 3.4vw, 2.85rem); }
+  h3 { font-size: clamp(1.2rem, 1.6vw, 1.45rem); line-height: 1.2; letter-spacing: -0.015em; }
   a { @apply text-teal underline-offset-4; }
+  p { text-wrap: pretty; }
   :focus-visible { outline: 3px solid var(--color-amber); outline-offset: 2px; border-radius: 4px; }
   img { max-width: 100%; height: auto; }
+  ::selection { background: var(--color-amber); color: var(--color-charcoal); }
 }
 
 @layer components {
   .container-x { @apply mx-auto w-full max-w-6xl px-5 sm:px-8; }
   .section { @apply py-16 sm:py-24; }
-  .eyebrow { @apply text-xs font-semibold uppercase tracking-[0.2em] text-amber-dark; }
-  .lead { @apply text-lg sm:text-xl text-charcoal/80; }
+  /* Small context line above a heading: sentence case, no tracking */
+  .eyebrow { @apply font-display text-[0.95rem] font-semibold text-teal; letter-spacing: 0; }
+  .lead { @apply text-lg sm:text-xl text-charcoal/80; max-width: 40rem; }
 
-  .btn { @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 font-semibold no-underline transition-all duration-200 text-base; }
-  .btn-wa { @apply bg-whatsapp text-white hover:brightness-110 shadow-md; }
-  .btn-amber { @apply bg-amber text-charcoal hover:bg-amber-dark hover:text-white shadow-md; }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-5 py-3 font-display font-semibold no-underline text-base;
+    transition: background-color .2s, color .2s, border-color .2s;
+  }
+  .btn-wa { @apply bg-whatsapp text-white hover:bg-[#178c44]; }
+  .btn-amber { @apply bg-amber text-charcoal hover:bg-[#ffb726]; }
   .btn-outline { @apply border-2 border-teal text-teal hover:bg-teal hover:text-white; }
-  .btn-light { @apply border-2 border-sand text-sand hover:bg-sand hover:text-teal-dark; }
+  .btn-light { @apply border-2 border-sand-light/70 text-sand-light hover:bg-sand-light hover:text-teal-dark; }
 
-  .card { @apply rounded-3xl bg-white shadow-sm ring-1 ring-black/5 overflow-hidden; }
-  .chip { @apply inline-flex items-center rounded-full bg-sand px-3 py-1 text-sm text-forest; }
+  /* Flat surface: hairline border, no drop shadow */
+  .card { @apply rounded-xl bg-[#F8FAF8] border border-charcoal/10 overflow-hidden; }
+  .chip { @apply inline-flex items-center rounded-md bg-sand px-2.5 py-1 font-display text-sm font-medium text-teal-dark; }
 
   .prose-s p { @apply mb-5; }
   .prose-s h2 { @apply mt-12 mb-4; }
   .prose-s h3 { @apply mt-8 mb-3; }
   .prose-s ul { @apply mb-5 list-disc pl-6 space-y-1; }
   .prose-s ol { @apply mb-5 list-decimal pl-6 space-y-1; }
-  .prose-s a:not(.btn) { @apply underline; }
+  .prose-s li::marker { color: var(--color-teal); }
+  .prose-s a:not(.btn) { @apply underline decoration-teal/40 decoration-2; }
   .prose-s strong { @apply text-teal-dark; }
   .prose-s table { @apply mb-6 w-full text-left text-base; }
-  .prose-s th, .prose-s td { @apply border-b border-black/10 py-2 pr-4; }
+  .prose-s th { @apply font-display font-semibold; }
+  .prose-s th, .prose-s td { @apply border-b border-charcoal/10 py-2 pr-4; }
 }
 
-/* Scroll reveal (enhanced by JS; content is visible without JS) */
-.js .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
-.js .reveal.is-visible { opacity: 1; transform: none; }
+/* Hero: the one orchestrated motion: the headline settles and the river lines draw in */
+.hero-title { font-variation-settings: "opsz" 96; }
+.current-line { stroke-dasharray: 1600; stroke-dashoffset: 0; }
+.js .hero-in .current-line { animation: current-draw 2.4s cubic-bezier(.3,.7,.2,1) both; }
+.js .hero-in .current-line:nth-child(2) { animation-delay: .15s; }
+.js .hero-in .current-line:nth-child(3) { animation-delay: .3s; }
+.js .hero-in .current-line:nth-child(4) { animation-delay: .45s; }
+.js .hero-in .hero-copy { animation: hero-settle 1s cubic-bezier(.2,.7,.2,1) both; }
+@keyframes current-draw { from { stroke-dashoffset: 1600; } to { stroke-dashoffset: 0; } }
+@keyframes hero-settle { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+
+/* Section reveals are intentionally static now (kept as a no-op class for older templates) */
+.reveal { opacity: 1; transform: none; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .js .reveal { opacity: 1; transform: none; transition: none; }
   * { animation: none !important; transition: none !important; }
 }
