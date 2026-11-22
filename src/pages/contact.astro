@@ -23,16 +23,16 @@ const crumbs = [{ name: 'Contact', path: '/contact/' }];
 
       <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <a href={waLink()} class="card reveal flex flex-col gap-2 p-6 no-underline text-charcoal hover:ring-whatsapp" target="_blank" rel="noopener" data-track="whatsapp_click">
-          <Icon name="whatsapp" class="h-8 w-8 text-whatsapp" /><span class="font-semibold text-teal-dark">WhatsApp</span><span class="text-base">{site.phone}</span><span class="text-sm text-charcoal/60">Fastest reply</span>
+          <Icon name="whatsapp" class="h-8 w-8 text-whatsapp" /><span class="font-display font-semibold text-teal-dark">WhatsApp</span><span class="text-base">{site.phone}</span><span class="text-sm text-charcoal/60">Fastest reply</span>
         </a>
         <a href={telLink} class="card reveal flex flex-col gap-2 p-6 no-underline text-charcoal" data-track="call_click">
-          <Icon name="phone" class="h-8 w-8 text-teal" /><span class="font-semibold text-teal-dark">Call</span><span class="text-base">{site.phone}</span>
+          <Icon name="phone" class="h-8 w-8 text-teal" /><span class="font-display font-semibold text-teal-dark">Call</span><span class="text-base">{site.phone}</span>
         </a>
         <a href={mailLink} class="card reveal flex flex-col gap-2 p-6 no-underline text-charcoal">
-          <Icon name="mail" class="h-8 w-8 text-teal" /><span class="font-semibold text-teal-dark">Email</span><span class="text-base break-all">{site.email}</span>
+          <Icon name="mail" class="h-8 w-8 text-teal" /><span class="font-display font-semibold text-teal-dark">Email</span><span class="text-base">{site.email.split('@')[0]}<wbr />@{site.email.split('@')[1]}</span>
         </a>
         <a href={site.instagram} class="card reveal flex flex-col gap-2 p-6 no-underline text-charcoal" target="_blank" rel="noopener">
-          <Icon name="instagram" class="h-8 w-8 text-amber-dark" /><span class="font-semibold text-teal-dark">Instagram</span><span class="text-base">@thesamsaara_</span>
+          <Icon name="instagram" class="h-8 w-8 text-amber-dark" /><span class="font-display font-semibold text-teal-dark">Instagram</span><span class="text-base">@thesamsaara_</span>
         </a>
       </div>
 

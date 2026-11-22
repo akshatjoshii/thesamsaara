@@ -4,6 +4,7 @@ import page from '../data/pages/school.json';
 import { fill, shareImage } from '../lib/content';
 import PageHero from '../components/PageHero.astro';
 import Icon from '../components/Icon.astro';
+import FeatureIcon from '../components/FeatureIcon.astro';
 import CtaBand from '../components/CtaBand.astro';
 import FaqList from '../components/FaqList.astro';
 import EnquiryForm from '../components/EnquiryForm.astro';
@@ -51,7 +52,7 @@ const points = [
       <div class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {points.map((p) => (
           <div class="card reveal p-6">
-            <Icon name="check" class="h-6 w-6 text-amber" />
+            <span class="grid h-11 w-11 place-items-center rounded-lg bg-teal/10 text-teal"><FeatureIcon text={p.t} class="h-6 w-6" /></span>
             <h3 class="mt-3 !text-xl">{p.t}</h3>
             <p class="mt-2 text-base text-charcoal/75">{p.d}</p>
           </div>

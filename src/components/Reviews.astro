@@ -10,8 +10,7 @@ const { rating, count, show } = site.googleRating;
 <div>
   <div class="flex flex-wrap items-end justify-between gap-4">
     <div>
-      <p class="eyebrow">Guest reviews</p>
-      <h2 class="mt-2">What our guests say</h2>
+      <h2>What our guests say</h2>
     </div>
     {show && count > 0 && (
       <p class="flex items-center gap-2 text-lg font-semibold text-teal-dark">
@@ -33,9 +32,10 @@ const { rating, count, show } = site.googleRating;
       ))}
     </div>
   ) : (
-    <div class="mt-6 card p-6 sm:p-8">
-      <p class="text-charcoal/80">Read honest reviews from guests who’ve stayed, camped and celebrated with us — and leave one after your stay.</p>
+    <div class="mt-6 flex flex-col gap-5 border-l-4 border-amber pl-6 sm:flex-row sm:items-center sm:justify-between">
+      <p class="max-w-xl text-lg text-charcoal/80">Read honest reviews from guests who’ve stayed, camped and celebrated with us — and leave one after your stay.</p>
+      <a href={site.googleProfile} class="btn btn-outline shrink-0" target="_blank" rel="noopener"><Icon name="star" class="h-5 w-5 text-amber" /> Read our reviews on Google</a>
     </div>
   )}
-  <a href={site.googleProfile} class="btn btn-outline mt-6" target="_blank" rel="noopener">Read our reviews on Google</a>
+  {items.length > 0 && <a href={site.googleProfile} class="btn btn-outline mt-6" target="_blank" rel="noopener">Read our reviews on Google</a>}
 </div>

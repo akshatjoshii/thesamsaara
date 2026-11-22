@@ -4,6 +4,7 @@ import page from '../data/pages/camping.json';
 import { fill, shareImage } from '../lib/content';
 import PageHero from '../components/PageHero.astro';
 import Icon from '../components/Icon.astro';
+import FeatureIcon from '../components/FeatureIcon.astro';
 import CtaBand from '../components/CtaBand.astro';
 import FaqList from '../components/FaqList.astro';
 import EnquiryForm from '../components/EnquiryForm.astro';
@@ -54,9 +55,9 @@ const day = [
         <div class="card p-6">
           <h3>What’s included</h3>
           <ul class="mt-4 space-y-3 text-base">
-            {stay.camping.features.map((f) => <li class="flex gap-2"><Icon name="check" class="h-5 w-5 text-forest shrink-0" />{f}</li>)}
-            <li class="flex gap-2"><Icon name="check" class="h-5 w-5 text-forest shrink-0" />Access to pool, café &amp; games</li>
-            <li class="flex gap-2"><Icon name="check" class="h-5 w-5 text-forest shrink-0" />Parking &amp; Wi-Fi in common areas</li>
+            {stay.camping.features.map((f) => <li class="flex items-center gap-3"><FeatureIcon text={f} class="h-5 w-5 shrink-0 text-teal" />{f}</li>)}
+            <li class="flex items-center gap-3"><FeatureIcon text="pool" class="h-5 w-5 shrink-0 text-teal" />Access to pool, café &amp; games</li>
+            <li class="flex items-center gap-3"><FeatureIcon text="parking" class="h-5 w-5 shrink-0 text-teal" />Parking &amp; Wi-Fi in common areas</li>
           </ul>
           <p class="mt-5 font-semibold text-amber-dark">{stay.camping.price}</p>
         </div>
@@ -74,12 +75,12 @@ const day = [
 
     <div class="container-x mt-16">
       <h2 class="reveal">A night at our riverside camp</h2>
-      <ol class="mt-8 grid gap-4 md:grid-cols-5">
-        {day.map((d, i) => (
-          <li class="card reveal p-5">
-            <span class="font-serif text-3xl text-amber">{i + 1}</span>
-            <p class="mt-2 font-semibold text-teal-dark">{d.time}</p>
-            <p class="mt-1 text-base text-charcoal/75">{d.text}</p>
+      <ol class="relative mt-10 grid gap-8 before:absolute before:bottom-2 before:left-[7px] before:top-2 before:w-px before:bg-teal/30 before:content-[''] md:grid-cols-5 md:gap-6 md:before:bottom-auto md:before:left-0 md:before:right-0 md:before:top-[7px] md:before:h-px md:before:w-auto">
+        {day.map((d) => (
+          <li class="relative pl-8 md:pl-0 md:pt-9">
+            <span aria-hidden="true" class="absolute left-0 top-1 h-[15px] w-[15px] rounded-full border-2 border-amber bg-sand-light md:top-0"></span>
+            <p class="font-display text-lg font-bold text-teal-dark">{d.time}</p>
+            <p class="mt-1.5 text-base text-charcoal/75">{d.text}</p>
           </li>
         ))}
       </ol>

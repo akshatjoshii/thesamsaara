@@ -15,6 +15,11 @@ import site from '../data/site.json';
 import experiences from '../data/experiences.json';
 import menu from '../data/menu.json';
 import gallery from '../data/gallery.json';
+// One photo from each gallery category, so the strip shows the variety of the place
+const seenCategories = new Set<string>();
+const stripPhotos = gallery.items
+  .filter((g) => !seenCategories.has(g.category) && seenCategories.add(g.category))
+  .slice(0, 5);
 import { resortSchema, faqsByTag, faqSchema } from '../lib/schema';
 import { formatINR } from '../lib/links';
 
@@ -92,11 +97,11 @@ const highlightsMenu = menu.categories.flatMap((c) => c.items).filter((i) => 'hi
         </div>
         <a href="/experiences/" class="btn btn-outline">All experiences</a>
       </div>
-      <div class="mt-8 -mx-5 flex snap-x snap-mandatory gap-5 overflow-x-auto px-5 pb-4 sm:-mx-8 sm:px-8" tabindex="0" aria-label="Experiences — scroll sideways">
+      <div class="no-scrollbar mt-8 -mx-5 flex snap-x snap-mandatory scroll-px-5 gap-4 sm:scroll-px-8 overflow-x-auto px-5 pb-2 sm:-mx-8 sm:px-8 lg:mx-0 lg:grid lg:grid-cols-4 lg:overflow-visible lg:px-0 lg:pb-0" tabindex="0" aria-label="Experiences">
         {experiences.items.map((e) => (
-          <a href={`/experiences/#${e.id}`} class="group relative block w-72 shrink-0 snap-start overflow-hidden rounded-xl no-underline">
-            <img src={e.image} alt={e.alt || e.name} loading="lazy" width="1200" height="800" class="aspect-[3/4] w-full object-cover" />
-            <div class="absolute inset-0 bg-linear-to-t from-teal-dark/90 via-teal-dark/20 to-transparent"></div>
+          <a href={`/experiences/#${e.id}`} class="group relative block w-72 shrink-0 snap-start overflow-hidden rounded-xl no-underline lg:w-auto">
+            <img src={e.image} alt={e.alt || e.name} loading="lazy" width="1200" height="800" class="aspect-[3/4] w-full object-cover lg:aspect-[4/5] transition-transform duration-700 group-hover:scale-[1.04]" />
+            <div class="absolute inset-0 bg-linear-to-t from-teal-dark via-teal-dark/55 via-35% to-transparent to-65%"></div>
             <div class="absolute inset-x-0 bottom-0 p-5">
               <h3 class="!text-sand-light">{e.name}</h3>
               <p class="mt-1 text-sm leading-snug text-sand-light/80">{e.text}</p>
@@ -127,7 +132,8 @@ const highlightsMenu = menu.categories.flatMap((c) => c.items).filter((i) => 'hi
   </section>
 
   <!-- Reviews -->
-  <section class="section">
+  <section class="section relative">
+    <Wave color="var(--color-sand-light)" flip />
     <div class="container-x"><Reviews /></div>
   </section>
 
@@ -135,7 +141,7 @@ const highlightsMenu = menu.categories.flatMap((c) => c.items).filter((i) => 'hi
   <section class="section relative bg-sand">
     <Wave color="var(--color-sand)" />
     <div class="container-x grid items-center gap-10 lg:grid-cols-2">
-      <img src={page.cafeTeaser.image} alt={page.cafeTeaser.alt} loading="lazy" width="1200" height="800" class="rounded-xl" />
+      <img src={page.cafeTeaser.image} alt={page.cafeTeaser.alt} loading="lazy" width="1200" height="800" class="aspect-[4/3] w-full rounded-xl object-cover" />
       <div class="reveal">
                 <h2>Woodfire pizza by the river</h2>
         <p class="lead mt-4">Our in-house café is the social heart of the resort — a common area to refuel after rafting with burgers, noodles, chaat and pizzas from the wood-fired oven.</p>
@@ -157,9 +163,9 @@ const highlightsMenu = menu.categories.flatMap((c) => c.items).filter((i) => 'hi
           <a href={site.instagram} class="btn btn-amber" target="_blank" rel="noopener"><Icon name="instagram" /> @thesamsaara_</a>
         </div>
       </div>
-      <div class="mt-8 grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-6">
-        {gallery.items.slice(0, 6).map((g) => (
-          <img src={g.src} alt={g.alt} loading="lazy" width="1200" height="800" class="aspect-square w-full rounded-lg object-cover" />
+      <div class="mt-8 grid grid-cols-2 gap-2 sm:grid-cols-4 sm:grid-rows-2">
+        {stripPhotos.map((g, i) => (
+          <img src={g.src} alt={g.alt} loading="lazy" width="1200" height="800" class:list={['h-full w-full rounded-lg object-cover', i === 0 ? 'col-span-2 row-span-2 aspect-square sm:aspect-auto' : 'aspect-square']} />
         ))}
       </div>
     </div>

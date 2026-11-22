@@ -4,6 +4,7 @@ import page from '../data/pages/wedding.json';
 import { fill, shareImage } from '../lib/content';
 import PageHero from '../components/PageHero.astro';
 import Icon from '../components/Icon.astro';
+import FeatureIcon from '../components/FeatureIcon.astro';
 import CtaBand from '../components/CtaBand.astro';
 import FaqList from '../components/FaqList.astro';
 import EnquiryForm from '../components/EnquiryForm.astro';
@@ -58,7 +59,7 @@ const steps = [
       <div class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {included.map((i) => (
           <div class="card reveal p-6">
-            <Icon name="check" class="h-6 w-6 text-amber" />
+            <span class="grid h-11 w-11 place-items-center rounded-lg bg-teal/10 text-teal"><FeatureIcon text={i.t} class="h-6 w-6" /></span>
             <h3 class="mt-3 !text-xl">{i.t}</h3>
             <p class="mt-2 text-base text-charcoal/75">{i.d}</p>
           </div>
@@ -94,9 +95,12 @@ const steps = [
 
       <div class="mt-16 reveal">
         <h2>How planning works</h2>
-        <ol class="mt-6 grid gap-4 md:grid-cols-4">
+        <ol class="relative mt-8 grid gap-7 before:absolute before:bottom-4 before:left-[17px] before:top-4 before:w-px before:bg-teal/30 before:content-[''] md:grid-cols-4 md:gap-6 md:before:bottom-auto md:before:left-0 md:before:right-0 md:before:top-[17px] md:before:h-px md:before:w-auto">
           {steps.map((s, i) => (
-            <li class="card p-5"><span class="font-serif text-3xl text-amber">{i + 1}</span><p class="mt-2 text-base">{s}</p></li>
+            <li class="relative pl-14 md:pl-0 md:pt-14">
+              <span aria-hidden="true" class="absolute left-0 top-0 grid h-9 w-9 place-items-center rounded-full bg-teal-dark font-display text-sm font-bold text-amber ring-4 ring-sand-light">{i + 1}</span>
+              <p class="text-base text-charcoal/85">{s}</p>
+            </li>
           ))}
         </ol>
         <div class="prose-s mt-8 max-w-3xl">

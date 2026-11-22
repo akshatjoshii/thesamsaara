@@ -4,6 +4,7 @@ import page from '../data/pages/stay.json';
 import { fill, shareImage } from '../lib/content';
 import PageHero from '../components/PageHero.astro';
 import Icon from '../components/Icon.astro';
+import FeatureIcon from '../components/FeatureIcon.astro';
 import CtaBand from '../components/CtaBand.astro';
 import FaqList from '../components/FaqList.astro';
 import EnquiryForm from '../components/EnquiryForm.astro';
@@ -54,8 +55,8 @@ const facilities = ['Air-conditioning', 'Free Wi-Fi', 'Free parking', 'Swimming 
               <p class="mt-1 font-semibold text-amber-dark">{c.price}</p>
               <p class="mt-3 text-base text-charcoal/75">{c.description}</p>
               <ul class="mt-4 flex-1 space-y-2 text-base">
-                <li class="flex gap-2"><Icon name="check" class="h-5 w-5 text-forest" />{c.beds}</li>
-                {c.features.map((f) => <li class="flex gap-2"><Icon name="check" class="h-5 w-5 text-forest" />{f}</li>)}
+                <li class="flex items-center gap-3"><FeatureIcon text="beds" class="h-5 w-5 shrink-0 text-teal" />{c.beds}</li>
+                {c.features.map((f) => <li class="flex items-center gap-3"><FeatureIcon text={f} class="h-5 w-5 shrink-0 text-teal" />{f}</li>)}
               </ul>
               <a href={waLink(`Hi Samsaara! I'm interested in the ${c.name}. Dates: ___ Guests: ___`)} class="btn btn-wa mt-6" target="_blank" rel="noopener" data-track="whatsapp_click"><Icon name="whatsapp" /> Get best price</a>
             </div>
@@ -79,7 +80,7 @@ const facilities = ['Air-conditioning', 'Free Wi-Fi', 'Free parking', 'Swimming 
         <div class="reveal">
           <h2 class="mb-4">What every stay includes</h2>
           <ul class="grid grid-cols-2 gap-3">
-            {facilities.map((f) => <li class="chip !rounded-lg !py-2 justify-start gap-2"><Icon name="check" class="h-4 w-4 text-forest" />{f}</li>)}
+            {facilities.map((f) => <li class="chip !rounded-lg !py-2 justify-start gap-2"><FeatureIcon text={f} class="h-5 w-5 shrink-0 text-teal" />{f}</li>)}
           </ul>
           <div class="prose-s mt-6">
             <p>Spend the day <a href="/experiences/">rafting in Shivpuri</a>, cool off in the pool, then gather around the bonfire. Prefer to sleep closer to the water? Try our <a href="/riverside-camping/">beach-side camping</a>.</p>
