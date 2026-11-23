@@ -1,0 +1,238 @@
+---
+// A Ganga current that winds down the home page behind the sections.
+// It draws itself as you scroll and carries a rafting crew at the
+// leading edge — scrolling back up pulls the current (and raft) back.
+// Pure SVG + a few lines of JS; no dependencies. Respects reduced motion.
+---
+<div class="river-layer" aria-hidden="true">
+  <svg class="river-svg" width="100%" height="100%">
+    <defs>
+      <radialGradient id="raft-shadow">
+        <stop offset="0" stop-color="#0E2B2F" stop-opacity=".28" />
+        <stop offset="1" stop-color="#0E2B2F" stop-opacity="0" />
+      </radialGradient>
+      <mask id="river-reveal" maskUnits="userSpaceOnUse">
+        <path class="river-reveal" fill="none" stroke="#fff" stroke-width="70" stroke-linecap="round" />
+      </mask>
+    </defs>
+
+    <!-- riverbed: always there, very faint -->
+    <path class="river-bed" fill="none" />
+
+    <!-- the current: revealed by scroll -->
+    <g mask="url(#river-reveal)">
+      <path class="river-strand river-strand--main" fill="none" />
+      <path class="river-strand river-strand--l" fill="none" />
+      <path class="river-strand river-strand--r" fill="none" />
+    </g>
+
+    <!-- white-water foam left in the raft's wake -->
+    <g class="river-foam">
+      <circle r="2.6" /><circle r="2.2" /><circle r="1.9" /><circle r="1.6" /><circle r="1.3" />
+    </g>
+
+    <!-- the raft (top-down, pointing downstream along +x) -->
+    <g class="river-raft">
+      <g class="raft-inner">
+        <ellipse rx="34" ry="17" fill="url(#raft-shadow)" />
+        <path class="raft-wake" d="M-25-7-46-17M-25 7-46 17" />
+        <path class="raft-wake raft-wake--2" d="M-30-4-52-9M-30 4-52 9" />
+        <g class="raft-paddles">
+          <g transform="translate(-11 -6)"><g class="paddle paddle--b"><path d="M0 0V-13" /><rect x="-1.8" y="-17" width="3.6" height="4.5" rx="1.2" /></g></g>
+          <g transform="translate(-11 6)"><g class="paddle paddle--b"><path d="M0 0V13" /><rect x="-1.8" y="13" width="3.6" height="4.5" rx="1.2" /></g></g>
+          <g transform="translate(-1 -6)"><g class="paddle paddle--b"><path d="M0 0V-13" /><rect x="-1.8" y="-17" width="3.6" height="4.5" rx="1.2" /></g></g>
+          <g transform="translate(-1 6)"><g class="paddle paddle--b"><path d="M0 0V13" /><rect x="-1.8" y="13" width="3.6" height="4.5" rx="1.2" /></g></g>
+          <g transform="translate(9 -6)"><g class="paddle paddle--b"><path d="M0 0V-13" /><rect x="-1.8" y="-17" width="3.6" height="4.5" rx="1.2" /></g></g>
+          <g transform="translate(9 6)"><g class="paddle paddle--b"><path d="M0 0V13" /><rect x="-1.8" y="13" width="3.6" height="4.5" rx="1.2" /></g></g>
+        </g>
+        <!-- inflatable hull -->
+        <rect x="-24" y="-10.5" width="48" height="21" rx="10.5" fill="#E4572E" stroke="#A8361A" stroke-width="1.4" />
+        <rect x="-18" y="-5" width="36" height="10" rx="5" fill="#33413F" />
+        <path d="M-6.5-5v10M3.5-5v10M13.5-5v10" stroke="#E4572E" stroke-width="2.2" />
+        <!-- crew: blue helmets, guide in yellow at the back -->
+        <g fill="#1E5FA8" stroke="#123E70" stroke-width=".8">
+          <circle cx="-11" cy="-6" r="2.9" /><circle cx="-11" cy="6" r="2.9" />
+          <circle cx="-1" cy="-6" r="2.9" /><circle cx="-1" cy="6" r="2.9" />
+          <circle cx="9" cy="-6" r="2.9" /><circle cx="9" cy="6" r="2.9" />
+        </g>
+        <circle cx="-19.5" cy="0" r="3.1" fill="#F4C21B" stroke="#9A7A00" stroke-width=".8" />
+        <path class="raft-oar" d="M-19.5 0-33 2" />
+      </g>
+    </g>
+  </svg>
+</div>
+
+<style is:global>
+  main:has(.river-layer) { position: relative; }
+  /* content sits above the river; section backgrounds sit below it */
+  main:has(.river-layer) .container-x { position: relative; z-index: 2; }
+  .river-layer {
+    position: absolute; left: 0; right: 0; top: 0; height: 0;
+    z-index: 1; pointer-events: none; overflow: hidden;
+  }
+  .river-svg { display: block; overflow: visible; }
+  .river-bed { stroke: var(--color-teal); stroke-opacity: .08; stroke-width: 44; stroke-linecap: round; }
+  .river-strand { stroke-linecap: round; }
+  .river-strand--main { stroke: #2E8F88; stroke-opacity: .7; stroke-width: 2.5; }
+  .river-strand--l, .river-strand--r {
+    stroke: #2E8F88; stroke-opacity: .55; stroke-width: 1.5;
+    stroke-dasharray: 14 18;
+    animation: river-flow 2.4s linear infinite;
+  }
+  .river-strand--r { animation-duration: 3.1s; stroke-dasharray: 8 22; }
+  .river-foam circle { fill: #2E8F88; }
+  .river-raft { opacity: 0; transition: opacity .6s ease; }
+  .river-raft.is-on { opacity: 1; }
+  .raft-inner { animation: raft-bob 2.8s ease-in-out infinite; }
+  .raft-paddles path { stroke: #3A2A1E; stroke-width: 1.4; stroke-linecap: round; }
+  .raft-paddles rect { fill: #3A2A1E; }
+  .paddle { animation: raft-stroke 1.1s ease-in-out infinite; }
+  .paddle--b { animation-delay: -.12s; }
+  .raft-oar { stroke: #3A2A1E; stroke-width: 1.6; stroke-linecap: round; animation: raft-steer 3.4s ease-in-out infinite; transform-origin: -19.5px 0; }
+  .raft-wake { fill: none; stroke: #2E8F88; stroke-width: 1.4; stroke-linecap: round; stroke-dasharray: 4 5; animation: raft-wake 1s linear infinite; opacity: .7; }
+  .raft-wake--2 { opacity: .4; animation-duration: 1.4s; }
+
+  @keyframes river-flow { to { stroke-dashoffset: -64; } }
+  @keyframes raft-bob { 0%, 100% { transform: translateY(0) rotate(-2.5deg); } 50% { transform: translateY(1.5px) rotate(2.5deg); } }
+  /* paddles sweep back together, like a crew on the guide's call */
+  @keyframes raft-stroke { 0%, 100% { transform: rotate(28deg); } 50% { transform: rotate(-28deg); } }
+  @keyframes raft-steer { 0%, 100% { transform: rotate(-10deg); } 50% { transform: rotate(10deg); } }
+  @keyframes raft-wake { to { stroke-dashoffset: 18; } }
+
+  /* phones: text spans the width, so keep the river quieter */
+  @media (max-width: 639px) {
+    .river-strand--main { stroke-opacity: .45; }
+    .river-strand--l, .river-strand--r { stroke-opacity: .35; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .river-strand--l, .river-strand--r, .raft-inner, .paddle, .raft-oar, .raft-wake { animation: none; }
+  }
+</style>
+
+<script>
+  const layer = document.querySelector<HTMLDivElement>('.river-layer');
+  const main = document.getElementById('main');
+  if (layer && main) {
+    const bed = layer.querySelector<SVGPathElement>('.river-bed')!;
+    const reveal = layer.querySelector<SVGPathElement>('.river-reveal')!;
+    const strandMain = layer.querySelector<SVGPathElement>('.river-strand--main')!;
+    const strandL = layer.querySelector<SVGPathElement>('.river-strand--l')!;
+    const strandR = layer.querySelector<SVGPathElement>('.river-strand--r')!;
+    const raft = layer.querySelector<SVGGElement>('.river-raft')!;
+    const foam = [...layer.querySelectorAll<SVGCircleElement>('.river-foam circle')];
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    let total = 0;
+    let table: { len: number; y: number }[] = [];
+    let current = 0;   // drawn length (eased)
+    let target = 0;    // length the scroll position asks for
+    let topAbs = 0;    // layer top in page coordinates
+    let raf = 0;
+    let raftScale = 1.5;
+    let heading = 90;
+    let turnLeft = 0;  // degrees the raft still has to turn
+
+    // Gentle, repeatable wobble so the river looks hand-drawn, not mechanical
+    const wobble = (i: number) => (Math.sin(i * 12.9898) * 43758.5453) % 1;
+
+    function build() {
+      // Start just below the element that precedes the layer (the highlights band)
+      const start = (layer!.previousElementSibling as HTMLElement | null);
+      const mainTop = main!.getBoundingClientRect().top + scrollY;
+      const startY = start ? start.getBoundingClientRect().bottom + scrollY - mainTop : 0;
+      const h = main!.scrollHeight - startY - 40;
+      const w = layer!.clientWidth;
+      if (h <= 0 || w <= 0) return;
+      layer!.style.top = startY + 'px';
+      layer!.style.height = h + 'px';
+      topAbs = mainTop + startY;
+
+      const seg = Math.max(520, Math.min(900, innerHeight * 0.85));
+      const narrow = w < 640;
+      raftScale = narrow ? 1.05 : 1.55;
+      const left = narrow ? 0.09 : 0.07, right = narrow ? 0.91 : 0.93;
+      let x = w * 0.5, y = 0, i = 0;
+      let d = `M${x} ${y}`;
+      let dl = `M${x - 9} ${y}`, dr = `M${x + 9} ${y}`;
+      while (y < h) {
+        const side = i % 2 === 0 ? right : left;
+        const nx = w * (side + (Math.abs(wobble(i + 1)) - 0.5) * 0.08);
+        const ny = Math.min(h, y + seg * (0.85 + Math.abs(wobble(i + 7)) * 0.3));
+        const k = (ny - y) * 0.55;
+        d += ` C${x} ${y + k} ${nx} ${ny - k} ${nx} ${ny}`;
+        dl += ` C${x - 9} ${y + k} ${nx - 9} ${ny - k} ${nx - 9} ${ny}`;
+        dr += ` C${x + 9} ${y + k} ${nx + 9} ${ny - k} ${nx + 9} ${ny}`;
+        x = nx; y = ny; i++;
+      }
+      for (const p of [bed, reveal, strandMain]) p.setAttribute('d', d);
+      strandL.setAttribute('d', dl);
+      strandR.setAttribute('d', dr);
+
+      total = reveal.getTotalLength();
+      reveal.style.strokeDasharray = `${total} ${total}`;
+      // Lookup table: path length → y, for fast scroll mapping
+      table = [];
+      for (let l = 0; l <= total; l += 6) table.push({ len: l, y: reveal.getPointAtLength(l).y });
+      table.push({ len: total, y: h });
+      update(true);
+    }
+
+    function lengthForY(y: number) {
+      if (y <= 0) return 0;
+      let lo = 0, hi = table.length - 1;
+      if (y >= table[hi].y) return total;
+      while (hi - lo > 1) {
+        const mid = (lo + hi) >> 1;
+        if (table[mid].y < y) lo = mid; else hi = mid;
+      }
+      const a = table[lo], b = table[hi];
+      return a.len + (b.len - a.len) * ((y - a.y) / Math.max(1, b.y - a.y));
+    }
+
+    function place(len: number) {
+      reveal.style.strokeDashoffset = String(total - len);
+      if (len < 60) { raft.classList.remove('is-on'); foam.forEach((f) => f.setAttribute('opacity', '0')); return; }
+      raft.classList.add('is-on');
+      const p = reveal.getPointAtLength(len);
+      const q = reveal.getPointAtLength(Math.max(0, len - 10));
+      // Point the bow downstream; ease the turn so the raft swings through bends
+      const want = (Math.atan2(p.y - q.y, p.x - q.x) * 180) / Math.PI;
+      let diff = ((want - heading + 540) % 360) - 180;
+      heading += reduce ? diff : diff * 0.25;
+      turnLeft = reduce ? 0 : diff * 0.75;
+      raft.setAttribute('transform', `translate(${p.x} ${p.y}) rotate(${heading}) scale(${raftScale})`);
+      foam.forEach((el, j) => {
+        const l = len - 46 * raftScale - j * 16;
+        if (l <= 0) { el.setAttribute('opacity', '0'); return; }
+        const pt = reveal.getPointAtLength(l);
+        const spread = (j % 2 ? 1 : -1) * (3 + j * 2.2);
+        el.setAttribute('cx', String(pt.x + spread));
+        el.setAttribute('cy', String(pt.y));
+        el.setAttribute('opacity', String(0.55 - j * 0.1));
+      });
+    }
+
+    function update(jump = false) {
+      // Leading edge sits a little below the middle of the screen
+      target = lengthForY(scrollY + innerHeight * 0.58 - topAbs);
+      if (jump || reduce) { current = target; place(current); return; }
+      if (!raf) raf = requestAnimationFrame(tick);
+    }
+
+    function tick() {
+      raf = 0;
+      current += (target - current) * 0.1;
+      if (Math.abs(target - current) < 0.5) current = target;
+      place(current);
+      if (current !== target || Math.abs(turnLeft) > 0.5) raf = requestAnimationFrame(tick);
+    }
+
+    addEventListener('scroll', () => update(), { passive: true });
+    let t: number | undefined;
+    const rebuild = () => { clearTimeout(t); t = window.setTimeout(build, 150); };
+    addEventListener('resize', rebuild);
+    new ResizeObserver(rebuild).observe(main);
+    build();
+  }
+</script>
