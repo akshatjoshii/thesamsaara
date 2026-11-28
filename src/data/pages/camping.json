@@ -1,30 +1,29 @@
 {
-  "seo": {
-    "title": "Camping in Rishikesh on the Ganga Beach, Meals Included | Samsaara",
-    "description": "Beach-side camping in Shivpuri, Rishikesh: 10 riverside tents with meals, bonfire and rafting on request. Best price on WhatsApp.",
-    "image": ""
-  },
   "hero": {
-    "eyebrow": "Signature experience",
-    "title": "Beach-side Camping in Rishikesh, on the Ganga",
-    "subtitle": "10 tents on the river beach at Shivpuri — with bonfire nights, meals included and rafting on request.",
     "image": "/images/banner-camping-campfire.webp",
-    "alt": "Campfire evening at a riverside camp with tents and prayer flags",
-    "representative": true
+    "alt": "Campfire evening at a riverside camp with tents and prayer flags (representative image)",
+    "representative": true,
+    "eyebrow": "Signature experience",
+    "title": "Riverside Camping in Rishikesh, Shivpuri",
+    "subtitle": "Night camping near the Ganga: 10 tents on the river beach at Shivpuri with bonfire evenings, meals included and rafting on request."
   },
   "photos": [
     {
       "image": "/images/camping-riverside-tent-1.webp",
-      "alt": "Tent pitched beside a rushing mountain river (representative image)"
+      "alt": "Camping tent pitched beside a fast mountain river (representative image)"
     },
     {
       "image": "/images/camping-riverside-tent-2.webp",
-      "alt": "Tents on a green riverbank at dusk (representative image)"
+      "alt": "Camping tents on a green riverbank at dusk (representative image)"
     },
     {
       "image": "/images/camping-riverside-tent-3.webp",
-      "alt": "Tent by a river in the hills at sunset (representative image)"
+      "alt": "Orange tent by a river in the hills at sunset (representative image)"
     }
   ],
-  "photosNote": "Representative images"
+  "photosNote": "Representative images",
+  "seo": {
+    "title": "Riverside Camping in Rishikesh with Meals | Samsaara",
+    "description": "Riverside camping in Shivpuri, Rishikesh: beach-side tents with meals, bonfire and rafting on request. Ask for the best price on WhatsApp."
+  }
 }
