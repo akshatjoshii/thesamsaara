@@ -1,15 +1,14 @@
 {
-  "seo": {
-    "title": "Rafting in Shivpuri with Stay, Bonfire & Camping | The Samsaara",
-    "description": "River rafting in Shivpuri, beach camping, bonfire nights, pool, beach volleyball and karaoke at The Samsaara, Rishikesh. Stay from {price} with meals.",
-    "image": ""
-  },
   "hero": {
-    "eyebrow": "Experiences",
-    "title": "Rafting, Bonfires & River Fun in Shivpuri",
-    "subtitle": "Adventure by day, calm by night. Everything you’d want from a Rishikesh trip, at one riverside resort.",
     "image": "/images/banner-white-water-rafting.webp",
-    "alt": "A raft crashing through white-water rapids",
-    "representative": true
+    "alt": "Raft going through white-water rapids during river rafting (representative image)",
+    "representative": true,
+    "eyebrow": "Experiences",
+    "title": "Rafting and Camping in Shivpuri, Rishikesh",
+    "subtitle": "River rafting, beach camping, bonfire nights and a pool at one riverside resort. Adventure by day, calm by the Ganga at night."
+  },
+  "seo": {
+    "title": "Rafting and Camping in Shivpuri Rishikesh | Samsaara",
+    "description": "Rafting and camping in Shivpuri, Rishikesh with bonfire, pool, volleyball and karaoke at The Samsaara. Stay from {price} with meals."
   }
 }
