@@ -1,21 +1,16 @@
 {
-  "seo": {
-    "title": "Resort in Shivpuri Rishikesh from {price} | The Samsaara",
-    "description": "Riverside AC cottages & beach camping on the Ganga in Shivpuri, Rishikesh. From {price}/person with meals. Pool, rafting, bonfire. WhatsApp for best price.",
-    "image": ""
-  },
   "hero": {
-    "eyebrow": "On the Ganga at Shivpuri, Rishikesh",
-    "title": "Riverside Cottages & Camping in Shivpuri, Rishikesh",
-    "subtitle": "17 AC cottages and 10 beach-side tents on the bank of the Ganga — with a pool, rafting, bonfire nights and meals included.",
     "image": "/images/hero-samsaara-resort-shivpuri.webp",
-    "alt": "The Samsaara at dusk: lit cottages, thatched café, gardens and pool in Shivpuri, Rishikesh",
-    "representative": false
+    "alt": "The Samsaara riverside resort in Shivpuri, Rishikesh at dusk, with lit cottages, thatched café, gardens and pool",
+    "representative": false,
+    "eyebrow": "On the Ganga at Shivpuri, Rishikesh",
+    "title": "Riverside Resort in Shivpuri, Rishikesh",
+    "subtitle": "A resort near the Ganga with 17 AC cottages and 10 beach-side tents, a swimming pool, rafting, bonfire nights and meals included."
   },
   "stayCards": {
     "cottages": {
       "image": "/images/cottage-twin-room.webp",
-      "alt": "Twin-bed AC cottage at The Samsaara, Shivpuri"
+      "alt": "Twin-bed AC cottage room at The Samsaara resort in Shivpuri, Rishikesh"
     },
     "camping": {
       "image": "/images/banner-camping-campfire.webp",
@@ -24,36 +19,40 @@
   },
   "occasions": [
     {
-      "title": "Destination Weddings",
-      "text": "Intimate riverside weddings for 70–100 guests, catering and décor included.",
-      "href": "/destination-wedding/",
       "image": "/images/destination-wedding-rishikesh.webp",
-      "alt": "Riverside destination wedding in Rishikesh"
+      "alt": "Entrance of The Samsaara wedding resort in Shivpuri lit up in the evening",
+      "title": "Destination Weddings",
+      "text": "Intimate riverside weddings in Rishikesh for 70–100 guests, catering and décor included.",
+      "href": "/destination-wedding/"
     },
     {
+      "image": "/images/corporate-group.webp",
+      "alt": "Guests in the gardens of The Samsaara resort in Shivpuri in the evening",
       "title": "Corporate Offsites",
       "text": "Team outings with rafting, bonfire nights and custom group packages.",
-      "href": "/corporate-offsite/",
-      "image": "/images/corporate-group.webp",
-      "alt": "Groups enjoying the gardens at The Samsaara in the evening"
+      "href": "/corporate-offsite/"
     },
     {
+      "image": "/images/school-trip.webp",
+      "alt": "Cottages and flower garden for school group stays at The Samsaara, Shivpuri",
       "title": "School & College Trips",
       "text": "Safe, supervised group stays with meals and outdoor activities.",
-      "href": "/school-trips/",
-      "image": "/images/school-trip.webp",
-      "alt": "School group trip to Rishikesh"
+      "href": "/school-trips/"
     },
     {
+      "image": "/images/birthday-celebration.webp",
+      "alt": "Garden lit with fairy lights for birthday celebrations at The Samsaara, Shivpuri",
       "title": "Birthday Celebrations",
       "text": "Bonfire, karaoke, café food and a riverside party for your crew.",
-      "href": "/birthday-celebrations/",
-      "image": "/images/birthday-celebration.webp",
-      "alt": "Birthday celebration by the Ganga"
+      "href": "/birthday-celebrations/"
     }
   ],
   "cafeTeaser": {
     "image": "/images/woodfire-pizza.webp",
-    "alt": "Woodfire pizza at The Samsaara café, Shivpuri"
+    "alt": "Pizza served with the menu at The Samsaara café in Shivpuri"
+  },
+  "seo": {
+    "title": "Resorts in Shivpuri Rishikesh from {price} | The Samsaara",
+    "description": "Riverside resort in Shivpuri, Rishikesh with AC cottages, beach camping, pool and meals. From {price} per person. WhatsApp for the best price."
   }
 }
