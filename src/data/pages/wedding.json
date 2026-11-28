@@ -1,33 +1,33 @@
 {
-  "seo": {
-    "title": "Destination Wedding in Rishikesh by the Ganga | The Samsaara",
-    "description": "Riverside destination wedding venue in Shivpuri, Rishikesh for 70–100 guests. Stay, catering & décor included. Get a custom quote on WhatsApp.",
-    "image": "/images/destination-wedding-rishikesh.webp"
-  },
   "hero": {
-    "eyebrow": "Destination weddings",
-    "title": "An Intimate Destination Wedding in Rishikesh, on the Ganga",
-    "subtitle": "A riverside wedding venue in Shivpuri for 70–100 guests — with stay, catering and décor all included.",
     "image": "/images/banner-wedding-stage.webp",
-    "alt": "Floral wedding stage decorated with roses and drapes",
-    "representative": true
+    "alt": "Floral wedding stage decorated with roses and drapes (representative image)",
+    "representative": true,
+    "eyebrow": "Destination weddings",
+    "title": "Wedding Resort in Rishikesh on the Ganga",
+    "subtitle": "A destination wedding venue in Shivpuri for 70–100 guests, with guest stay, catering and décor all included."
   },
   "photos": [
     {
       "image": "/images/garden-lights-night.webp",
-      "alt": "Garden paths lit with fairy lights at night"
+      "alt": "Garden paths lit with fairy lights for evening functions at The Samsaara"
     },
     {
       "image": "/images/birthday-celebration.webp",
-      "alt": "Lawn decorated with fairy lights and lanterns"
+      "alt": "Lawn decorated with fairy lights and lanterns for wedding functions"
     },
     {
       "image": "/images/resort-pool-at-night.webp",
-      "alt": "Pool and cottages lit up at night"
+      "alt": "Pool and cottages lit up at night for wedding guests at The Samsaara"
     }
   ],
   "preWeddingPhoto": {
     "image": "/images/pre-wedding-shoot.webp",
-    "alt": "Tree lit with fairy lights on the lawn, a favourite pre-wedding shoot spot"
+    "alt": "Fairy-lit tree on the lawn, a pre-wedding shoot spot at The Samsaara, Shivpuri"
+  },
+  "seo": {
+    "title": "Wedding Resort in Rishikesh by the Ganga | The Samsaara",
+    "description": "Wedding resort in Shivpuri, Rishikesh for 70–100 guests with stay, catering and décor on the Ganga. Get a custom quote on WhatsApp.",
+    "image": "/images/destination-wedding-rishikesh.webp"
   }
 }
